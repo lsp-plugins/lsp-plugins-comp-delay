@@ -31,7 +31,7 @@ namespace lsp
     // Compensation delay metadata
     namespace meta
     {
-        typedef struct comp_delay_t
+        typedef struct comp_delay
         {
             static const float  METERS_MIN          = 0.0f;
             static const float  METERS_MAX          = 200.0f;
@@ -68,7 +68,7 @@ namespace lsp
                 M_DISTANCE,
                 M_TIME
             };
-        } comp_delay_t;
+        } comp_delay;
 
         // Plugin metadata
         extern const plugin_t comp_delay_mono;

@@ -46,40 +46,40 @@ namespace lsp
 
                 typedef struct channel_t
                 {
-                    dspu::Delay         vLine;              // Delay line
-                    dspu::Bypass        vBypass;            // Bypass
+                    dspu::Delay         sLine;              // Delay line
+                    dspu::Bypass        sBypass;            // Bypass
 
                     ssize_t             nDelay;             // Actual delay
                     ssize_t             nNewDelay;          // New delay
-
-                    float              *vDryBuf;            // Dry buffer
-                    float              *vWetBuf;            // Wet buffer
-
                     size_t              nMode;              // Delay mode
-                    float               fSamples;           // Samples
-                    float               fDistance;          // Distance
-                    float               fTemperature;       // Temperature
-                    float               fTime;              // Time
+                    bool                bRamping;           // Ramping flag
                     float               fDry;               // Dry control
                     float               fWet;               // Wet control
 
                     plug::IPort        *pIn;                // Input port
                     plug::IPort        *pOut;               // Output port
                     plug::IPort        *pMode;              // Mode port
+                    plug::IPort        *pRamping;           // Ramping
                     plug::IPort        *pSamples;           // Samples port
-                    plug::IPort        *pDistance;          // Distance port
+                    plug::IPort        *pMeters;            // Distance meters
+                    plug::IPort        *pCentimeters;       // Distance centimeters
                     plug::IPort        *pTemperature;       // Temperature port
                     plug::IPort        *pTime;              // Time port
                     plug::IPort        *pDry;               // Dry control
                     plug::IPort        *pWet;               // Wet control
+
+                    plug::IPort        *pOutTime;           // Output time
+                    plug::IPort        *pOutSamples;        // Output samples
+                    plug::IPort        *pOutDistance;       // Output distance
                 } channel_t;
 
             protected:
                 size_t              nMode;              // mode
                 channel_t          *vChannels;          // Delay channels
-                bool                bRamping;           // Ramping flag
+                float              *vBuffer;            // Temporary buffer
 
-                plug::IPort        *pRamping;           // Ramping port
+                plug::IPort        *pBypass;            // Bypass
+                plug::IPort        *pGainOut;           // Output gain
 
                 uint8_t            *pData;              // Allocated data
 
@@ -93,6 +93,7 @@ namespace lsp
             public:
 
                 virtual void        update_sample_rate(long sr);
+                virtual void        update_settings();
                 virtual void        process(size_t samples);
                 virtual void        dump(dspu::IStateDumper *v);
         };

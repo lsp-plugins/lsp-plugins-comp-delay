@@ -51,20 +51,20 @@ namespace lsp
 
             COMBO("mode", "Mode", 0, comp_delay_modes),
             SWITCH("ramp", "Ramping", 0.0f),
-            INT_CONTROL("samp", "Samples", U_SAMPLES, comp_delay_t::SAMPLES),
-            INT_CONTROL("m", "Meters", U_M, comp_delay_t::METERS),
-            CONTROL("cm", "Centimeters", U_CM, comp_delay_t::CENTIMETERS),
-            CONTROL("t", "Temperature", U_DEG_CEL, comp_delay_t::TEMPERATURE),
-            CONTROL("time", "Time", U_MSEC, comp_delay_t::TIME),
+            INT_CONTROL("samp", "Samples", U_SAMPLES, comp_delay::SAMPLES),
+            INT_CONTROL("m", "Meters", U_M, comp_delay::METERS),
+            CONTROL("cm", "Centimeters", U_CM, comp_delay::CENTIMETERS),
+            CONTROL("t", "Temperature", U_DEG_CEL, comp_delay::TEMPERATURE),
+            CONTROL("time", "Time", U_MSEC, comp_delay::TIME),
             DRY_GAIN(0.0f),
             WET_GAIN(1.0f),
 
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t", "Delay time", U_HZ, 0.0f, comp_delay_t::DELAY_OUT_MAX_TIME),
-            METER_MINMAX("d_s", "Delay samples", U_SAMPLES, 0.0f, comp_delay_t::DELAY_OUT_MAX_SAMPLES),
-            METER_MINMAX("d_d", "Delay distance", U_CM, 0.0f, comp_delay_t::DELAY_OUT_MAX_DISTANCE),
+            METER_MINMAX("d_t", "Delay time", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_s", "Delay samples", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
+            METER_MINMAX("d_d", "Delay distance", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
             PORTS_END
         };
@@ -84,20 +84,20 @@ namespace lsp
 
             COMBO("mode", "Mode", 0, comp_delay_modes),
             SWITCH("ramp", "Ramping", 0.0f),
-            INT_CONTROL("samp", "Samples", U_SAMPLES, comp_delay_t::SAMPLES),
-            INT_CONTROL("m", "Meters", U_M, comp_delay_t::METERS),
-            CONTROL("cm", "Centimeters", U_CM, comp_delay_t::CENTIMETERS),
-            CONTROL("t", "Temperature", U_DEG_CEL, comp_delay_t::TEMPERATURE),
-            CONTROL("time", "Time", U_MSEC, comp_delay_t::TIME),
+            INT_CONTROL("samp", "Samples", U_SAMPLES, comp_delay::SAMPLES),
+            INT_CONTROL("m", "Meters", U_M, comp_delay::METERS),
+            CONTROL("cm", "Centimeters", U_CM, comp_delay::CENTIMETERS),
+            CONTROL("t", "Temperature", U_DEG_CEL, comp_delay::TEMPERATURE),
+            CONTROL("time", "Time", U_MSEC, comp_delay::TIME),
             DRY_GAIN(0.0f),
             WET_GAIN(1.0f),
 
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t", "Delay time", U_HZ, 0.0f, comp_delay_t::DELAY_OUT_MAX_TIME),
-            METER_MINMAX("d_s", "Delay samples", U_SAMPLES, 0.0f, comp_delay_t::DELAY_OUT_MAX_SAMPLES),
-            METER_MINMAX("d_d", "Delay distance", U_CM, 0.0f, comp_delay_t::DELAY_OUT_MAX_DISTANCE),
+            METER_MINMAX("d_t", "Delay time", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_s", "Delay samples", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
+            METER_MINMAX("d_d", "Delay distance", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
             PORTS_END
         };
@@ -117,34 +117,34 @@ namespace lsp
 
             COMBO("mode_l", "Mode L", 0, comp_delay_modes),
             SWITCH("ramp_l", "Ramping L", 0.0f),
-            INT_CONTROL("samp_l", "Samples L", U_SAMPLES, comp_delay_t::SAMPLES),
-            INT_CONTROL("m_l", "Meters L", U_M, comp_delay_t::METERS),
-            CONTROL("cm_l", "Centimeters L", U_CM, comp_delay_t::CENTIMETERS),
-            CONTROL("t_l", "Temperature L", U_DEG_CEL, comp_delay_t::TEMPERATURE),
-            CONTROL("time_l", "Time L", U_MSEC, comp_delay_t::TIME),
+            INT_CONTROL("samp_l", "Samples L", U_SAMPLES, comp_delay::SAMPLES),
+            INT_CONTROL("m_l", "Meters L", U_M, comp_delay::METERS),
+            CONTROL("cm_l", "Centimeters L", U_CM, comp_delay::CENTIMETERS),
+            CONTROL("t_l", "Temperature L", U_DEG_CEL, comp_delay::TEMPERATURE),
+            CONTROL("time_l", "Time L", U_MSEC, comp_delay::TIME),
             DRY_GAIN_L(0.0f),
             WET_GAIN_L(1.0f),
 
             COMBO("mode_r", "Mode R", 0, comp_delay_modes),
             SWITCH("ramp_r", "Ramping R", 0.0f),
-            INT_CONTROL("samp_r", "Samples R", U_SAMPLES, comp_delay_t::SAMPLES),
-            INT_CONTROL("m_r", "Meters R", U_M, comp_delay_t::METERS),
-            CONTROL("cm_r", "Centimeters R", U_CM, comp_delay_t::CENTIMETERS),
-            CONTROL("t_r", "Temperature R", U_DEG_CEL, comp_delay_t::TEMPERATURE),
-            CONTROL("time_r", "Time R", U_MSEC, comp_delay_t::TIME),
+            INT_CONTROL("samp_r", "Samples R", U_SAMPLES, comp_delay::SAMPLES),
+            INT_CONTROL("m_r", "Meters R", U_M, comp_delay::METERS),
+            CONTROL("cm_r", "Centimeters R", U_CM, comp_delay::CENTIMETERS),
+            CONTROL("t_r", "Temperature R", U_DEG_CEL, comp_delay::TEMPERATURE),
+            CONTROL("time_r", "Time R", U_MSEC, comp_delay::TIME),
             DRY_GAIN_R(0.0f),
             WET_GAIN_R(1.0f),
 
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t_l", "Delay time L", U_HZ, 0.0f, comp_delay_t::DELAY_OUT_MAX_TIME),
-            METER_MINMAX("d_s_l", "Delay samples L", U_SAMPLES, 0.0f, comp_delay_t::DELAY_OUT_MAX_SAMPLES),
-            METER_MINMAX("d_d_l", "Delay distance L", U_CM, 0.0f, comp_delay_t::DELAY_OUT_MAX_DISTANCE),
+            METER_MINMAX("d_t_l", "Delay time L", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_s_l", "Delay samples L", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
+            METER_MINMAX("d_d_l", "Delay distance L", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
-            METER_MINMAX("d_t_r", "Delay time R", U_HZ, 0.0f, comp_delay_t::DELAY_OUT_MAX_TIME),
-            METER_MINMAX("d_s_r", "Delay samples R", U_SAMPLES, 0.0f, comp_delay_t::DELAY_OUT_MAX_SAMPLES),
-            METER_MINMAX("d_d_r", "Delay distance R", U_CM, 0.0f, comp_delay_t::DELAY_OUT_MAX_DISTANCE),
+            METER_MINMAX("d_t_r", "Delay time R", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_s_r", "Delay samples R", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
+            METER_MINMAX("d_d_r", "Delay distance R", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
             PORTS_END
         };

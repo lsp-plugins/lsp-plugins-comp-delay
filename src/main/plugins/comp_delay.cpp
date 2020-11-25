@@ -20,6 +20,14 @@
  */
 
 #include <private/plugins/comp_delay.h>
+#include <lsp-plug.in/dsp-units/units.h>
+#include <lsp-plug.in/common/alloc.h>
+#include <lsp-plug.in/common/debug.h>
+#include <lsp-plug.in/dsp/dsp.h>
+
+#define BUFFER_SIZE         0x1000U
+
+#define TRACE_PORT(p)       lsp_trace("  port id=%s", (p)->metadata()->id);
 
 namespace lsp
 {
@@ -54,9 +62,10 @@ namespace lsp
 
             // Initialize other parameters
             vChannels       = NULL;
-            bRamping        = false;
+            vBuffer         = NULL;
 
-            pRamping        = NULL;
+            pBypass         = NULL;
+            pGainOut        = NULL;
 
             pData           = NULL;
         }
@@ -69,22 +78,324 @@ namespace lsp
         void comp_delay::init(plug::IWrapper *wrapper)
         {
             IModule::init(wrapper);
+
+            size_t channels         = (nMode == CD_MONO) ? 1 : 2;
+            size_t szof_channels    = align_size(sizeof(channel_t) * channels, OPTIMAL_ALIGN);
+            size_t buf_sz           = BUFFER_SIZE * sizeof(float);
+            size_t alloc            = szof_channels + buf_sz;
+
+            // Allocate data
+            uint8_t *ptr            = alloc_aligned<uint8_t>(pData, alloc, OPTIMAL_ALIGN);
+            if (ptr == NULL)
+                return;
+
+            // Initialize channels
+            vChannels               = reinterpret_cast<channel_t *>(ptr);
+            ptr                    += szof_channels;
+            vBuffer                 = reinterpret_cast<float *>(ptr);
+            ptr                    += buf_sz;
+
+            for (size_t i=0; i < channels; ++i)
+            {
+                channel_t *c            = &vChannels[i];
+
+                c->sLine.construct();
+                c->sBypass.construct();
+
+                c->nDelay               = 0;
+                c->nNewDelay            = 0;
+                c->nMode                = meta::comp_delay::M_SAMPLES;
+                c->bRamping             = false;
+                c->fDry                 = 0.0f;
+                c->fWet                 = 0.0f;
+
+                c->pIn                  = NULL;
+                c->pOut                 = NULL;
+                c->pMode                = NULL;
+                c->pRamping             = NULL;
+                c->pSamples             = NULL;
+                c->pMeters              = NULL;
+                c->pCentimeters         = NULL;
+                c->pTemperature         = NULL;
+                c->pTime                = NULL;
+                c->pDry                 = NULL;
+                c->pWet                 = NULL;
+
+                c->pOutTime             = NULL;
+                c->pOutSamples          = NULL;
+                c->pOutDistance         = NULL;
+            }
+
+            // Bind ports
+            lsp_trace("Binding ports");
+            size_t port_id      = 0;
+
+            // Bind input audio ports
+            for (size_t i=0; i<channels; ++i)
+            {
+                TRACE_PORT(vPorts[port_id]);
+                vChannels[i].pIn    = vPorts[port_id++];
+            }
+
+            // Bind output audio ports
+            for (size_t i=0; i<channels; ++i)
+            {
+                TRACE_PORT(vPorts[port_id]);
+                vChannels[i].pOut   = vPorts[port_id++];
+            }
+
+            // Bind bypass
+            TRACE_PORT(vPorts[port_id]);
+            pBypass              = vPorts[port_id++];
+
+            // Bind channels
+            for (size_t i=0; i<channels; ++i)
+            {
+                channel_t *c            = &vChannels[i];
+
+                if ((i > 0) && (nMode == CD_STEREO))
+                {
+                    channel_t *pc           = &vChannels[0];
+
+                    c->pMode                = pc->pMode;
+                    c->pRamping             = pc->pRamping;
+                    c->pSamples             = pc->pSamples;
+                    c->pMeters              = pc->pMeters;
+                    c->pCentimeters         = pc->pCentimeters;
+                    c->pTemperature         = pc->pTemperature;
+                    c->pTime                = pc->pTime;
+                    c->pDry                 = pc->pDry;
+                    c->pWet                 = pc->pWet;
+                }
+                else
+                {
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pMode                = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pRamping             = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pSamples             = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pMeters              = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pCentimeters         = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pTemperature         = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pTime                = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pDry                 = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pWet                 = vPorts[port_id++];
+                }
+            }
+
+            // Bind output gain
+            TRACE_PORT(vPorts[port_id]);
+            pGainOut            = vPorts[port_id++];
+
+            // Bind output meters
+            for (size_t i=0; i<channels; ++i)
+            {
+                channel_t *c            = &vChannels[i];
+
+                if ((i > 0) && (nMode == CD_STEREO))
+                {
+                    channel_t *pc           = &vChannels[0];
+
+                    c->pOutTime             = pc->pOutTime;
+                    c->pOutSamples          = pc->pOutSamples;
+                    c->pOutDistance         = pc->pOutDistance;
+                }
+                else
+                {
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pOutTime             = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pOutSamples          = vPorts[port_id++];
+                    TRACE_PORT(vPorts[port_id]);
+                    c->pOutDistance         = vPorts[port_id++];
+                }
+            }
         }
 
         void comp_delay::destroy()
         {
+            IModule::destroy();
+
+            // Destroy channels
+            if (vChannels != NULL)
+            {
+                size_t channels = (nMode == CD_MONO) ? 1 : 2;
+                for (size_t i=0; i<channels; ++i)
+                {
+                    channel_t *c    = &vChannels[i];
+                    c->sLine.destroy();
+                }
+                vChannels   = NULL;
+            }
+
+            vBuffer     = NULL;
+
+            // Free data
+            if (pData != NULL)
+            {
+                free_aligned(pData);
+                pData       = NULL;
+            }
         }
 
         void comp_delay::update_sample_rate(long sr)
         {
+            size_t channels         = (nMode == CD_MONO) ? 1 : 2;
+
+            size_t samples          = meta::comp_delay::SAMPLES_MAX;
+            size_t time_samples     = meta::comp_delay::TIME_MAX * 0.001 * sr;
+            size_t dist_samples     = (meta::comp_delay::METERS_MAX + meta::comp_delay::CENTIMETERS_MAX * 0.01) /
+                                        dspu::sound_speed(meta::comp_delay::TEMPERATURE_MAX);
+
+            samples                 = lsp_max(samples, time_samples);
+            samples                 = lsp_max(samples, dist_samples);
+
+            for (size_t i=0; i<channels; ++i)
+            {
+                channel_t *c    = &vChannels[i];
+                c->sLine.init(samples);
+                c->sBypass.init(sr);
+            }
+        }
+
+        void comp_delay::update_settings()
+        {
+            size_t channels         = (nMode == CD_MONO) ? 1 : 2;
+            float out_gain          = pGainOut->value();
+            bool bypass             = pBypass->value() >= 0.5f;
+
+            for (size_t i=0; i<channels; ++i)
+            {
+                channel_t *c            = &vChannels[i];
+
+                c->nMode                = c->pMode->value();
+                c->bRamping             = c->pRamping->value() >= 0.5f;
+                c->fDry                 = c->pDry->value() * out_gain;
+                c->fWet                 = c->pWet->value() * out_gain;
+
+                float temperature       = c->pTemperature->value();
+                float snd_speed         = dspu::sound_speed(temperature);
+
+                // Compute new delay value
+                if (c->nMode == meta::comp_delay::M_DISTANCE)
+                {
+                    float distance          = c->pMeters->value() + (c->pCentimeters->value() * 0.01f);
+                    c->nNewDelay            = (fSampleRate * distance) / snd_speed;
+                }
+                else if (c->nMode == meta::comp_delay::M_TIME)
+                    c->nNewDelay            = dspu::millis_to_samples(fSampleRate, c->pTime->value());
+                else
+                    c->nNewDelay            = c->pSamples->value();
+
+                // Update delay parameter for delay line
+                c->nNewDelay            = lsp_max(0, c->nNewDelay);
+                if (!c->bRamping)
+                    c->nDelay               = c->nNewDelay;
+
+                // Update processors
+                c->sLine.set_delay(c->nDelay);
+                c->sBypass.set_bypass(bypass);
+
+                // Re-calculate output parameters
+                c->pOutSamples->set_value(c->nNewDelay);
+                c->pOutDistance->set_value((c->nNewDelay * snd_speed * 100.0f) / float(fSampleRate));
+                c->pOutTime->set_value(dspu::samples_to_millis(fSampleRate, c->nNewDelay));
+            }
         }
 
         void comp_delay::process(size_t samples)
         {
+            size_t channels         = (nMode == CD_MONO) ? 1 : 2;
+
+            for (size_t i=0; i<channels; ++i)
+            {
+                channel_t *c            = &vChannels[i];
+
+                // Get input and output buffers
+                const float *in         = c->pIn->buffer<float>();
+                float *out              = c->pOut->buffer<float>();
+
+                if ((in == NULL) || (out == NULL))
+                    continue;
+
+                // Process the delay channel
+                for (size_t n=0; n<samples; )
+                {
+                    size_t count            = lsp_min(samples - n, BUFFER_SIZE);
+
+                    // Pre-process signal (fill buffer)
+                    c->sLine.process_ramping(vBuffer, in, c->fWet, c->nNewDelay, samples);
+                    c->nDelay               = c->nNewDelay;
+
+                    // Apply 'dry' control
+                    if (c->fDry > 0.0f)
+                        dsp::fmadd_k3(vBuffer, in, c->fDry, count);
+
+                    c->sBypass.process(out, in, vBuffer, count);
+
+                    // Increment pointers
+                    in          +=  count;
+                    out         +=  count;
+                    n           +=  count;
+                }
+            }
         }
 
         void comp_delay::dump(dspu::IStateDumper *v)
         {
+            size_t channels         = (nMode == CD_MONO) ? 1 : 2;
+
+            v->write("nMode", nMode);
+            v->begin_array("vChannels", vChannels, channels);
+            for (size_t i=0; i<channels; ++i)
+            {
+                channel_t *c            = &vChannels[i];
+
+                v->begin_object(c, sizeof(channel_t));
+                {
+                    v->write_object("sLine", &c->sLine);
+                    v->write_object("sBypass", &c->sBypass);
+
+                    v->write("nDelay", c->nDelay);
+                    v->write("nNewDelay", c->nNewDelay);
+                    v->write("nMode", c->nMode);
+                    v->write("bRamping", c->bRamping);
+                    v->write("fDry", c->fDry);
+                    v->write("fWet", c->fWet);
+
+                    v->write("pIn", c->pIn);
+                    v->write("pOut", c->pOut);
+                    v->write("pMode", c->pMode);
+                    v->write("pRamping", c->pRamping);
+                    v->write("pSamples", c->pSamples);
+                    v->write("pMeters", c->pMeters);
+                    v->write("pCentimeters", c->pCentimeters);
+                    v->write("pTemperature", c->pTemperature);
+                    v->write("pTime", c->pTime);
+                    v->write("pDry", c->pDry);
+                    v->write("pWet", c->pWet);
+
+                    v->write("pOutTime", c->pOutTime);
+                    v->write("pOutSamples", c->pOutSamples);
+                    v->write("pOutDistance", c->pOutDistance);
+                }
+                v->end_object();
+            }
+            v->end_array();
+
+            v->write("vBuffer", vBuffer);
+
+            v->write("pBypass", pBypass);
+            v->write("pGainOut", pGainOut);
+
+            v->write("pData", pData);
         }
 
     }
