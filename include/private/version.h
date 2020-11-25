@@ -19,6 +19,18 @@
  * along with lsp-plugins-comp-delay. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#ifndef PRIVATE_VERSION_H_
+#define PRIVATE_VERSION_H_
 
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR         1
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MINOR         0
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         3
 
+#define LSP_PLUGINS_COMP_DELAY_VERSION  \
+    LSP_MODULE_VERSION( \
+        LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR, \
+        LSP_PLUGINS_COMP_DELAY_VERSION_MINOR, \
+        LSP_PLUGINS_COMP_DELAY_VERSION_MICRO  \
+    )
 
+#endif /* PRIVATE_VERSION_H_ */

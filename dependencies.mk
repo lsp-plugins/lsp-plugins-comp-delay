@@ -19,91 +19,96 @@
 #
 
 # Variables that describe dependencies
-LSP_COMMON_LIB_VERSION     := 1.0.11
-LSP_COMMON_LIB_NAME        := lsp-common-lib
-LSP_COMMON_LIB_TYPE        := src
-LSP_COMMON_LIB_URL         := https://github.com/sadko4u/$(LSP_COMMON_LIB_NAME).git
+LSP_COMMON_LIB_VERSION          := 1.0.11
+LSP_COMMON_LIB_NAME             := lsp-common-lib
+LSP_COMMON_LIB_TYPE             := src
+LSP_COMMON_LIB_URL              := https://github.com/sadko4u/$(LSP_COMMON_LIB_NAME).git
 
-LSP_3RD_PARTY_VERSION      := 0.5.0
-LSP_3RD_PARTY_NAME         := lsp-3rd-party
-LSP_3RD_PARTY_TYPE         := src
-LSP_3RD_PARTY_URL          := https://github.com/sadko4u/$(LSP_3RD_PARTY_NAME).git
+LSP_3RD_PARTY_VERSION           := 0.5.0
+LSP_3RD_PARTY_NAME              := lsp-3rd-party
+LSP_3RD_PARTY_TYPE              := src
+LSP_3RD_PARTY_URL               := https://github.com/sadko4u/$(LSP_3RD_PARTY_NAME).git
 
-LSP_DSP_LIB_VERSION        := 0.5.11
-LSP_DSP_LIB_NAME           := lsp-dsp-lib
-LSP_DSP_LIB_TYPE           := src
-LSP_DSP_LIB_URL            := https://github.com/sadko4u/$(LSP_DSP_LIB_NAME).git
+LSP_DSP_LIB_VERSION             := 0.5.11
+LSP_DSP_LIB_NAME                := lsp-dsp-lib
+LSP_DSP_LIB_TYPE                := src
+LSP_DSP_LIB_URL                 := https://github.com/sadko4u/$(LSP_DSP_LIB_NAME).git
 
-LSP_DSP_UNITS_VERSION      := 0.5.0
-LSP_DSP_UNITS_NAME         := lsp-dsp-units
-LSP_DSP_UNITS_TYPE         := src
-LSP_DSP_UNITS_URL          := https://github.com/sadko4u/$(LSP_DSP_UNITS_NAME).git
+LSP_DSP_UNITS_VERSION           := 0.5.0
+LSP_DSP_UNITS_NAME              := lsp-dsp-units
+LSP_DSP_UNITS_TYPE              := src
+LSP_DSP_UNITS_URL               := https://github.com/sadko4u/$(LSP_DSP_UNITS_NAME).git
 
-LSP_RUNTIME_LIB_VERSION    := 0.5.6
-LSP_RUNTIME_LIB_NAME       := lsp-runtime-lib
-LSP_RUNTIME_LIB_TYPE       := src
-LSP_RUNTIME_LIB_URL        := https://github.com/sadko4u/$(LSP_RUNTIME_LIB_NAME).git
+LSP_RUNTIME_LIB_VERSION         := 0.5.6
+LSP_RUNTIME_LIB_NAME            := lsp-runtime-lib
+LSP_RUNTIME_LIB_TYPE            := src
+LSP_RUNTIME_LIB_URL             := https://github.com/sadko4u/$(LSP_RUNTIME_LIB_NAME).git
 
-LSP_LLTL_LIB_VERSION       := 0.5.5
-LSP_LLTL_LIB_NAME          := lsp-lltl-lib
-LSP_LLTL_LIB_TYPE          := src
-LSP_LLTL_LIB_URL           := https://github.com/sadko4u/$(LSP_LLTL_LIB_NAME).git
+LSP_LLTL_LIB_VERSION            := 0.5.5
+LSP_LLTL_LIB_NAME               := lsp-lltl-lib
+LSP_LLTL_LIB_TYPE               := src
+LSP_LLTL_LIB_URL                := https://github.com/sadko4u/$(LSP_LLTL_LIB_NAME).git
 
-LSP_WS_LIB_VERSION         := 0.5.3
-LSP_WS_LIB_NAME            := lsp-ws-lib
-LSP_WS_LIB_TYPE            := src
-LSP_WS_LIB_URL             := https://github.com/sadko4u/$(LSP_WS_LIB_NAME).git
+LSP_WS_LIB_VERSION              := 0.5.3
+LSP_WS_LIB_NAME                 := lsp-ws-lib
+LSP_WS_LIB_TYPE                 := src
+LSP_WS_LIB_URL                  := https://github.com/sadko4u/$(LSP_WS_LIB_NAME).git
 
-LSP_R3D_IFACE_VERSION      := 0.5.1
-LSP_R3D_IFACE_NAME         := lsp-r3d-iface
-LSP_R3D_IFACE_TYPE         := src
-LSP_R3D_IFACE_URL          := https://github.com/sadko4u/$(LSP_R3D_IFACE_NAME).git
+LSP_R3D_IFACE_VERSION           := 0.5.1
+LSP_R3D_IFACE_NAME              := lsp-r3d-iface
+LSP_R3D_IFACE_TYPE              := src
+LSP_R3D_IFACE_URL               := https://github.com/sadko4u/$(LSP_R3D_IFACE_NAME).git
 
-LSP_R3D_BASE_LIB_VERSION   := 0.5.4
-LSP_R3D_BASE_LIB_NAME      := lsp-r3d-base-lib
-LSP_R3D_BASE_LIB_TYPE      := src
-LSP_R3D_BASE_LIB_URL       := https://github.com/sadko4u/$(LSP_R3D_BASE_LIB_NAME).git
+LSP_R3D_BASE_LIB_VERSION        := 0.5.4
+LSP_R3D_BASE_LIB_NAME           := lsp-r3d-base-lib
+LSP_R3D_BASE_LIB_TYPE           := src
+LSP_R3D_BASE_LIB_URL            := https://github.com/sadko4u/$(LSP_R3D_BASE_LIB_NAME).git
 
-LSP_R3D_GLX_LIB_VERSION    := 0.5.3
-LSP_R3D_GLX_LIB_NAME       := lsp-r3d-glx-lib
-LSP_R3D_GLX_LIB_TYPE       := src
-LSP_R3D_GLX_LIB_URL        := https://github.com/sadko4u/$(LSP_R3D_GLX_LIB_NAME).git
+LSP_R3D_GLX_LIB_VERSION         := 0.5.3
+LSP_R3D_GLX_LIB_NAME            := lsp-r3d-glx-lib
+LSP_R3D_GLX_LIB_TYPE            := src
+LSP_R3D_GLX_LIB_URL             := https://github.com/sadko4u/$(LSP_R3D_GLX_LIB_NAME).git
 
-LSP_WS_LIB_VERSION         := 0.5.3
-LSP_WS_LIB_NAME            := lsp-ws-lib
-LSP_WS_LIB_TYPE            := src
-LSP_WS_LIB_URL             := https://github.com/sadko4u/$(LSP_WS_LIB_NAME).git
+LSP_WS_LIB_VERSION              := 0.5.3
+LSP_WS_LIB_NAME                 := lsp-ws-lib
+LSP_WS_LIB_TYPE                 := src
+LSP_WS_LIB_URL                  := https://github.com/sadko4u/$(LSP_WS_LIB_NAME).git
 
-LSP_TK_LIB_VERSION         := 0.5.0
-LSP_TK_LIB_NAME            := lsp-tk-lib
-LSP_TK_LIB_TYPE            := src
-LSP_TK_LIB_URL             := https://github.com/sadko4u/$(LSP_TK_LIB_NAME).git
+LSP_TK_LIB_VERSION              := 0.5.0
+LSP_TK_LIB_NAME                 := lsp-tk-lib
+LSP_TK_LIB_TYPE                 := src
+LSP_TK_LIB_URL                  := https://github.com/sadko4u/$(LSP_TK_LIB_NAME).git
 
-LSP_TEST_FW_VERSION        := 1.0.6
-LSP_TEST_FW_NAME           := lsp-test-fw
-LSP_TEST_FW_TYPE           := src
-LSP_TEST_FW_URL            := https://github.com/sadko4u/$(LSP_TEST_FW_NAME).git
+LSP_TEST_FW_VERSION             := 1.0.6
+LSP_TEST_FW_NAME                := lsp-test-fw
+LSP_TEST_FW_TYPE                := src
+LSP_TEST_FW_URL                 := https://github.com/sadko4u/$(LSP_TEST_FW_NAME).git
 
-LSP_PLUGIN_FW_VERSION      := 0.5.0
-LSP_PLUGIN_FW_NAME         := lsp-plugin-fw
-LSP_PLUGIN_FW_TYPE         := src
-LSP_PLUGIN_FW_URL          := https://github.com/sadko4u/$(LSP_PLUGIN_FW_NAME).git
+LSP_PLUGIN_FW_VERSION           := 0.5.0
+LSP_PLUGIN_FW_NAME              := lsp-plugin-fw
+LSP_PLUGIN_FW_TYPE              := src
+LSP_PLUGIN_FW_URL               := https://github.com/sadko4u/$(LSP_PLUGIN_FW_NAME).git
 
-LIBICONV_VERSION           := system
-LIBICONV_TYPE              := opt
-LIBICONV_LDFLAGS           := -liconv
+LSP_PLUGINS_SHARED_VERSION      := 0.5.0
+LSP_PLUGINS_SHARED_NAME         := lsp-plugins-shared
+LSP_PLUGINS_SHARED_TYPE         := src
+LSP_PLUGINS_SHARED_URL          := https://github.com/sadko4u/$(LSP_PLUGINS_SHARED_NAME).git
 
-LIBSNDFILE_VERSION         := system
-LIBSNDFILE_NAME            := sndfile
-LIBSNDFILE_TYPE            := pkg
+LIBICONV_VERSION                := system
+LIBICONV_TYPE                   := opt
+LIBICONV_LDFLAGS                := -liconv
+
+LIBSNDFILE_VERSION              := system
+LIBSNDFILE_NAME                 := sndfile
+LIBSNDFILE_TYPE                 := pkg
 
 ifeq ($(PLATFORM),Windows)
-  STDLIB_VERSION             := system
-  STDLIB_TYPE                := opt
-  STDLIB_LDFLAGS             := -lpthread -lshlwapi -lwinmm -lmsacm32
+  STDLIB_VERSION                  := system
+  STDLIB_TYPE                     := opt
+  STDLIB_LDFLAGS                  := -lpthread -lshlwapi -lwinmm -lmsacm32
 else
-  STDLIB_VERSION             := system
-  STDLIB_TYPE                := opt
-  STDLIB_LDFLAGS             := -lpthread -ldl
+  STDLIB_VERSION                  := system
+  STDLIB_TYPE                     := opt
+  STDLIB_LDFLAGS                  := -lpthread -ldl
 endif
 

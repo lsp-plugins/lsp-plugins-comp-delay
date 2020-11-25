@@ -24,7 +24,7 @@ ARTIFACT_DESC               = Compensation Delay plugin
 ARTIFACT_VARS               = LSP_PLUGINS_COMP_DELAY
 ARTIFACT_HEADERS            = lsp-plug.in
 ARTIFACT_EXPORT_ALL         = 1
-ARTIFACT_VERSION            = 0.5.0-devel
+ARTIFACT_VERSION            = 1.0.3-devel
 
 # List of dependencies
 DEPENDENCIES = \
@@ -38,7 +38,8 @@ DEPENDENCIES = \
   LSP_R3D_IFACE \
   LSP_WS_LIB \
   LSP_TK_LIB \
-  LSP_PLUGIN_FW
+  LSP_PLUGIN_FW \
+  LSP_PLUGINS_SHARED
 
 TEST_DEPENDENCIES = \
   TEST_STDLIB \

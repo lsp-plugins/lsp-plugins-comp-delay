@@ -20,7 +20,9 @@
  */
 
 #include <lsp-plug.in/plug-fw/meta/ports.h>
-#include <private/meta/comp_delay_t.h>
+#include <lsp-plug.in/shared/meta/developers.h>
+#include <private/meta/comp_delay.h>
+#include <private/version.h>
 
 namespace lsp
 {
@@ -157,8 +159,8 @@ namespace lsp
             &developers::v_sadovnikov,
             "comp_delay_mono",
             "jav8",
-            LSP_COMP_DELAY_BASE + 0,
-            LSP_MODULE_VERSION(1, 1, 0),
+            0x4C5351,
+            LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
             E_NONE,
             comp_delay_mono_ports,
@@ -175,8 +177,8 @@ namespace lsp
             &developers::v_sadovnikov,
             "comp_delay_stereo",
             "qpwr",
-            LSP_COMP_DELAY_BASE + 1,
-            LSP_MODULE_VERSION(1, 1, 0),
+            0x4C5352,
+            LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
             E_NONE,
             comp_delay_stereo_ports,
@@ -193,8 +195,8 @@ namespace lsp
             &developers::v_sadovnikov,
             "comp_delay_x2_stereo",
             "fwd3",
-            LSP_COMP_DELAY_BASE + 2,
-            LSP_MODULE_VERSION(1, 1, 0),
+            0x4C5353,
+            LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
             E_NONE,
             comp_delay_x2_stereo_ports,

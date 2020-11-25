@@ -23,6 +23,7 @@
 #define PRIVATE_META_COMP_DELAY_H_
 
 #include <lsp-plug.in/plug-fw/meta/types.h>
+#include <lsp-plug.in/plug-fw/const.h>
 
 namespace lsp
 {

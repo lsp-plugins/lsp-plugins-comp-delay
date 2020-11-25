@@ -19,6 +19,75 @@
  * along with lsp-plugins-comp-delay. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <private/plugins/comp_delay.h>
 
+namespace lsp
+{
+    namespace plugins
+    {
+        //---------------------------------------------------------------------
+        // Plugin factory
+        static const meta::plugin_t *plugins[] =
+        {
+            &meta::comp_delay_mono,
+            &meta::comp_delay_stereo,
+            &meta::comp_delay_x2_stereo
+        };
+
+        static plug::IModule *comp_delay_factory(const meta::plugin_t *meta)
+        {
+            return new comp_delay(meta);
+        }
+
+        static plug::Factory factory(comp_delay_factory, plugins, 3);
+
+        //---------------------------------------------------------------------
+        // Implementation
+        comp_delay::comp_delay(const meta::plugin_t *meta):
+            IModule(meta)
+        {
+            // Check plugin type
+            nMode           = (meta == &meta::comp_delay_mono) ? CD_MONO :
+                              (meta == &meta::comp_delay_stereo) ? CD_STEREO :
+                              (meta == &meta::comp_delay_x2_stereo) ? CD_X2_STEREO :
+                              CD_MONO;
+
+            // Initialize other parameters
+            vChannels       = NULL;
+            bRamping        = false;
+
+            pRamping        = NULL;
+
+            pData           = NULL;
+        }
+
+        comp_delay::~comp_delay()
+        {
+            destroy();
+        }
+
+        void comp_delay::init(plug::IWrapper *wrapper)
+        {
+            IModule::init(wrapper);
+        }
+
+        void comp_delay::destroy()
+        {
+        }
+
+        void comp_delay::update_sample_rate(long sr)
+        {
+        }
+
+        void comp_delay::process(size_t samples)
+        {
+        }
+
+        void comp_delay::dump(dspu::IStateDumper *v)
+        {
+        }
+
+    }
+}
 
 

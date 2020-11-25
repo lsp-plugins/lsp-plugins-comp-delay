@@ -19,6 +19,11 @@
  * along with lsp-plugins-comp-delay. If not, see <https://www.gnu.org/licenses/>.
  */
 
-
+namespace lsp
+{
+    namespace ui
+    {
+    }
+}
 
 
