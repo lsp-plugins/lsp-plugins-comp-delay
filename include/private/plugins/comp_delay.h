@@ -34,7 +34,7 @@ namespace lsp
         /**
          * Base class for the latency compensation delay
          */
-        class comp_delay: public plug::IModule
+        class comp_delay: public plug::Module
         {
             protected:
                 enum mode_t

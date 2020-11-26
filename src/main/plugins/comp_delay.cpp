@@ -42,7 +42,7 @@ namespace lsp
             &meta::comp_delay_x2_stereo
         };
 
-        static plug::IModule *comp_delay_factory(const meta::plugin_t *meta)
+        static plug::Module *comp_delay_factory(const meta::plugin_t *meta)
         {
             return new comp_delay(meta);
         }
@@ -52,7 +52,7 @@ namespace lsp
         //---------------------------------------------------------------------
         // Implementation
         comp_delay::comp_delay(const meta::plugin_t *meta):
-            IModule(meta)
+            Module(meta)
         {
             // Check plugin type
             nMode           = (meta == &meta::comp_delay_mono) ? CD_MONO :
@@ -77,7 +77,7 @@ namespace lsp
 
         void comp_delay::init(plug::IWrapper *wrapper)
         {
-            IModule::init(wrapper);
+            Module::init(wrapper);
 
             size_t channels         = (nMode == CD_MONO) ? 1 : 2;
             size_t szof_channels    = align_size(sizeof(channel_t) * channels, OPTIMAL_ALIGN);
@@ -221,7 +221,7 @@ namespace lsp
 
         void comp_delay::destroy()
         {
-            IModule::destroy();
+            Module::destroy();
 
             // Destroy channels
             if (vChannels != NULL)

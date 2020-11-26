@@ -19,10 +19,23 @@
  * along with lsp-plugins-comp-delay. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <private/plugins/comp_delay.h>
+#include <lsp-plug.in/plug-fw/ui.h>
+
 namespace lsp
 {
-    namespace ui
+    namespace plugui
     {
+        //---------------------------------------------------------------------
+        // Plugin UI factory
+        static const meta::plugin_t *uis[] =
+        {
+            &meta::comp_delay_mono,
+            &meta::comp_delay_stereo,
+            &meta::comp_delay_x2_stereo
+        };
+
+        static ui::Factory factory(uis, 3);
     }
 }
 
