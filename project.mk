@@ -48,11 +48,13 @@ TEST_DEPENDENCIES = \
   LSP_TEST_FW
 
 LINUX_DEPENDENCIES = \
-  LIBSNDFILE
+  LIBSNDFILE \
+  LIBJACK
 
 BSD_DEPENDENCIES = \
   LIBSNDFILE \
-  LIBICONV
+  LIBICONV \
+  LIBJACK
 
 # For Linux-based systems, use libsndfile
 ifeq ($(PLATFORM),Linux)
