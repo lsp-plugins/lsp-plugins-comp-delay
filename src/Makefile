@@ -32,17 +32,24 @@ ARTIFACT_OBJ_UI         = $($(ARTIFACT_VARS)_BIN)/$($(ARTIFACT_VARS)_NAME)-ui.o
 ARTIFACT_OBJ_TEST       = $($(ARTIFACT_VARS)_BIN)/$($(ARTIFACT_VARS)_NAME)-test.o
 ARTIFACT_OBJ            = $(ARTIFACT_OBJ_META) $(ARTIFACT_OBJ_DSP) $(ARTIFACT_OBJ_UI)
 
+CXX_SRC_STUB            = $($(ARTIFACT_VARS)_BIN)/stub.cpp
 CXX_SRC_MAIN_META       = $(call rwildcard, main/meta, *.cpp)
 CXX_SRC_MAIN_DSP        = $(call rwildcard, main/plug, *.cpp)
 CXX_SRC_MAIN_UI         = $(call rwildcard, main/ui, *.cpp)
 CXX_SRC_TEST            = $(call rwildcard, test, *.cpp)
 CXX_SRC                 = $(CXX_SRC_MAIN_META) $(CXX_SRC_MAIN_DSP) $(CXX_SRC_MAIN_UI)
 
+OBJ_STUB                = $(patsubst %.cpp, %.o, $(CXX_SRC_STUB))
 OBJ_MAIN_META           = $(patsubst %.cpp, $($(ARTIFACT_VARS)_BIN)/%.o, $(CXX_SRC_MAIN_META))
 OBJ_MAIN_DSP            = $(patsubst %.cpp, $($(ARTIFACT_VARS)_BIN)/%.o, $(CXX_SRC_MAIN_DSP))
 OBJ_MAIN_UI             = $(patsubst %.cpp, $($(ARTIFACT_VARS)_BIN)/%.o, $(CXX_SRC_MAIN_UI))
 OBJ_TEST                = $(patsubst %.cpp, $($(ARTIFACT_VARS)_BIN)/%.o, $(CXX_SRC_TEST))
 OBJ                     = $(OBJ_MAIN_META) $(OBJ_MAIN_DSP) $(OBJ_MAIN_UI)
+
+XOBJ_MAIN_META          = $(if $(OBJ_MAIN_META),$(OBJ_MAIN_META),$(OBJ_STUB))
+XOBJ_MAIN_DSP           = $(if $(OBJ_MAIN_DSP),$(OBJ_MAIN_DSP),$(OBJ_STUB))
+XOBJ_MAIN_UI            = $(if $(OBJ_MAIN_UI),$(OBJ_MAIN_UI),$(OBJ_STUB))
+XOBJ_TEST               = $(if $(OBJ_TEST),$(OBJ_TEST),$(OBJ_STUB))
 
 CXX_FILE                = $(patsubst $($(ARTIFACT_VARS)_BIN)/%.o,%.cpp, $(@))
 
@@ -51,10 +58,16 @@ LINKER_DEPS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_LDFLAGS)
 LINKER_OBJS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_OBJ), $($(dep)_OBJ)))
 BUILD_ALL               = $(ARTIFACT_LIB) $(ARTIFACT_SLIB) $(ARTIFACT_PC)
 
+$(info XOBJ_MAIN_META = $(XOBJ_MAIN_META))
+$(info XOBJ_MAIN_DSP  = $(XOBJ_MAIN_DSP))
+$(info XOBJ_MAIN_UI   = $(XOBJ_MAIN_UI))
+$(info XOBJ_MAIN_TEST = $(XOBJ_MAIN_TEST))
+$(info OBJ_STUB       = $(OBJ_STUB))
+
 ifeq ($(TEST), 1)
   ifeq ($($(ARTIFACT_VARS)_TESTING),1)
     CXX_SRC                += $(CXX_SRC_TEST)
-    ARTIFACT_OBJ           += $(if $(CXX_SRC_TEST),$(ARTIFACT_OBJ_TEST),)
+    ARTIFACT_OBJ           += $(ARTIFACT_OBJ_TEST)
   endif
   DEPENDENCIES           += $(TEST_DEPENDENCIES)
 endif
@@ -64,7 +77,7 @@ CXX_DEPFILE             = $(patsubst $(ARTIFACT_BIN)/%.d,%.cpp,$(@))
 CXX_DEPTARGET           = $(patsubst $(ARTIFACT_BIN)/%.d,%.o,$(@))
 
 .DEFAULT_GOAL = all
-.PHONY: compile depend dep_clean all install uninstall
+.PHONY: compile depend dep_clean all install uninstall gen_stub
 
 # Dependencies targets
 dep_clean:
@@ -88,27 +101,36 @@ depend: $(CXX_DEPS)
 # Compilation targets
 compile: $(ARTIFACT_OBJ)
 
+$(CXX_SRC_STUB):
+	@echo "  gen  [$(ARTIFACT_NAME)] $(notdir $(CXX_FILE))"
+	@echo "#include <stdio.h>" > $(CXX_SRC_STUB)
+
+$(OBJ_STUB): $(CXX_SRC_STUB)
+	@echo "  $(CXX)  [$(ARTIFACT_NAME)] $(CXX_FILE)"
+	@mkdir -p $(dir $@)
+	@$(CXX) -o $(@) -c $(CXX_SRC_STUB) -fPIC $(CXXFLAGS) $(ARTIFACT_MFLAGS) $(EXT_FLAGS) $(INCLUDE) $(CFLAGS_DEPS)
+
 $(OBJ):
 	@echo "  $(CXX)  [$(ARTIFACT_NAME)] $(CXX_FILE)"
 	@mkdir -p $(dir $@)
 	@$(CXX) -o $(@) -c $(CXX_FILE) -fPIC $(CXXFLAGS) $(ARTIFACT_MFLAGS) $(EXT_FLAGS) $(INCLUDE) $(CFLAGS_DEPS)
 
 # Linking targets
-$(ARTIFACT_OBJ_META): $(OBJ_MAIN_META)
+$(ARTIFACT_OBJ_META): $(XOBJ_MAIN_META)
 	@echo "  $(LD)   [$(ARTIFACT_NAME)] $(notdir $(ARTIFACT_OBJ_META))"
-	@$(LD) -o $(ARTIFACT_OBJ_META) -r $(OBJ_MAIN_META)
+	@$(LD) -o $(ARTIFACT_OBJ_META) -r $(XOBJ_MAIN_META)
 	
-$(ARTIFACT_OBJ_DSP): $(OBJ_MAIN_DSP)
+$(ARTIFACT_OBJ_DSP): $(XOBJ_MAIN_DSP)
 	@echo "  $(LD)   [$(ARTIFACT_NAME)] $(notdir $(ARTIFACT_OBJ_DSP))"
-	@$(LD) -o $(ARTIFACT_OBJ_DSP) -r $(OBJ_MAIN_DSP)
+	@$(LD) -o $(ARTIFACT_OBJ_DSP) -r $(XOBJ_MAIN_DSP)
 	
-$(ARTIFACT_OBJ_UI): $(OBJ_MAIN_UI)
+$(ARTIFACT_OBJ_UI): $(XOBJ_MAIN_UI)
 	@echo "  $(LD)   [$(ARTIFACT_NAME)] $(notdir $(ARTIFACT_OBJ_UI))"
-	@$(LD) -o $(ARTIFACT_OBJ_UI) -r $(OBJ_MAIN_UI)
+	@$(LD) -o $(ARTIFACT_OBJ_UI) -r $(XOBJ_MAIN_UI)
 	
-$(ARTIFACT_OBJ_TEST): $(OBJ_TEST)
+$(ARTIFACT_OBJ_TEST): $(XOBJ_TEST)
 	@echo "  $(LD)   [$(ARTIFACT_NAME)] $(notdir $(ARTIFACT_OBJ_TEST))"
-	@$(LD) -o $(ARTIFACT_OBJ_TEST) -r $(OBJ_TEST)
+	@$(LD) -o $(ARTIFACT_OBJ_TEST) -r $(XOBJ_TEST)
 
 # Deletaged targets
 all:
