@@ -63,8 +63,6 @@ CXX_DEPS                = $(foreach src,$(CXX_SRC),$(patsubst %.cpp,$(ARTIFACT_B
 CXX_DEPFILE             = $(patsubst $(ARTIFACT_BIN)/%.d,%.cpp,$(@))
 CXX_DEPTARGET           = $(patsubst $(ARTIFACT_BIN)/%.d,%.o,$(@))
 
-$(info ARTIFACT_OBJ = $(ARTIFACT_OBJ))
-
 .DEFAULT_GOAL = all
 .PHONY: compile depend dep_clean all install uninstall
 
