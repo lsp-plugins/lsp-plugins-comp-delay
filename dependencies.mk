@@ -26,7 +26,7 @@ LSP_COMMON_LIB_URL              := https://github.com/sadko4u/$(LSP_COMMON_LIB_N
 
 LSP_3RD_PARTY_VERSION           := 0.5.0
 LSP_3RD_PARTY_NAME              := lsp-3rd-party
-LSP_3RD_PARTY_TYPE              := src
+LSP_3RD_PARTY_TYPE              := hdr
 LSP_3RD_PARTY_URL               := https://github.com/sadko4u/$(LSP_3RD_PARTY_NAME).git
 
 LSP_DSP_LIB_VERSION             := 0.5.11
