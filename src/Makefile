@@ -26,10 +26,10 @@ include $(CURDIR)/../make/functions.mk
 
 ARTIFACT_BIN            = $($(ARTIFACT_VARS)_BIN)
 
-ARTIFACT_OBJ_META       = $($(ARTIFACT_VARS)_BIN)/$($(ARTIFACT_VARS)_NAME)-meta.o
-ARTIFACT_OBJ_DSP        = $($(ARTIFACT_VARS)_BIN)/$($(ARTIFACT_VARS)_NAME)-dsp.o
-ARTIFACT_OBJ_UI         = $($(ARTIFACT_VARS)_BIN)/$($(ARTIFACT_VARS)_NAME)-ui.o
-ARTIFACT_OBJ_TEST       = $($(ARTIFACT_VARS)_BIN)/$($(ARTIFACT_VARS)_NAME)-test.o
+ARTIFACT_OBJ_META       = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-meta.o
+ARTIFACT_OBJ_DSP        = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-dsp.o
+ARTIFACT_OBJ_UI         = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-ui.o
+ARTIFACT_OBJ_TEST       = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-test.o
 ARTIFACT_OBJ            = $(ARTIFACT_OBJ_META) $(ARTIFACT_OBJ_DSP) $(ARTIFACT_OBJ_UI)
 
 CXX_SRC_STUB            = $(ARTIFACT_BIN)/stub.cpp
@@ -51,7 +51,7 @@ XOBJ_MAIN_DSP           = $(if $(OBJ_MAIN_DSP),$(OBJ_MAIN_DSP),$(OBJ_STUB))
 XOBJ_MAIN_UI            = $(if $(OBJ_MAIN_UI),$(OBJ_MAIN_UI),$(OBJ_STUB))
 XOBJ_TEST               = $(if $(OBJ_TEST),$(OBJ_TEST),$(OBJ_STUB))
 
-CXX_FILE                = $(patsubst $($(ARTIFACT_VARS)_BIN)/%.o,%.cpp, $(@))
+CXX_FILE                = $(patsubst $(ARTIFACT_BIN)/%.o,%.cpp, $(@))
 
 CFLAGS_DEPS             = $(foreach dep, $(DEPENDENCIES) $(ARTIFACT_VARS), $(if $($(dep)_CFLAGS), $($(dep)_CFLAGS)))
 LINKER_DEPS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_LDFLAGS), $($(dep)_LDFLAGS)))
