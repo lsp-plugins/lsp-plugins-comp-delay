@@ -32,7 +32,7 @@ ARTIFACT_OBJ_UI         = $($(ARTIFACT_VARS)_BIN)/$($(ARTIFACT_VARS)_NAME)-ui.o
 ARTIFACT_OBJ_TEST       = $($(ARTIFACT_VARS)_BIN)/$($(ARTIFACT_VARS)_NAME)-test.o
 ARTIFACT_OBJ            = $(ARTIFACT_OBJ_META) $(ARTIFACT_OBJ_DSP) $(ARTIFACT_OBJ_UI)
 
-CXX_SRC_STUB            = $($(ARTIFACT_VARS)_BIN)/stub.cpp
+CXX_SRC_STUB            = $(ARTIFACT_BIN)/stub.cpp
 CXX_SRC_MAIN_META       = $(call rwildcard, main/meta, *.cpp)
 CXX_SRC_MAIN_DSP        = $(call rwildcard, main/plug, *.cpp)
 CXX_SRC_MAIN_UI         = $(call rwildcard, main/ui, *.cpp)
@@ -40,10 +40,10 @@ CXX_SRC_TEST            = $(call rwildcard, test, *.cpp)
 CXX_SRC                 = $(CXX_SRC_MAIN_META) $(CXX_SRC_MAIN_DSP) $(CXX_SRC_MAIN_UI)
 
 OBJ_STUB                = $(patsubst %.cpp, %.o, $(CXX_SRC_STUB))
-OBJ_MAIN_META           = $(patsubst %.cpp, $($(ARTIFACT_VARS)_BIN)/%.o, $(CXX_SRC_MAIN_META))
-OBJ_MAIN_DSP            = $(patsubst %.cpp, $($(ARTIFACT_VARS)_BIN)/%.o, $(CXX_SRC_MAIN_DSP))
-OBJ_MAIN_UI             = $(patsubst %.cpp, $($(ARTIFACT_VARS)_BIN)/%.o, $(CXX_SRC_MAIN_UI))
-OBJ_TEST                = $(patsubst %.cpp, $($(ARTIFACT_VARS)_BIN)/%.o, $(CXX_SRC_TEST))
+OBJ_MAIN_META           = $(patsubst %.cpp, $(ARTIFACT_BIN)/%.o, $(CXX_SRC_MAIN_META))
+OBJ_MAIN_DSP            = $(patsubst %.cpp, $(ARTIFACT_BIN)/%.o, $(CXX_SRC_MAIN_DSP))
+OBJ_MAIN_UI             = $(patsubst %.cpp, $(ARTIFACT_BIN)/%.o, $(CXX_SRC_MAIN_UI))
+OBJ_TEST                = $(patsubst %.cpp, $(ARTIFACT_BIN)/%.o, $(CXX_SRC_TEST))
 OBJ                     = $(OBJ_MAIN_META) $(OBJ_MAIN_DSP) $(OBJ_MAIN_UI)
 
 XOBJ_MAIN_META          = $(if $(OBJ_MAIN_META),$(OBJ_MAIN_META),$(OBJ_STUB))
@@ -58,11 +58,11 @@ LINKER_DEPS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_LDFLAGS)
 LINKER_OBJS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_OBJ), $($(dep)_OBJ)))
 BUILD_ALL               = $(ARTIFACT_LIB) $(ARTIFACT_SLIB) $(ARTIFACT_PC)
 
-$(info XOBJ_MAIN_META = $(XOBJ_MAIN_META))
-$(info XOBJ_MAIN_DSP  = $(XOBJ_MAIN_DSP))
-$(info XOBJ_MAIN_UI   = $(XOBJ_MAIN_UI))
-$(info XOBJ_MAIN_TEST = $(XOBJ_MAIN_TEST))
-$(info OBJ_STUB       = $(OBJ_STUB))
+#$(info XOBJ_MAIN_META = $(XOBJ_MAIN_META))
+#$(info XOBJ_MAIN_DSP  = $(XOBJ_MAIN_DSP))
+#$(info XOBJ_MAIN_UI   = $(XOBJ_MAIN_UI))
+#$(info XOBJ_MAIN_TEST = $(XOBJ_MAIN_TEST))
+#$(info OBJ_STUB       = $(OBJ_STUB))
 
 ifeq ($(TEST), 1)
   ifeq ($($(ARTIFACT_VARS)_TESTING),1)
