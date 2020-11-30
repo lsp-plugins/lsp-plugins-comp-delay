@@ -65,10 +65,8 @@ BUILD_ALL               = $(ARTIFACT_LIB) $(ARTIFACT_SLIB) $(ARTIFACT_PC)
 #$(info OBJ_STUB       = $(OBJ_STUB))
 
 ifeq ($(TEST), 1)
-  ifeq ($($(ARTIFACT_VARS)_TESTING),1)
-    CXX_SRC                += $(CXX_SRC_TEST)
-    ARTIFACT_OBJ           += $(ARTIFACT_OBJ_TEST)
-  endif
+  CXX_SRC                += $(CXX_SRC_TEST)
+  ARTIFACT_OBJ           += $(ARTIFACT_OBJ_TEST)
   DEPENDENCIES           += $(TEST_DEPENDENCIES)
 endif
 
