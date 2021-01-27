@@ -21,11 +21,11 @@
 CONFIG                 := $(CURDIR)/.config.mk
 
 include $(CONFIG)
-include $(CURDIR)/../project.mk
-include $(CURDIR)/../make/functions.mk
+include $(BASEDIR)/make/functions.mk
 
 ARTIFACT_BIN            = $($(ARTIFACT_VARS)_BIN)
 
+ARTIFACT_NAME           = $($(ARTIFACT_VARS)_NAME)
 ARTIFACT_OBJ_META       = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-meta.o
 ARTIFACT_OBJ_DSP        = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-dsp.o
 ARTIFACT_OBJ_UI         = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-ui.o
@@ -53,10 +53,13 @@ XOBJ_TEST               = $(if $(OBJ_TEST),$(OBJ_TEST),$(OBJ_STUB))
 
 CXX_FILE                = $(patsubst $(ARTIFACT_BIN)/%.o,%.cpp, $(@))
 
-CFLAGS_DEPS             = $(foreach dep, $(DEPENDENCIES) $(ARTIFACT_VARS), $(if $($(dep)_CFLAGS), $($(dep)_CFLAGS)))
+CFLAGS_DEPS             = $(foreach dep, $(call uniq, $(BUILD_DEPENDENCIES) LSP_PLUGIN_FW), $(if $($(dep)_CFLAGS), $($(dep)_CFLAGS)))
 LINKER_DEPS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_LDFLAGS), $($(dep)_LDFLAGS)))
 LINKER_OBJS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_OBJ), $($(dep)_OBJ)))
 BUILD_ALL               = $(ARTIFACT_LIB) $(ARTIFACT_SLIB) $(ARTIFACT_PC)
+
+$(info ARTIFACT_VARS = $(ARTIFACT_VARS))
+$(info BUILD_DEPENDENCIES = $(BUILD_DEPENDENCIES))
 
 #$(info XOBJ_MAIN_META = $(XOBJ_MAIN_META))
 #$(info XOBJ_MAIN_DSP  = $(XOBJ_MAIN_DSP))
