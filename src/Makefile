@@ -18,19 +18,29 @@
 # along with lsp-tk-lib.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-CONFIG                 := $(CURDIR)/.config.mk
+BASEDIR                 = $(CURDIR)
+CONFIG                 := $(BASEDIR)/../.config.mk
+PROJECT                := $(BASEDIR)/../project.mk
 
 include $(CONFIG)
-include $(BASEDIR)/make/functions.mk
+include $(PROJECT)
+include $(BASEDIR)/../make/functions.mk
 
-ARTIFACT_BIN            = $($(ARTIFACT_VARS)_BIN)
+ifeq ($(TEST),1)
+  UNIQ_DEPENDENCIES      := $(call uniq, $(DEPENDENCIES) LSP_PLUGIN_FW $(ARTIFACT_ID) $(TEST_DEPENDENCIES))
+else
+  UNIQ_DEPENDENCIES      := $(call uniq, $(DEPENDENCIES) LSP_PLUGIN_FW $(ARTIFACT_ID))
+endif
+DEPENDENCIES            = $(UNIQ_DEPENDENCIES)
 
-ARTIFACT_NAME           = $($(ARTIFACT_VARS)_NAME)
-ARTIFACT_OBJ_META       = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-meta.o
-ARTIFACT_OBJ_DSP        = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-dsp.o
-ARTIFACT_OBJ_UI         = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-ui.o
-ARTIFACT_OBJ_TEST       = $(ARTIFACT_BIN)/$($(ARTIFACT_VARS)_NAME)-test.o
+ARTIFACT_BIN            = $($(ARTIFACT_ID)_BIN)
+ARTIFACT_NAME           = $($(ARTIFACT_ID)_NAME)
+ARTIFACT_OBJ_META       = $(ARTIFACT_BIN)/$($(ARTIFACT_ID)_NAME)-meta.o
+ARTIFACT_OBJ_DSP        = $(ARTIFACT_BIN)/$($(ARTIFACT_ID)_NAME)-dsp.o
+ARTIFACT_OBJ_UI         = $(ARTIFACT_BIN)/$($(ARTIFACT_ID)_NAME)-ui.o
+ARTIFACT_OBJ_TEST       = $(ARTIFACT_BIN)/$($(ARTIFACT_ID)_NAME)-test.o
 ARTIFACT_OBJ            = $(ARTIFACT_OBJ_META) $(ARTIFACT_OBJ_DSP) $(ARTIFACT_OBJ_UI)
+ARTIFACT_CFLAGS         = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_CFLAGS), $($(dep)_CFLAGS)))
 
 CXX_SRC_STUB            = $(ARTIFACT_BIN)/stub.cpp
 CXX_SRC_MAIN_META       = $(call rwildcard, main/meta, *.cpp)
@@ -53,19 +63,8 @@ XOBJ_TEST               = $(if $(OBJ_TEST),$(OBJ_TEST),$(OBJ_STUB))
 
 CXX_FILE                = $(patsubst $(ARTIFACT_BIN)/%.o,%.cpp, $(@))
 
-CFLAGS_DEPS             = $(foreach dep, $(call uniq, $(BUILD_DEPENDENCIES) LSP_PLUGIN_FW), $(if $($(dep)_CFLAGS), $($(dep)_CFLAGS)))
-LINKER_DEPS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_LDFLAGS), $($(dep)_LDFLAGS)))
-LINKER_OBJS             = $(foreach dep, $(DEPENDENCIES), $(if $($(dep)_OBJ), $($(dep)_OBJ)))
+CFLAGS_DEPS             = $(foreach dep, $(call uniq, $(DEPENDENCIES)), $(if $($(dep)_CFLAGS), $($(dep)_CFLAGS)))
 BUILD_ALL               = $(ARTIFACT_LIB) $(ARTIFACT_SLIB) $(ARTIFACT_PC)
-
-$(info ARTIFACT_VARS = $(ARTIFACT_VARS))
-$(info BUILD_DEPENDENCIES = $(BUILD_DEPENDENCIES))
-
-#$(info XOBJ_MAIN_META = $(XOBJ_MAIN_META))
-#$(info XOBJ_MAIN_DSP  = $(XOBJ_MAIN_DSP))
-#$(info XOBJ_MAIN_UI   = $(XOBJ_MAIN_UI))
-#$(info XOBJ_MAIN_TEST = $(XOBJ_MAIN_TEST))
-#$(info OBJ_STUB       = $(OBJ_STUB))
 
 ifeq ($(TEST), 1)
   CXX_SRC                += $(CXX_SRC_TEST)
@@ -86,10 +85,10 @@ dep_clean:
 $(CXX_DEPS): dep_clean
 	@echo "  dep  [$(ARTIFACT_NAME)] $(CXX_DEPFILE)"
 	@mkdir -p $(dir $(@))
-	$(CXX) -MM -MT "\$$($(ARTIFACT_VARS)_BIN)/$(CXX_DEPTARGET)" -MF $(@) $(CXX_DEPFILE) $(CXXFLAGS) $(INCLUDE) $(CFLAGS_DEPS)
+	$(CXX) -MM -MT "\$$($(ARTIFACT_ID)_BIN)/$(CXX_DEPTARGET)" -MF $(@) $(CXX_DEPFILE) $(CXXFLAGS) $(INCLUDE) $(CFLAGS_DEPS)
 
 depend: $(CXX_DEPS)
-	$(foreach dep,$(DEPENDENCIES) $(ARTIFACT_VARS),\
+	$(foreach dep,$(DEPENDENCIES) $(ARTIFACT_ID),\
 	  $(if $($(dep)_INC), \
 	    $(eval SED_RULES += s/$(shell echo "$($(dep)_INC)" | sed "s/\\//\\\\\//g")/\$$$$\\($(dep)_INC\\)/g;)\
 	  )\
