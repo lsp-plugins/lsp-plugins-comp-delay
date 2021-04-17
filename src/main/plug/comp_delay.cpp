@@ -348,7 +348,7 @@ namespace lsp
             }
         }
 
-        void comp_delay::dump(dspu::IStateDumper *v)
+        void comp_delay::dump(dspu::IStateDumper *v) const
         {
             size_t channels         = (nMode == CD_MONO) ? 1 : 2;
 

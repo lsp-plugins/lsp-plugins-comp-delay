@@ -95,7 +95,7 @@ namespace lsp
                 virtual void        update_sample_rate(long sr);
                 virtual void        update_settings();
                 virtual void        process(size_t samples);
-                virtual void        dump(dspu::IStateDumper *v);
+                virtual void        dump(dspu::IStateDumper *v) const;
         };
     }
 }
