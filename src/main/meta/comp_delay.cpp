@@ -24,6 +24,8 @@
 #include <private/meta/comp_delay.h>
 #include <private/version.h>
 
+#define LSP_COMP_DELAY_BASE             LSP_LADSPA_BASE + 1
+
 namespace lsp
 {
     namespace meta
@@ -158,8 +160,11 @@ namespace lsp
             "VA1M",
             &developers::v_sadovnikov,
             "comp_delay_mono",
+            LSP_LV2_URI("comp_delay_mono"),
+            LSP_LV2UI_URI("comp_delay_mono"),
             "jav8",
-            0x4C5351,
+            LSP_COMP_DELAY_BASE + 0,
+            LSP_LADSPA_URI("comp_delay_mono"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
             E_DUMP_STATE,
@@ -176,8 +181,11 @@ namespace lsp
             "VA1S",
             &developers::v_sadovnikov,
             "comp_delay_stereo",
+            LSP_LV2_URI("comp_delay_stereo"),
+            LSP_LV2UI_URI("comp_delay_stereo"),
             "qpwr",
-            0x4C5352,
+            LSP_COMP_DELAY_BASE + 1,
+            LSP_LADSPA_URI("comp_delay_stereo"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
             E_DUMP_STATE,
@@ -194,8 +202,11 @@ namespace lsp
             "VA2S",
             &developers::v_sadovnikov,
             "comp_delay_x2_stereo",
+            LSP_LV2_URI("comp_delay_x2_stereo"),
+            LSP_LV2UI_URI("comp_delay_x2_stereo"),
             "fwd3",
-            0x4C5353,
+            LSP_COMP_DELAY_BASE + 2,
+            LSP_LADSPA_URI("comp_delay_x2_stereo"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
             E_DUMP_STATE,
