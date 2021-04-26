@@ -2,6 +2,7 @@
 	<hbox spacing="4">
 		<group text="groups.signal">
 			<grid rows="4" cols="2">
+				<!-- 
 				<label text="labels.signal.dry" />
 				<label text="labels.signal.wet" />
 				<knob id="dry" />
@@ -17,24 +18,27 @@
 				<hbox fill="false">
 					<button id="ramp" color="yellow" led="true" />
 					<label text="labels.ramp" />
-				</hbox>
+				</hbox-->
 			</grid>
 		</group>
 		<group text="groups.samples">
 			<vbox>
-				<label text="labels.units.samples" />
+				<!-- label text="labels.units.samples" />
 				<knob id="samp" />
-				<value id="samp" />
+				<value id="samp" /-->
 				
 				<hbox fill="false">
+					<!-- 
 					<led id="mode" key="0" />
 					<label text="labels.active" />
+					-->
 				</hbox>
 			</vbox>
 		</group>
 		<group text="groups.distance">
 			<vbox>
 				<grid rows="3" cols="3">
+					<!-- 
 					<label text="labels.units.meters" />
 					<label text="labels.units.centimeters" />
 					<label text="labels.temperature" />
@@ -46,27 +50,35 @@
 					<value id="m" />
 					<value id="cm" />
 					<value id="t" />
+					 -->
 				</grid>
 				<hbox fill="false">
+					<!--
 					<led id="mode" key="1" />
 					<label text="labels.active" />
+					-->
 				</hbox>
 			</vbox>
 		</group>
 		<group text="groups.time">
 			<vbox>
+				<!-- 
 				<label text="labels.delay" />
 				<knob id="time" />
 				<value id="time" />
+				-->
 				
 				<hbox fill="false">
+					<!--
 					<led id="mode" key="2" />
 					<label text="labels.active" />
+					-->
 				</hbox>
 			</vbox>
 		</group>
 		<group text="groups.monitoring">
-			<grid rows="5" cols="2" hspacing="1" vspacing="1">
+			<grid rows="5" cols="2" spacing="1" >
+				<!-- 
 				<label />
 				<label text="labels.value" />
 
@@ -82,12 +94,15 @@
 				<cell cols="2">
 					<label text="labels.graphs.delay_line" />
 				</cell>
+				-->
 			</grid>
 		</group>
 		<vbox fill="false">
+			<!-- 
 			<label text="labels.output" />
 			<knob id="g_out" size="24" />
 			<value id="g_out" />
+			 -->
 		</vbox>
 	</hbox>
 </plugin>
