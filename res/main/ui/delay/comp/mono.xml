@@ -1,48 +1,49 @@
 <plugin resizable="true">
 	<hbox spacing="4">
 		<group text="groups.signal">
-			<grid rows="4" cols="2">
-				<!-- 
+			<grid rows="4" cols="2" spacing="2">
 				<label text="labels.signal.dry" />
 				<label text="labels.signal.wet" />
+				<!-- 
 				<knob id="dry" />
 				<knob id="wet" />
 				<value id="dry" />
 				<value id="wet" />
+				-->
 				
 				<hbox fill="false">
-					<button id="mode" />
+					<!-- <button id="mode" /-->
 					<label text="labels.mode" />
 				</hbox>
 				
 				<hbox fill="false">
-					<button id="ramp" color="yellow" led="true" />
+					<!-- button id="ramp" color="yellow" led="true" /-->
 					<label text="labels.ramp" />
-				</hbox-->
+				</hbox>
 			</grid>
 		</group>
 		<group text="groups.samples">
 			<vbox>
-				<!-- label text="labels.units.samples" />
+				<label text="labels.units.samples" />
+				<!-- 
 				<knob id="samp" />
 				<value id="samp" /-->
 				
 				<hbox fill="false">
 					<!-- 
 					<led id="mode" key="0" />
-					<label text="labels.active" />
 					-->
+					<label text="labels.active" />
 				</hbox>
 			</vbox>
 		</group>
 		<group text="groups.distance">
 			<vbox>
-				<grid rows="3" cols="3">
-					<!-- 
+				<grid rows="3" cols="3" spacing="2">
 					<label text="labels.units.meters" />
 					<label text="labels.units.centimeters" />
 					<label text="labels.temperature" />
-					
+					<!-- 					
 					<knob id="m" />
 					<knob id="cm" />
 					<knob id="t" balance="0.5" />
@@ -55,15 +56,15 @@
 				<hbox fill="false">
 					<!--
 					<led id="mode" key="1" />
-					<label text="labels.active" />
 					-->
+					<label text="labels.active" />
 				</hbox>
 			</vbox>
 		</group>
 		<group text="groups.time">
 			<vbox>
-				<!-- 
 				<label text="labels.delay" />
+				<!-- 
 				<knob id="time" />
 				<value id="time" />
 				-->
@@ -71,17 +72,16 @@
 				<hbox fill="false">
 					<!--
 					<led id="mode" key="2" />
-					<label text="labels.active" />
 					-->
+					<label text="labels.active" />
 				</hbox>
 			</vbox>
 		</group>
 		<group text="groups.monitoring">
-			<grid rows="5" cols="2" spacing="1" >
-				<!-- 
+			<grid rows="5" cols="2" spacing="2">
 				<label />
 				<label text="labels.value" />
-
+				<!-- 
 				<label text="labels.time_:ms" fill="true" halign="0" />
 				<indicator id="d_t" format="f6.2!" text_color="green" />
 				
@@ -98,8 +98,8 @@
 			</grid>
 		</group>
 		<vbox fill="false">
-			<!-- 
 			<label text="labels.output" />
+			<!-- 
 			<knob id="g_out" size="24" />
 			<value id="g_out" />
 			 -->
