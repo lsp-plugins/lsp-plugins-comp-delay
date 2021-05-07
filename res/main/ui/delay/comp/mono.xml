@@ -1,5 +1,5 @@
 <plugin resizable="true">
-	<hbox spacing="4">
+	<hbox spacing="2">
 		<group text="groups.signal">
 			<grid rows="4" cols="2" spacing="2">
 				<label text="labels.signal.dry" />
@@ -7,9 +7,9 @@
 				<!-- 
 				<knob id="dry" />
 				<knob id="wet" />
+				-->
 				<value id="dry" />
 				<value id="wet" />
-				-->
 				
 				<hbox fill="false">
 					<!-- <button id="mode" /-->
@@ -47,11 +47,10 @@
 					<knob id="m" />
 					<knob id="cm" />
 					<knob id="t" balance="0.5" />
-					
+					 -->					
 					<value id="m" />
 					<value id="cm" />
 					<value id="t" />
-					 -->
 				</grid>
 				<hbox fill="false">
 					<!--
@@ -66,8 +65,8 @@
 				<label text="labels.delay" />
 				<!-- 
 				<knob id="time" />
-				<value id="time" />
 				-->
+				<value id="time" />
 				
 				<hbox fill="false">
 					<!--
@@ -101,8 +100,8 @@
 			<label text="labels.output" />
 			<!-- 
 			<knob id="g_out" size="24" />
-			<value id="g_out" />
 			 -->
+			<value id="g_out" />
 		</vbox>
 	</hbox>
 </plugin>
