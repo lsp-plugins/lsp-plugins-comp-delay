@@ -4,10 +4,8 @@
 			<grid rows="4" cols="2" spacing="2">
 				<label text="labels.signal.dry" />
 				<label text="labels.signal.wet" />
-				<!-- 
 				<knob id="dry" />
 				<knob id="wet" />
-				-->
 				<value id="dry" />
 				<value id="wet" />
 				
@@ -25,9 +23,8 @@
 		<group text="groups.samples">
 			<vbox>
 				<label text="labels.units.samples" />
-				<!-- 
 				<knob id="samp" />
-				<value id="samp" /-->
+				<value id="samp" />
 				
 				<hbox fill="false">
 					<!-- 
@@ -43,11 +40,11 @@
 					<label text="labels.units.meters" />
 					<label text="labels.units.centimeters" />
 					<label text="labels.temperature" />
-					<!-- 					
+							
 					<knob id="m" />
 					<knob id="cm" />
-					<knob id="t" balance="0.5" />
-					 -->					
+					<knob id="t" balance="0" />
+										
 					<value id="m" />
 					<value id="cm" />
 					<value id="t" />
@@ -63,9 +60,7 @@
 		<group text="groups.time">
 			<vbox>
 				<label text="labels.delay" />
-				<!-- 
 				<knob id="time" />
-				-->
 				<value id="time" />
 				
 				<hbox fill="false">
@@ -78,7 +73,7 @@
 		</group>
 		<group text="groups.monitoring">
 			<grid rows="5" cols="2" spacing="2">
-				<label />
+				<void />
 				<label text="labels.value" />
 				<!-- 
 				<label text="labels.time_:ms" fill="true" halign="0" />
@@ -98,9 +93,7 @@
 		</group>
 		<vbox fill="false">
 			<label text="labels.output" />
-			<!-- 
 			<knob id="g_out" size="24" />
-			 -->
 			<value id="g_out" />
 		</vbox>
 	</hbox>
