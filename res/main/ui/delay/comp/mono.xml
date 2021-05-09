@@ -9,13 +9,13 @@
 				<value id="dry" />
 				<value id="wet" />
 				
-				<hbox fill="false">
-					<!-- <button id="mode" /-->
+				<hbox fill="false" spacing="2">
+					<button id="mode" />
 					<label text="labels.mode" />
 				</hbox>
 				
-				<hbox fill="false">
-					<!-- button id="ramp" color="yellow" led="true" /-->
+				<hbox fill="false" spacing="2">
+					<button id="ramp" color="yellow" led="true" />
 					<label text="labels.ramp" />
 				</hbox>
 			</grid>
