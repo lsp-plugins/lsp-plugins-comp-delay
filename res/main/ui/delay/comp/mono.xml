@@ -27,9 +27,7 @@
 				<value id="samp" />
 				
 				<hbox fill="false">
-					<!-- 
-					<led id="mode" key="0" />
-					-->
+					<led activity=":mode ieq 0" />
 					<label text="labels.active" />
 				</hbox>
 			</vbox>
@@ -50,9 +48,7 @@
 					<value id="t" />
 				</grid>
 				<hbox fill="false">
-					<!--
-					<led id="mode" key="1" />
-					-->
+					<led activity=":mode ieq 1" />
 					<label text="labels.active" />
 				</hbox>
 			</vbox>
@@ -64,9 +60,7 @@
 				<value id="time" />
 				
 				<hbox fill="false">
-					<!--
-					<led id="mode" key="2" />
-					-->
+					<led activity=":mode ieq 2" />
 					<label text="labels.active" />
 				</hbox>
 			</vbox>
