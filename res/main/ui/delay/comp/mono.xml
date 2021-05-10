@@ -79,11 +79,9 @@
 				<label text="labels.distance:cm" fill="true" halign="0" />
 				<indicator id="d_d" format="f6.1!" />
 
-				<!--				
 				<cell cols="2">
 					<label text="labels.graphs.delay_line" />
 				</cell>
-				-->
 			</grid>
 		</group>
 		<vbox fill="false">
