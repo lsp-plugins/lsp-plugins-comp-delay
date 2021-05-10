@@ -33,25 +33,26 @@
 			</vbox>
 		</group>
 		<group text="groups.distance">
-			<vbox>
-				<grid rows="3" cols="3" spacing="2">
-					<label text="labels.units.meters" />
-					<label text="labels.units.centimeters" />
-					<label text="labels.temperature" />
-							
-					<knob id="m" />
-					<knob id="cm" />
-					<knob id="t" balance="0" />
-										
-					<value id="m" />
-					<value id="cm" />
-					<value id="t" />
-				</grid>
-				<hbox fill="false">
-					<led activity=":mode ieq 1" />
-					<label text="labels.active" />
-				</hbox>
-			</vbox>
+			<grid rows="4" cols="3" spacing="2">
+				<label text="labels.units.meters" />
+				<label text="labels.units.centimeters" />
+				<label text="labels.temperature" />
+						
+				<knob id="m" />
+				<knob id="cm" />
+				<knob id="t" balance="0" />
+									
+				<value id="m" />
+				<value id="cm" />
+				<value id="t" />
+				
+				<cell cols="3">
+					<hbox fill="false">
+						<led activity=":mode ieq 1" />
+						<label text="labels.active" />
+					</hbox>
+				</cell>
+			</grid>
 		</group>
 		<group text="groups.time">
 			<vbox>
@@ -70,13 +71,13 @@
 				<void />
 				<label text="labels.value" />
 
-				<label text="labels.time_:ms" fill="true" halign="0" />
+				<label text="labels.time_:ms" hfill="true" htext="-1" />
 				<indicator id="d_t" format="f6.2!" />
 				
-				<label text="labels.samples:samp" fill="true" halign="0" />
+				<label text="labels.samples:samp" hfill="true" htext="-1" />
 				<indicator id="d_s" format="i6" /> 
 				
-				<label text="labels.distance:cm" fill="true" halign="0" />
+				<label text="labels.distance:cm" hfill="true" htext="-1" />
 				<indicator id="d_d" format="f6.1!" />
 
 				<cell cols="2">
