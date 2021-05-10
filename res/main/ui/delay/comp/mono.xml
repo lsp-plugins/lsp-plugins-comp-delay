@@ -69,16 +69,17 @@
 			<grid rows="5" cols="2" spacing="2">
 				<void />
 				<label text="labels.value" />
-				<!-- 
+
 				<label text="labels.time_:ms" fill="true" halign="0" />
-				<indicator id="d_t" format="f6.2!" text_color="green" />
+				<indicator id="d_t" format="f6.2!" />
 				
 				<label text="labels.samples:samp" fill="true" halign="0" />
-				<indicator id="d_s" format="i6" text_color="green" /> 
+				<indicator id="d_s" format="i6" /> 
 				
 				<label text="labels.distance:cm" fill="true" halign="0" />
-				<indicator id="d_d" format="f6.1!" text_color="green" />
-				
+				<indicator id="d_d" format="f6.1!" />
+
+				<!--				
 				<cell cols="2">
 					<label text="labels.graphs.delay_line" />
 				</cell>
