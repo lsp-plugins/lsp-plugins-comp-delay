@@ -19,19 +19,74 @@
 #
 
 # Package version
-ARTIFACT_NAME               = lsp-plugins-comp-delay
+ARTIFACT_ID                 = lsp-plugins-comp-delay
 ARTIFACT_DESC               = Compensation Delay plugin
 ARTIFACT_VARS               = LSP_PLUGINS_COMP_DELAY
 ARTIFACT_HEADERS            = lsp-plug.in
 ARTIFACT_EXPORT_ALL         = 1
 ARTIFACT_VERSION            = 1.0.3-devel
 
-# List of dependencies
+#------------------------------------------------------------------------------
+# List of all dependencies
 DEPENDENCIES = \
-  LSP_PLUGIN_FW
+  LIBPTHREAD \
+  LIBDL \
+  LSP_COMMON_LIB \
+  LSP_DSP_LIB \
+  LSP_DSP_UNITS \
+  LSP_LLTL_LIB \
+  LSP_RUNTIME_LIB \
+  LSP_PLUGINS_SHARED \
+  LSP_3RD_PARTY \
+  LSP_PLUGIN_FW \
+  LSP_R3D_IFACE \
+  LSP_WS_LIB \
+  LSP_TK_LIB \
+  LSP_R3D_BASE_LIB \
+  LSP_R3D_GLX_LIB
 
+TEST_DEPENDENCIES = \
+  LSP_TEST_FW
+
+#------------------------------------------------------------------------------
+# Platform-specific dependencies
+ifeq ($(PLATFORM),Linux)
+  DEPENDENCIES += \
+    LIBJACK \
+    LIBSNDFILE \
+    LIBX11 \
+    LIBCAIRO
+endif
+
+ifeq ($(PLATFORM),BSD)
+  DEPENDENCIES += \
+    LIBJACK \
+    LIBSNDFILE \
+    LIBX11 \
+    LIBCAIRO
+endif
+
+ifeq ($(PLATFORM),Windows)
+  DEPENDENCIES             += \
+    LIBSHLWAPI \
+    LIBWINMM \
+    LIBMSACM
+endif
+
+#------------------------------------------------------------------------------
 # All possible dependencies
 ALL_DEPENDENCIES = \
-  $(DEPENDENCIES)
+  $(DEPENDENCIES) \
+  $(TEST_DEPENDENCIES) \
+  LIBJACK \
+  LIBGL \
+  LIBSNDFILE \
+  LIBX11 \
+  LIBCAIRO \
+  LIBDL \
+  LIBICONV \
+  LIBSHLWAPI \
+  LIBWINMM \
+  LIBMSACM
 
 
