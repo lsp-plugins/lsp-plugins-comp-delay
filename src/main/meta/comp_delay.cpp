@@ -24,8 +24,6 @@
 #include <private/meta/comp_delay.h>
 #include <private/version.h>
 
-#define LSP_COMP_DELAY_BASE             LSP_LADSPA_BASE + 1
-
 namespace lsp
 {
     namespace meta
@@ -163,7 +161,7 @@ namespace lsp
             LSP_LV2_URI("comp_delay_mono"),
             LSP_LV2UI_URI("comp_delay_mono"),
             "jav8",
-            LSP_COMP_DELAY_BASE + 0,
+            LSP_LADSPA_COMP_DELAY_BASE + 0,
             LSP_LADSPA_URI("comp_delay_mono"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
@@ -184,7 +182,7 @@ namespace lsp
             LSP_LV2_URI("comp_delay_stereo"),
             LSP_LV2UI_URI("comp_delay_stereo"),
             "qpwr",
-            LSP_COMP_DELAY_BASE + 1,
+            LSP_LADSPA_COMP_DELAY_BASE + 1,
             LSP_LADSPA_URI("comp_delay_stereo"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
@@ -205,7 +203,7 @@ namespace lsp
             LSP_LV2_URI("comp_delay_x2_stereo"),
             LSP_LV2UI_URI("comp_delay_x2_stereo"),
             "fwd3",
-            LSP_COMP_DELAY_BASE + 2,
+            LSP_LADSPA_COMP_DELAY_BASE + 2,
             LSP_LADSPA_URI("comp_delay_x2_stereo"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
             comp_delay_classes,
