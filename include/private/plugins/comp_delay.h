@@ -36,6 +36,9 @@ namespace lsp
          */
         class comp_delay: public plug::Module
         {
+            private:
+                comp_delay & operator = (const comp_delay &);
+
             protected:
                 enum mode_t
                 {
