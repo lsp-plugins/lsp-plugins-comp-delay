@@ -22,7 +22,17 @@
 #include <lsp-plug.in/plug-fw/meta/ports.h>
 #include <lsp-plug.in/shared/meta/developers.h>
 #include <private/meta/comp_delay.h>
-#include <private/version.h>
+
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR         1
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MINOR         0
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         3
+
+#define LSP_PLUGINS_COMP_DELAY_VERSION  \
+    LSP_MODULE_VERSION( \
+        LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR, \
+        LSP_PLUGINS_COMP_DELAY_VERSION_MINOR, \
+        LSP_PLUGINS_COMP_DELAY_VERSION_MICRO  \
+    )
 
 namespace lsp
 {
