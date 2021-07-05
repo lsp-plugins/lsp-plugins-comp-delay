@@ -160,7 +160,7 @@
 					</align>
 					<label text="labels.samples:samp" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_s_l" format="i6" text.color="red"/>
+						<indicator id="d_s_l" format="i6." text.color="red"/>
 					</align>
 					<label text="labels.distance:cm" hfill="true" htext="-1"/>
 					<align halign="1">
@@ -176,7 +176,7 @@
 					</align>
 					<label text="labels.samples:samp" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_s_r" format="i6" text.color="green"/>
+						<indicator id="d_s_r" format="i6." text.color="green"/>
 					</align>
 					<label text="labels.distance:cm" hfill="true" htext="-1"/>
 					<align halign="1">
