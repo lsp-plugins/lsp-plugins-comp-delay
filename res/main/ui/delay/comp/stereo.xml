@@ -1,93 +1,88 @@
 <plugin resizable="true">
 	<hbox spacing="4">
-		<group text="groups.signal">
-			<grid rows="4" cols="2">
-				<label text="labels.signal.dry" />
-				<label text="labels.signal.wet" />
-				<knob id="dry" />
-				<knob id="wet" />
-				<value id="dry" />
-				<value id="wet" />
-				
-				<hbox fill="false">
-					<button id="mode" />
-					<label text="labels.mode" />
-				</hbox>
-				
-				<hbox fill="false">
-					<button id="ramp" color="yellow" led="true" />
-					<label text="labels.ramp" />
-				</hbox>
-			</grid>
-		</group>
-		<group text="groups.samples">
-			<vbox>
-				<label text="labels.units.samples" />
-				<knob id="samp" />
-				<value id="samp" />
-				
-				<hbox fill="false">
-					<led id="mode" key="0" />
-					<label text="labels.active" />
-				</hbox>
-			</vbox>
-		</group>
-		<group text="groups.distance">
-			<vbox>
-				<grid rows="3" cols="3">
-					<label text="labels.units.meters" />
-					<label text="labels.units.centimeters" />
-					<label text="labels.temperature" />
-					
-					<knob id="m" />
-					<knob id="cm" />
-					<knob id="t" balance="0.5" />
-					
-					<value id="m" />
-					<value id="cm" />
-					<value id="t" />
+		<grid rows="1" cols="5" transpose="true" hspacing="4" vspacing="4">
+			<group text="groups.signal" width.min="148" expand="true">
+				<grid rows="4" cols="2" spacing="4">
+					<label text="labels.signal.dry" width="60"/>
+					<label text="labels.signal.wet" width="60"/>
+					<knob id="dry"/>
+					<knob id="wet"/>
+					<value id="dry" sline="true"/>
+					<value id="wet" sline="true"/>
+					<button id="mode" text="labels.mode" ui:inject="Button_Text" led="true"/>
+					<button id="ramp" text="labels.ramp" ui:inject="Button_Text" led="true"/>
 				</grid>
-				<hbox fill="false">
-					<led id="mode" key="1" />
-					<label text="labels.active" />
-				</hbox>
+			</group>
+			<ui:attributes ui:recursion="-1" bright="(:mode ieq 0) ? 1.0 : 0.75">
+				<group text="groups.samples" width.min="85" expand="true">
+					<vbox spacing="4">
+						<label text="labels.units.samples"/>
+						<knob id="samp"/>
+						<value id="samp" sline="true"/>
+						<hbox fill="false" spacing="4">
+							<led id="mode" key="0" size="10"/>
+							<label text="labels.active"/>
+						</hbox>
+					</vbox>
+				</group>
+			</ui:attributes>
+			<ui:attributes ui:recursion="-1" bright="(:mode ieq 1) ? 1.0 : 0.75">
+				<group text="groups.distance" expand="true">
+					<grid rows="4" cols="3" spacing="4">
+						<label text="labels.units.meters" width="74"/>
+						<label text="labels.units.centimeters" width="74"/>
+						<label text="labels.temperature" width="74"/>
+						<knob id="m"/>
+						<knob id="cm"/>
+						<knob id="t" balance="0.5"/>
+						<value id="m" sline="true"/>
+						<value id="cm" sline="true"/>
+						<value id="t" sline="true"/>
+						<cell cols="4">
+							<hbox fill="false" spacing="4">
+								<led id="mode" key="1" size="10"/>
+								<label text="labels.active"/>
+							</hbox>
+						</cell>
+					</grid>
+				</group>
+			</ui:attributes>
+			<ui:attributes ui:recursion="-1" bright="(:mode ieq 2) ? 1.0 : 0.75">
+				<group text="groups.time" expand="true">
+					<vbox spacing="4">
+						<label text="labels.delay"/>
+						<knob id="time"/>
+						<value id="time" sline="true"/>
+						<hbox fill="false" spacing="4">
+							<led id="mode" key="2" size="10"/>
+							<label text="labels.active"/>
+						</hbox>
+					</vbox>
+				</group>
+			</ui:attributes>
+			<group text="groups.monitoring" expand="true">
+				<grid rows="3" cols="2" spacing="4">
+					<label text="labels.time_:ms" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_t" format="f6.2!" text.color="mutted_red"/>
+					</align>
+					<label text="labels.samples:samp" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_s" format="i6." text.color="mutted_red"/>
+					</align>
+					<label text="labels.distance:cm" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_d" format="f6.1!" text.color="mutted_red"/>
+					</align>
+				</grid>
+			</group>
+		</grid>
+		<group text="groups.output" text.show="false" expand="true">
+			<vbox spacing="4">
+				<label text="labels.output"/>
+				<knob id="g_out" size="24"/>
+				<value id="g_out"/>
 			</vbox>
 		</group>
-		<group text="groups.time">
-			<vbox>
-				<label text="labels.delay" />
-				<knob id="time" />
-				<value id="time" />
-				
-				<hbox fill="false">
-					<led id="mode" key="2" />
-					<label text="labels.active" />
-				</hbox>
-			</vbox>
-		</group>
-		<group text="groups.monitoring">
-			<grid rows="5" cols="2" hspacing="1" vspacing="1">
-				<label />
-				<label text="labels.value" />
-
-				<label text="labels.time_:ms" fill="true" halign="0" />
-				<indicator id="d_t" format="f6.2!" text_color="green" />
-				
-				<label text="labels.samples:samp" fill="true" halign="0" />
-				<indicator id="d_s" format="i6" text_color="green" /> 
-				
-				<label text="labels.distance:cm" fill="true" halign="0" />
-				<indicator id="d_d" format="f6.1!" text_color="green" />
-				
-				<cell cols="2">
-					<label text="labels.graphs.delay_line" />
-				</cell>
-			</grid>
-		</group>
-		<vbox fill="false">
-			<label text="labels.output" />
-			<knob id="g_out" size="24" />
-			<value id="g_out" />
-		</vbox>
 	</hbox>
 </plugin>
