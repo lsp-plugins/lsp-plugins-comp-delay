@@ -13,7 +13,7 @@
 					<button id="ramp" text="labels.ramp" ui:inject="Button_Text" led="true"/>
 				</grid>
 			</group>
-			<ui:attributes ui:recursion="-1" bright="(:mode ieq 0) ? 1.0 : 0.75">
+			<ui:attributes ui:recursion="-1" bright="(:mode ieq 0) ? 1.0 : 0.75" ibg.bright="(:mode ieq 0) ? 1.0 : 0.85">
 				<group text="groups.samples" width.min="85" expand="true">
 					<vbox spacing="4">
 						<label text="labels.units.samples"/>
@@ -26,7 +26,7 @@
 					</vbox>
 				</group>
 			</ui:attributes>
-			<ui:attributes ui:recursion="-1" bright="(:mode ieq 1) ? 1.0 : 0.75">
+			<ui:attributes ui:recursion="-1" bright="(:mode ieq 1) ? 1.0 : 0.75" ibg.bright="(:mode ieq 1) ? 1.0 : 0.85">
 				<group text="groups.distance" expand="true">
 					<grid rows="4" cols="3" spacing="4">
 						<label text="labels.units.meters" width="74"/>
@@ -47,7 +47,7 @@
 					</grid>
 				</group>
 			</ui:attributes>
-			<ui:attributes ui:recursion="-1" bright="(:mode ieq 2) ? 1.0 : 0.75">
+			<ui:attributes ui:recursion="-1" bright="(:mode ieq 2) ? 1.0 : 0.75" ibg.bright="(:mode ieq 2) ? 1.0 : 0.85" >
 				<group text="groups.time" expand="true">
 					<vbox spacing="4">
 						<label text="labels.delay"/>
@@ -64,15 +64,15 @@
 				<grid rows="3" cols="2" spacing="4">
 					<label text="labels.time_:ms" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_t" format="f6.2!" text.color="mutted_red"/>
+						<indicator id="d_t" format="f6.2!" text.color="ind_text"/>
 					</align>
 					<label text="labels.samples:samp" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_s" format="i6." text.color="mutted_red"/>
+						<indicator id="d_s" format="i6." text.color="ind_text"/>
 					</align>
 					<label text="labels.distance:cm" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_d" format="f6.1!" text.color="mutted_red"/>
+						<indicator id="d_d" format="f6.1!" text.color="ind_text"/>
 					</align>
 				</grid>
 			</group>
