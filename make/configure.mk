@@ -199,7 +199,7 @@ prepare:
 	echo "# Project settings" > "$(CONFIG)"
 
 $(CONFIG_VARS): prepare
-	echo "$(@)=$($(@))" >> "$(CONFIG)"
+	@echo "$(@)=$($(@))" >> "$(CONFIG)"
 
 config: $(CONFIG_VARS)
 	echo "Configured OK"
