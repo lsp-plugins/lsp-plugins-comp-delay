@@ -42,12 +42,12 @@ namespace lsp
             &meta::comp_delay_x2_stereo
         };
 
-        static plug::Module *comp_delay_factory(const meta::plugin_t *meta)
+        static plug::Module *plugin_factory(const meta::plugin_t *meta)
         {
             return new comp_delay(meta);
         }
 
-        static plug::Factory factory(comp_delay_factory, plugins, 3);
+        static plug::Factory factory(plugin_factory, plugins, 3);
 
         //---------------------------------------------------------------------
         // Implementation

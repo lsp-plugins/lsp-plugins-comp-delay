@@ -28,14 +28,14 @@ namespace lsp
     {
         //---------------------------------------------------------------------
         // Plugin UI factory
-        static const meta::plugin_t *uis[] =
+        static const meta::plugin_t *plugin_uis[] =
         {
             &meta::comp_delay_mono,
             &meta::comp_delay_stereo,
             &meta::comp_delay_x2_stereo
         };
 
-        static ui::Factory factory(uis, 3);
+        static ui::Factory factory(plugin_uis, 3);
     }
 }
 
