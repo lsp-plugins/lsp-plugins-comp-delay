@@ -21,7 +21,7 @@
 # Package version
 ARTIFACT_ID                 = LSP_PLUGINS_COMP_DELAY
 ARTIFACT_NAME               = lsp-plugins-comp-delay
-ARTIFACT_DESC               = Compensation Delay plugin
+ARTIFACT_DESC               = Compensation Delay plugin series
 ARTIFACT_HEADERS            = lsp-plug.in
 ARTIFACT_EXPORT_ALL         = 1
 ARTIFACT_VERSION            = 1.0.3-devel
