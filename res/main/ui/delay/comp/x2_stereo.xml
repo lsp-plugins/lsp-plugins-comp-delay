@@ -12,8 +12,8 @@
 					<knob id="wet_l" scale.color="mutted_red"/>
 					<value id="dry_l" sline="true"/>
 					<value id="wet_l" sline="true"/>
-					<button id="mode_l" text="labels.mode" ui:inject="Button_Text" led="true"/>
-					<button id="ramp_l" text="labels.ramp" ui:inject="Button_Text" led="true"/>
+					<button id="mode_l" text="labels.mode" ui:inject="Button" led="true"/>
+					<button id="ramp_l" text="labels.ramp" ui:inject="Button" led="true"/>
 				</grid>
 			</group>
 			<cell rows="1" cols="5">
@@ -27,8 +27,8 @@
 					<knob id="wet_r" scale.color="mutted_green"/>
 					<value id="dry_r" sline="true"/>
 					<value id="wet_r" sline="true"/>
-					<button id="mode_r" text="labels.mode" ui:inject="Button_Text" led="true"/>
-					<button id="ramp_r" text="labels.ramp" ui:inject="Button_Text" led="true"/>
+					<button id="mode_r" text="labels.mode" ui:inject="Button" led="true"/>
+					<button id="ramp_r" text="labels.ramp" ui:inject="Button" led="true"/>
 				</grid>
 			</group>
 			<ui:attributes :recursion="-1" bright="(:mode_l ieq 0) ? 1.0 : 0.75">

@@ -9,8 +9,8 @@
 					<knob id="wet"/>
 					<value id="dry" sline="true"/>
 					<value id="wet" sline="true"/>
-					<button id="mode" text="labels.mode" ui:inject="Button_Text" led="true"/>
-					<button id="ramp" text="labels.ramp" ui:inject="Button_Text" led="true"/>
+					<button id="mode" text="labels.mode" ui:inject="Button" led="true"/>
+					<button id="ramp" text="labels.ramp" ui:inject="Button" led="true"/>
 				</grid>
 			</group>
 			<ui:attributes ui:recursion="-1" bright="(:mode ieq 0) ? 1.0 : 0.75" ibg.bright="(:mode ieq 0) ? 1.0 : 0.85">
