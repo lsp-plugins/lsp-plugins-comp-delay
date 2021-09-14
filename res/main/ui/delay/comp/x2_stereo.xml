@@ -1,34 +1,34 @@
 <plugin resizable="true">
-	<vbox spacing="4">
-		<grid rows="4" cols="5" transpose="true" hspacing="4" vspacing="4">
-			<cell rows="1" cols="5">
-				<label ui:inject="LabelChannel_1" text="groups.lchan.lchan"/>
+
+		<grid rows="4" cols="5" transpose="true" spacing="4" >
+			<cell rows="1" cols="5" >
+				<label ui:inject="LabelChannel_1" text="groups.lchan.lchan" expand="false"/>
 			</cell>
 			<group ui:inject="Channel_1_Group" text="groups.lchan.signal" width.min="148" expand="true">
 				<grid rows="4" cols="2" spacing="4">
 					<label text="labels.signal.dry" width="60"/>
 					<label text="labels.signal.wet" width="60"/>
-					<knob id="dry_l" scale.color="mutted_red"/>
-					<knob id="wet_l" scale.color="mutted_red"/>
-					<value id="dry_l" sline="true"/>
-					<value id="wet_l" sline="true"/>
-					<button id="mode_l" text="labels.mode" ui:inject="Button" led="true"/>
-					<button id="ramp_l" text="labels.ramp" ui:inject="Button" led="true"/>
+					<knob id="dry_l" scolor="dry"/>
+					<knob id="wet_l" scolor="wet"/>
+					<value id="dry_l" sline="true" width.min="50"/>
+					<value id="wet_l" sline="true" width.min="50"/>
+					<button id="mode_l" text="labels.mode" led="true"/>
+					<button id="ramp_l" text="labels.ramp" ui:inject="Button_red" led="true"/>
 				</grid>
 			</group>
 			<cell rows="1" cols="5">
-				<label ui:inject="LabelChannel_2" text="groups.rchan.rchan"/>
+				<label ui:inject="LabelChannel_2" text="groups.rchan.rchan" expand="false"/>
 			</cell>
 			<group ui:inject="Channel_2_Group" text="groups.rchan.signal" width.min="148" expand="true">
 				<grid rows="4" cols="2" spacing="4">
 					<label text="labels.signal.dry" width="60"/>
 					<label text="labels.signal.wet" width="60"/>
-					<knob id="dry_r" scale.color="mutted_green"/>
-					<knob id="wet_r" scale.color="mutted_green"/>
-					<value id="dry_r" sline="true"/>
-					<value id="wet_r" sline="true"/>
-					<button id="mode_r" text="labels.mode" ui:inject="Button" led="true"/>
-					<button id="ramp_r" text="labels.ramp" ui:inject="Button" led="true"/>
+					<knob id="dry_r" scolor="dry"/>
+					<knob id="wet_r" scolor="wet"/>
+					<value id="dry_r" sline="true" width.min="50"/>
+					<value id="wet_r" sline="true" width.min="50"/>
+					<button id="mode_r" text="labels.mode" led="true"/>
+					<button id="ramp_r" text="labels.ramp" ui:inject="Button_blue" led="true"/>
 				</grid>
 			</group>
 			<ui:with bright="(:mode_l ieq 0) ? 1.0 : 0.75">
@@ -38,10 +38,10 @@
 				>
 					<vbox spacing="4" >
 						<label text="labels.units.samples"/>
-						<knob id="samp_l" scale.color="mutted_red"/>
-						<value id="samp_l" sline="true" />
-						<hbox fill="false" spacing="4">
-							<led id="mode_l" key="0" size="10"/>
+						<knob id="samp_l" scolor="left"/>
+						<value id="samp_l" sline="true"  width.min="62"/>
+						<hbox fill="false" spacing="4" height.min="22">
+							<led id="mode_l" key="0"  ui:inject="Led_red"/>
 							<label text="labels.active"/>
 						</hbox>
 					</vbox>
@@ -49,15 +49,15 @@
 			</ui:with>
 			<ui:with bright="(:mode_r ieq 0) ? 1.0 : 0.75">
 				<group ui:inject="Channel_2_Group"
-					text="groups.rchan.samples" expand="true"
+					text="groups.rchan.samples" width.min="85" expand="true"
 					ibg.bright="(:mode_r ieq 0) ? 1.0 : 0.85"
 				>
 					<vbox spacing="4">
 						<label text="labels.units.samples"/>
-						<knob id="samp_r" scale.color="mutted_green"/>
-						<value id="samp_r" sline="true"/>
-						<hbox fill="false" spacing="4">
-							<led id="mode_r" key="0" size="10"/>
+						<knob id="samp_r" scolor="right"/>
+						<value id="samp_r" sline="true"  width.min="62"/>
+						<hbox fill="false" spacing="4" height.min="22">
+							<led id="mode_r" key="0"  ui:inject="Led_blue"/>
 							<label text="labels.active"/>
 						</hbox>
 					</vbox>
@@ -72,15 +72,15 @@
 						<label text="labels.units.meters" width="74"/>
 						<label text="labels.units.centimeters" width="74"/>
 						<label text="labels.temperature" width="74"/>
-						<knob id="m_l" scale.color="mutted_red"/>
-						<knob id="cm_l" scale.color="mutted_red"/>
-						<knob id="t_l" balance="0.5" scale.color="mutted_red"/>
-						<value id="m_l" sline="true"/>
-						<value id="cm_l" sline="true"/>
-						<value id="t_l" sline="true"/>
+						<knob id="m_l" scolor="left"/>
+						<knob id="cm_l" scolor="left"/>
+						<knob id="t_l" balance="0.5" scolor="left"/>
+						<value id="m_l" sline="true" width.min="40"/>
+						<value id="cm_l" sline="true" width.min="40"/>
+						<value id="t_l" sline="true" width.min="40"/>
 						<cell cols="4">
-							<hbox fill="false" spacing="4">
-								<led id="mode_l" key="1" size="10"/>
+							<hbox fill="false" spacing="4" height.min="22">
+								<led id="mode_l" key="1"  ui:inject="Led_red"/>
 								<label text="labels.active"/>
 							</hbox>
 						</cell>
@@ -96,15 +96,15 @@
 						<label text="labels.units.meters" width="74"/>
 						<label text="labels.units.centimeters" width="74"/>
 						<label text="labels.temperature" width="74"/>
-						<knob id="m_r" scale.color="mutted_green"/>
-						<knob id="cm_r" scale.color="mutted_green"/>
-						<knob id="t_r" balance="0.5" scale.color="mutted_green"/>
-						<value id="m_r" sline="true"/>
-						<value id="cm_r" sline="true"/>
-						<value id="t_r" sline="true"/>
+						<knob id="m_r" scolor="right"/>
+						<knob id="cm_r" scolor="right"/>
+						<knob id="t_r" balance="0.5" scolor="right"/>
+						<value id="m_r" sline="true" width.min="40"/>
+						<value id="cm_r" sline="true" width.min="40"/>
+						<value id="t_r" sline="true" width.min="40"/>
 						<cell cols="4">
-							<hbox fill="false" spacing="4">
-								<led id="mode_r" key="1" size="10"/>
+							<hbox fill="false" spacing="4" height.min="22">
+								<led id="mode_r" key="1"  ui:inject="Led_blue"/>
 								<label text="labels.active"/>
 							</hbox>
 						</cell>
@@ -118,10 +118,10 @@
 				>
 					<vbox spacing="4">
 						<label text="labels.delay"/>
-						<knob id="time_l" scale.color="mutted_red"/>
-						<value id="time_l" sline="true"/>
-						<hbox fill="false" spacing="4">
-							<led id="mode_l" key="2" size="10"/>
+						<knob id="time_l" scolor="left"/>
+						<value id="time_l" sline="true" width.min="50"/>
+						<hbox fill="false" spacing="4" height.min="22">
+							<led id="mode_l" key="2"  ui:inject="Led_red"/>
 							<label text="labels.active"/>
 						</hbox>
 					</vbox>
@@ -134,47 +134,52 @@
 				>
 					<vbox spacing="4">
 						<label text="labels.delay"/>
-						<knob id="time_r" scale.color="mutted_green"/>
-						<value id="time_r" sline="true"/>
-						<hbox fill="false" spacing="4">
-							<led id="mode_r" key="2" size="10"/>
+						<knob id="time_r" scolor="right"/>
+						<value id="time_r" sline="true" width.min="50"/>
+						<hbox fill="false" spacing="4" height.min="22">
+							<led id="mode_r" key="2"  ui:inject="Led_blue"/>
 							<label text="labels.active"/>
 						</hbox>
 					</vbox>
 				</group>
 			</ui:with>
-			<group ui:inject="Channel_1_Group" text="groups.lchan.monitoring" expand="true">
-				<grid rows="3" cols="2" spacing="4">
+			<group ui:inject="Channel_1_Group" text="groups.lchan.monitoring" expand="false" >
+				<grid rows="4" cols="2" spacing="4">
 					<label text="labels.time_:ms" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_t_l" format="f6.2!" text.color="mutted_red"/>
+						<indicator id="d_t_l" format="f6.2!" tcolor="left"/>
 					</align>
 					<label text="labels.samples:samp" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_s_l" format="i6." text.color="mutted_red"/>
+						<indicator id="d_s_l" format="i6." tcolor="left"/>
 					</align>
 					<label text="labels.distance:cm" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_d_l" format="f6.1!" text.color="mutted_red"/>
+						<indicator id="d_d_l" format="f6.1!" tcolor="left"/>
 					</align>
+					<cell cols="2">
+					<label height.min="22"/>
+				</cell>
 				</grid>
 			</group>
-			<group ui:inject="Channel_2_Group" text="groups.rchan.monitoring" expand="true">
-				<grid rows="3" cols="2" spacing="4">
+			<group ui:inject="Channel_2_Group" text="groups.rchan.monitoring" expand="false" >
+				<grid rows="4" cols="2" spacing="4">
 					<label text="labels.time_:ms" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_t_r" format="f6.2!" text.color="mutted_green"/>
+						<indicator id="d_t_r" format="f6.2!" tcolor="right"/>
 					</align>
 					<label text="labels.samples:samp" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_s_r" format="i6." text.color="mutted_green"/>
+						<indicator id="d_s_r" format="i6." tcolor="right"/>
 					</align>
 					<label text="labels.distance:cm" hfill="true" htext="-1"/>
 					<align halign="1">
-						<indicator id="d_d_r" format="f6.1!" text.color="mutted_green"/>
+						<indicator id="d_d_r" format="f6.1!" tcolor="right"/>
 					</align>
+					<cell cols="2">
+					<label height.min="22"/>
+				</cell>
 				</grid>
 			</group>
 		</grid>
-	</vbox>
 </plugin>

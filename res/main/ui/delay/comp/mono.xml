@@ -1,29 +1,29 @@
 <plugin resizable="true">
 		<hbox spacing="4">
-			<grid rows="1" cols="5" transpose="true" hspacing="4" vspacing="4">
+			<grid rows="1" cols="5" transpose="true" spacing="4">
 				<group text="groups.signal" width.min="148" expand="true">
 					<grid rows="4" cols="2" spacing="4">
 						<label text="labels.signal.dry" width="60"/>
 						<label text="labels.signal.wet" width="60"/>
-						<knob id="dry"/>
-						<knob id="wet"/>
-						<value id="dry" sline="true"/>
-						<value id="wet" sline="true"/>
+						<knob id="dry" scolor="dry"/>
+						<knob id="wet" scolor="wet"/>
+						<value id="dry" sline="true" width.min="50"/>
+						<value id="wet" sline="true" width.min="50"/>
 						<button id="mode" text="labels.mode" ui:inject="Button" led="true"/>
 						<button id="ramp" text="labels.ramp" ui:inject="Button" led="true"/>
 					</grid>
 				</group>
 				<ui:with bright="(:mode ieq 0) ? 1.0 : 0.75" ibg.bright="(:mode ieq 0) ? 1.0 : 0.85">
 					<group text="groups.samples" width.min="85" expand="true">
-						<vbox spacing="4" >
+						<grid rows="4" cols="1" spacing="4">
 							<label text="labels.units.samples"/>
 							<knob id="samp"/>
-							<value id="samp" sline="true" />
-							<hbox fill="false" spacing="4">
-								<led id="mode" key="0" size="10"/>
+							<value id="samp" sline="true" width.min="62"/>
+							<hbox fill="false" spacing="4" height.min="22">
+								<led id="mode" key="0" />
 								<label text="labels.active"/>
 							</hbox>
-						</vbox>
+						</grid>
 					</group>
 				</ui:with>
 
@@ -36,12 +36,12 @@
 							<knob id="m"/>
 							<knob id="cm"/>
 							<knob id="t" balance="0.5"/>
-							<value id="m" sline="true"/>
-							<value id="cm" sline="true"/>
-							<value id="t" sline="true"/>
+							<value id="m" sline="true" width.min="40"/>
+							<value id="cm" sline="true" width.min="40"/>
+							<value id="t" sline="true" width.min="40"/>
 							<cell cols="4">
-								<hbox fill="false" spacing="4">
-									<led id="mode" key="1" size="10"/>
+								<hbox fill="false" spacing="4" height.min="22">
+									<led id="mode" key="1" />
 									<label text="labels.active"/>
 								</hbox>
 							</cell>
@@ -50,39 +50,42 @@
 				</ui:with>
 				<ui:with bright="(:mode ieq 2) ? 1.0 : 0.75" ibg.bright="(:mode ieq 2) ? 1.0 : 0.85">
 					<group text="groups.time" expand="true">
-						<vbox spacing="4">
+						<grid rows="4" cols="1" spacing="4">
 							<label text="labels.delay"/>
 							<knob id="time"/>
-							<value id="time" sline="true"/>
-							<hbox fill="false" spacing="4">
-								<led id="mode" key="2" size="10"/>
+							<value id="time" sline="true" width.min="50"/>
+							<hbox fill="false" spacing="4" height.min="22">
+								<led id="mode" key="2" />
 								<label text="labels.active"/>
 							</hbox>
-						</vbox>
+						</grid>
 					</group>
 				</ui:with>
-				<group text="groups.monitoring" expand="true">
-					<grid rows="3" cols="2" spacing="4">
+				<group text="groups.monitoring" expand="false">
+					<grid rows="4" cols="2" spacing="4">
 						<label text="labels.time_:ms" hfill="true" htext="-1"/>
 						<align halign="1">
-							<indicator id="d_t" format="f6.2!" text.color="ind_text"/>
+							<indicator id="d_t" format="f6.2!" tcolor="ind_text"/>
 						</align>
 						<label text="labels.samples:samp" hfill="true" htext="-1"/>
 						<align halign="1">
-							<indicator id="d_s" format="i6." text.color="ind_text"/>
+							<indicator id="d_s" format="i6." tcolor="ind_text"/>
 						</align>
 						<label text="labels.distance:cm" hfill="true" htext="-1"/>
 						<align halign="1">
-							<indicator id="d_d" format="f6.1!" text.color="ind_text"/>
+							<indicator id="d_d" format="f6.1!" tcolor="ind_text"/>
 						</align>
+						<cell cols="2">
+						<label height.min="22"/>
+					</cell>
 					</grid>
 				</group>
 			</grid>
-			<group text="groups.output" text.show="false" expand="true">
+			<group text="groups.output" text.show="false" >
 				<vbox spacing="4" >
 					<label text="labels.output" />
 					<knob id="g_out" size="24" />
-					<value id="g_out" />
+					<value id="g_out" width.min="35"/>
 				</vbox>
 			</group>
 		</hbox>
