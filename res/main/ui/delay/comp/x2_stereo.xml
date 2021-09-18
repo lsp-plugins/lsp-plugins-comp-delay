@@ -34,7 +34,7 @@
 			<ui:with bright="(:mode_l ieq 0) ? 1.0 : 0.75">
 				<group ui:inject="Channel_1_Group" text="groups.lchan.samples"
 					width.min="85" expand="true"
-					ibg.bright="(:mode_l ieq 0) ? 1.0 : 0.85"
+					ibg.bright="(:mode_l ieq 0) ? 1.0 : 0.8"
 				>
 					<vbox spacing="4" >
 						<label text="labels.units.samples"/>
@@ -50,7 +50,7 @@
 			<ui:with bright="(:mode_r ieq 0) ? 1.0 : 0.75">
 				<group ui:inject="Channel_2_Group"
 					text="groups.rchan.samples" width.min="85" expand="true"
-					ibg.bright="(:mode_r ieq 0) ? 1.0 : 0.85"
+					ibg.bright="(:mode_r ieq 0) ? 1.0 : 0.8"
 				>
 					<vbox spacing="4">
 						<label text="labels.units.samples"/>
@@ -66,7 +66,7 @@
 			<ui:with bright="(:mode_l ieq 1) ? 1.0 : 0.75">
 				<group ui:inject="Channel_1_Group"
 					text="groups.lchan.distance" expand="true"
-					ibg.bright="(:mode_l ieq 1) ? 1.0 : 0.85"
+					ibg.bright="(:mode_l ieq 1) ? 1.0 : 0.8"
 				>
 					<grid rows="4" cols="3" spacing="4">
 						<label text="labels.units.meters" width="74"/>
@@ -90,7 +90,7 @@
 			<ui:with bright="(:mode_r ieq 1) ? 1.0 : 0.75">
 				<group ui:inject="Channel_2_Group"
 					text="groups.rchan.distance" expand="true"
-					ibg.bright="(:mode_r ieq 1) ? 1.0 : 0.85"
+					ibg.bright="(:mode_r ieq 1) ? 1.0 : 0.8"
 				>
 					<grid rows="4" cols="3" spacing="4">
 						<label text="labels.units.meters" width="74"/>
@@ -114,7 +114,7 @@
 			<ui:with bright="(:mode_l ieq 2) ? 1.0 : 0.75">
 				<group ui:inject="Channel_1_Group"
 					text="groups.lchan.time" expand="true"
-					ibg.bright="(:mode_l ieq 2) ? 1.0 : 0.85"
+					ibg.bright="(:mode_l ieq 2) ? 1.0 : 0.8"
 				>
 					<vbox spacing="4">
 						<label text="labels.delay"/>
@@ -130,7 +130,7 @@
 			<ui:with bright="(:mode_r ieq 2) ? 1.0 : 0.75">
 				<group ui:inject="Channel_2_Group"
 					text="groups.rchan.time" expand="true"
-					ibg.bright="(:mode_r ieq 2) ? 1.0 : 0.85"
+					ibg.bright="(:mode_r ieq 2) ? 1.0 : 0.8"
 				>
 					<vbox spacing="4">
 						<label text="labels.delay"/>

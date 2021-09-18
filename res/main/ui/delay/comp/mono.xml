@@ -13,7 +13,7 @@
 						<button id="ramp" text="labels.ramp" ui:inject="Button" led="true"/>
 					</grid>
 				</group>
-				<ui:with bright="(:mode ieq 0) ? 1.0 : 0.75" ibg.bright="(:mode ieq 0) ? 1.0 : 0.85">
+				<ui:with bright="(:mode ieq 0) ? 1.0 : 0.75" ibg.bright="(:mode ieq 0) ? 1.0 : 0.8">
 					<group text="groups.samples" width.min="85" expand="true">
 						<grid rows="4" cols="1" spacing="4">
 							<label text="labels.units.samples"/>
@@ -27,7 +27,7 @@
 					</group>
 				</ui:with>
 
-				<ui:with bright="(:mode ieq 1) ? 1.0 : 0.75" ibg.bright="(:mode ieq 1) ? 1.0 : 0.85">
+				<ui:with bright="(:mode ieq 1) ? 1.0 : 0.75" ibg.bright="(:mode ieq 1) ? 1.0 : 0.8">
 					<group text="groups.distance" expand="true">
 						<grid rows="4" cols="3" spacing="4">
 							<label text="labels.units.meters" width="74"/>
@@ -48,7 +48,7 @@
 						</grid>
 					</group>
 				</ui:with>
-				<ui:with bright="(:mode ieq 2) ? 1.0 : 0.75" ibg.bright="(:mode ieq 2) ? 1.0 : 0.85">
+				<ui:with bright="(:mode ieq 2) ? 1.0 : 0.75" ibg.bright="(:mode ieq 2) ? 1.0 : 0.8">
 					<group text="groups.time" expand="true">
 						<grid rows="4" cols="1" spacing="4">
 							<label text="labels.delay"/>
