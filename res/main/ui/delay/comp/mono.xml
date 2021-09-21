@@ -17,7 +17,7 @@
 					<group text="groups.samples" width.min="85" expand="true">
 						<grid rows="4" cols="1" spacing="4">
 							<label text="labels.units.samples"/>
-							<knob id="samp"/>
+							<knob id="samp" scolor="(:mode ieq 0) ? 'kscale' : 'kscale_inactive'"/>
 							<value id="samp" sline="true" width.min="62"/>
 							<hbox fill="false" spacing="4" height.min="22">
 								<led id="mode" key="0" />
@@ -33,9 +33,9 @@
 							<label text="labels.units.meters" width="74"/>
 							<label text="labels.units.centimeters" width="74"/>
 							<label text="labels.temperature" width="74"/>
-							<knob id="m"/>
-							<knob id="cm"/>
-							<knob id="t" balance="0.5"/>
+							<knob id="m" scolor="(:mode ieq 1) ? 'kscale' : 'kscale_inactive'"/>
+							<knob id="cm" scolor="(:mod1 ieq 0) ? 'kscale' : 'kscale_inactive'"/>
+							<knob id="t" balance="0.5" scolor="(:mode ieq 1) ? 'kscale' : 'kscale_inactive'"/>
 							<value id="m" sline="true" width.min="40"/>
 							<value id="cm" sline="true" width.min="40"/>
 							<value id="t" sline="true" width.min="40"/>
@@ -52,7 +52,7 @@
 					<group text="groups.time" expand="true">
 						<grid rows="4" cols="1" spacing="4">
 							<label text="labels.delay"/>
-							<knob id="time"/>
+							<knob id="time" scolor="(:mode ieq 2) ? 'kscale' : 'kscale_inactive'"/>
 							<value id="time" sline="true" width.min="50"/>
 							<hbox fill="false" spacing="4" height.min="22">
 								<led id="mode" key="2" />

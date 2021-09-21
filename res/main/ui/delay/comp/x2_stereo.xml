@@ -38,7 +38,7 @@
 				>
 					<vbox spacing="4" >
 						<label text="labels.units.samples"/>
-						<knob id="samp_l" scolor="left"/>
+						<knob id="samp_l" scolor="(:mode_l ieq 0) ? 'left' : 'left_inactive'" />
 						<value id="samp_l" sline="true"  width.min="62"/>
 						<hbox fill="false" spacing="4" height.min="22">
 							<led id="mode_l" key="0"  ui:inject="Led_red"/>
@@ -54,7 +54,7 @@
 				>
 					<vbox spacing="4">
 						<label text="labels.units.samples"/>
-						<knob id="samp_r" scolor="right"/>
+						<knob id="samp_r" scolor="(:mode_r ieq 0) ? 'right' : 'right_inactive'"/>
 						<value id="samp_r" sline="true"  width.min="62"/>
 						<hbox fill="false" spacing="4" height.min="22">
 							<led id="mode_r" key="0"  ui:inject="Led_blue"/>
@@ -72,9 +72,9 @@
 						<label text="labels.units.meters" width="74"/>
 						<label text="labels.units.centimeters" width="74"/>
 						<label text="labels.temperature" width="74"/>
-						<knob id="m_l" scolor="left"/>
-						<knob id="cm_l" scolor="left"/>
-						<knob id="t_l" balance="0.5" scolor="left"/>
+						<knob id="m_l" scolor="(:mode_l ieq 1) ? 'left' : 'left_inactive'"/>
+						<knob id="cm_l" scolor="(:mode_l ieq 1) ? 'left' : 'left_inactive'"/>
+						<knob id="t_l" balance="0.5" scolor="(:mode_l ieq 1) ? 'left' : 'left_inactive'"/>
 						<value id="m_l" sline="true" width.min="40"/>
 						<value id="cm_l" sline="true" width.min="40"/>
 						<value id="t_l" sline="true" width.min="40"/>
@@ -96,9 +96,9 @@
 						<label text="labels.units.meters" width="74"/>
 						<label text="labels.units.centimeters" width="74"/>
 						<label text="labels.temperature" width="74"/>
-						<knob id="m_r" scolor="right"/>
-						<knob id="cm_r" scolor="right"/>
-						<knob id="t_r" balance="0.5" scolor="right"/>
+						<knob id="m_r" scolor="(:mode_r ieq 1) ? 'right' : 'right_inactive'"/>
+						<knob id="cm_r" scolor="(:mode_r ieq 1) ? 'right' : 'right_inactive'"/>
+						<knob id="t_r" balance="0.5" scolor="(:mode_r ieq 1) ? 'right' : 'right_inactive'"/>
 						<value id="m_r" sline="true" width.min="40"/>
 						<value id="cm_r" sline="true" width.min="40"/>
 						<value id="t_r" sline="true" width.min="40"/>
@@ -118,7 +118,7 @@
 				>
 					<vbox spacing="4">
 						<label text="labels.delay"/>
-						<knob id="time_l" scolor="left"/>
+						<knob id="time_l" scolor="(:mode_l ieq 3) ? 'left' : 'left_inactive'"/>
 						<value id="time_l" sline="true" width.min="50"/>
 						<hbox fill="false" spacing="4" height.min="22">
 							<led id="mode_l" key="2"  ui:inject="Led_red"/>
@@ -134,7 +134,7 @@
 				>
 					<vbox spacing="4">
 						<label text="labels.delay"/>
-						<knob id="time_r" scolor="right"/>
+						<knob id="time_r" scolor="(:mode_r ieq 2) ? 'right' : 'right_inactive'"/>
 						<value id="time_r" sline="true" width.min="50"/>
 						<hbox fill="false" spacing="4" height.min="22">
 							<led id="mode_r" key="2"  ui:inject="Led_blue"/>
