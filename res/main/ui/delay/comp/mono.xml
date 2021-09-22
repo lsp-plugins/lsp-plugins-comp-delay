@@ -13,7 +13,7 @@
 						<button id="ramp" text="labels.ramp" ui:inject="Button" led="true"/>
 					</grid>
 				</group>
-				<ui:with bright="(:mode ieq 0) ? 1.0 : 0.75" ibg.bright="(:mode ieq 0) ? 1.0 : 0.8">
+				<ui:with bright="(:mode ieq 0) ? 1.0 : 0.75" ibg.bright="(:mode ieq 0) ? 1.0 : :const_bg_darken">
 					<group text="groups.samples" width.min="85" expand="true">
 						<grid rows="4" cols="1" spacing="4">
 							<label text="labels.units.samples"/>
@@ -27,14 +27,14 @@
 					</group>
 				</ui:with>
 
-				<ui:with bright="(:mode ieq 1) ? 1.0 : 0.75" ibg.bright="(:mode ieq 1) ? 1.0 : 0.8">
+				<ui:with bright="(:mode ieq 1) ? 1.0 : 0.75" ibg.bright="(:mode ieq 1) ? 1.0 : :const_bg_darken">
 					<group text="groups.distance" expand="true">
 						<grid rows="4" cols="3" spacing="4">
 							<label text="labels.units.meters" width="74"/>
 							<label text="labels.units.centimeters" width="74"/>
 							<label text="labels.temperature" width="74"/>
 							<knob id="m" scolor="(:mode ieq 1) ? 'kscale' : 'kscale_inactive'"/>
-							<knob id="cm" scolor="(:mod1 ieq 0) ? 'kscale' : 'kscale_inactive'"/>
+							<knob id="cm" scolor="(:mode ieq 1) ? 'kscale' : 'kscale_inactive'"/>
 							<knob id="t" balance="0.5" scolor="(:mode ieq 1) ? 'kscale' : 'kscale_inactive'"/>
 							<value id="m" sline="true" width.min="40"/>
 							<value id="cm" sline="true" width.min="40"/>
@@ -48,7 +48,7 @@
 						</grid>
 					</group>
 				</ui:with>
-				<ui:with bright="(:mode ieq 2) ? 1.0 : 0.75" ibg.bright="(:mode ieq 2) ? 1.0 : 0.8">
+				<ui:with bright="(:mode ieq 2) ? 1.0 : 0.75" ibg.bright="(:mode ieq 2) ? 1.0 : :const_bg_darken">
 					<group text="groups.time" expand="true">
 						<grid rows="4" cols="1" spacing="4">
 							<label text="labels.delay"/>
