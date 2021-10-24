@@ -17,7 +17,7 @@
 				</grid>
 			</group>
 			<cell rows="1" cols="5">
-				<label ui:inject="LabelChannel_2" text="groups.rchan.rchan" expand="false"/>
+				<label ui:inject="LabelChannel_2"  text="groups.rchan.rchan" expand="false"/>
 			</cell>
 			<group ui:inject="Channel_2_Group" text="groups.rchan.signal" width.min="148" expand="true">
 				<grid rows="4" cols="2" spacing="4">
@@ -41,7 +41,7 @@
 						<knob id="samp_l" scolor="(:mode_l ieq 0) ? 'left' : 'left_inactive'" />
 						<value id="samp_l" sline="true"  width.min="62"/>
 						<hbox fill="false" spacing="4" height.min="22">
-							<led id="mode_l" key="0"  ui:inject="Led_red"/>
+							<led id="mode_l" key="0" size="10" pad.b="1" ui:inject="Led_red"/>
 							<label text="labels.active"/>
 						</hbox>
 					</vbox>
@@ -57,7 +57,7 @@
 						<knob id="samp_r" scolor="(:mode_r ieq 0) ? 'right' : 'right_inactive'"/>
 						<value id="samp_r" sline="true"  width.min="62"/>
 						<hbox fill="false" spacing="4" height.min="22">
-							<led id="mode_r" key="0"  ui:inject="Led_blue"/>
+							<led id="mode_r" key="0"  size="10" pad.b="1" ui:inject="Led_blue"/>
 							<label text="labels.active"/>
 						</hbox>
 					</vbox>
@@ -80,7 +80,7 @@
 						<value id="t_l" sline="true" width.min="40"/>
 						<cell cols="4">
 							<hbox fill="false" spacing="4" height.min="22">
-								<led id="mode_l" key="1"  ui:inject="Led_red"/>
+								<led id="mode_l" key="1" size="10" pad.b="1" ui:inject="Led_red"/>
 								<label text="labels.active"/>
 							</hbox>
 						</cell>
@@ -104,7 +104,7 @@
 						<value id="t_r" sline="true" width.min="40"/>
 						<cell cols="4">
 							<hbox fill="false" spacing="4" height.min="22">
-								<led id="mode_r" key="1"  ui:inject="Led_blue"/>
+								<led id="mode_r" key="1" size="10" pad.b="1" ui:inject="Led_blue"/>
 								<label text="labels.active"/>
 							</hbox>
 						</cell>
@@ -121,7 +121,7 @@
 						<knob id="time_l" scolor="(:mode_l ieq 2) ? 'left' : 'left_inactive'"/>
 						<value id="time_l" sline="true" width.min="50"/>
 						<hbox fill="false" spacing="4" height.min="22">
-							<led id="mode_l" key="2"  ui:inject="Led_red"/>
+							<led id="mode_l" key="2" size="10" pad.b="1" ui:inject="Led_red"/>
 							<label text="labels.active"/>
 						</hbox>
 					</vbox>
@@ -137,7 +137,7 @@
 						<knob id="time_r" scolor="(:mode_r ieq 2) ? 'right' : 'right_inactive'"/>
 						<value id="time_r" sline="true" width.min="50"/>
 						<hbox fill="false" spacing="4" height.min="22">
-							<led id="mode_r" key="2"  ui:inject="Led_blue"/>
+							<led id="mode_r" key="2" size="10" pad.b="1" ui:inject="Led_blue"/>
 							<label text="labels.active"/>
 						</hbox>
 					</vbox>

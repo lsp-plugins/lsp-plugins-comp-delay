@@ -20,7 +20,7 @@
 						<knob id="samp" scolor="(:mode ieq 0) ? 'kscale' : 'kscale_inactive'"/>
 						<value id="samp" sline="true" width.min="62"/>
 						<hbox fill="false" spacing="4" height.min="22">
-							<led id="mode" key="0" />
+							<led id="mode" size="10" pad.b="1" key="0" />
 							<label text="labels.active"/>
 						</hbox>
 					</grid>
@@ -40,7 +40,7 @@
 						<value id="t" sline="true" width.min="40"/>
 						<cell cols="4">
 							<hbox fill="false" spacing="4" height.min="22">
-								<led id="mode" key="1" />
+								<led id="mode" size="10" pad.b="1" key="1" />
 								<label text="labels.active"/>
 							</hbox>
 						</cell>
@@ -54,7 +54,7 @@
 						<knob id="time" scolor="(:mode ieq 2) ? 'kscale' : 'kscale_inactive'"/>
 						<value id="time" sline="true" width.min="50"/>
 						<hbox fill="false" spacing="4" height.min="22">
-							<led id="mode" key="2" />
+							<led id="mode" size="10" pad.b="1" key="2" />
 							<label text="labels.active"/>
 						</hbox>
 					</grid>
