@@ -75,9 +75,9 @@ namespace lsp
             destroy();
         }
 
-        void comp_delay::init(plug::IWrapper *wrapper)
+        void comp_delay::init(plug::IWrapper *wrapper, plug::IPort **ports)
         {
-            Module::init(wrapper);
+            Module::init(wrapper, ports);
 
             size_t channels         = (nMode == CD_MONO) ? 1 : 2;
             size_t szof_channels    = align_size(sizeof(channel_t) * channels, OPTIMAL_ALIGN);
@@ -133,20 +133,20 @@ namespace lsp
             // Bind input audio ports
             for (size_t i=0; i<channels; ++i)
             {
-                TRACE_PORT(vPorts[port_id]);
-                vChannels[i].pIn    = vPorts[port_id++];
+                TRACE_PORT(ports[port_id]);
+                vChannels[i].pIn    = ports[port_id++];
             }
 
             // Bind output audio ports
             for (size_t i=0; i<channels; ++i)
             {
-                TRACE_PORT(vPorts[port_id]);
-                vChannels[i].pOut   = vPorts[port_id++];
+                TRACE_PORT(ports[port_id]);
+                vChannels[i].pOut   = ports[port_id++];
             }
 
             // Bind bypass
-            TRACE_PORT(vPorts[port_id]);
-            pBypass              = vPorts[port_id++];
+            TRACE_PORT(ports[port_id]);
+            pBypass              = ports[port_id++];
 
             // Bind channels
             for (size_t i=0; i<channels; ++i)
@@ -169,30 +169,30 @@ namespace lsp
                 }
                 else
                 {
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pMode                = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pRamping             = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pSamples             = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pMeters              = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pCentimeters         = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pTemperature         = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pTime                = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pDry                 = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pWet                 = vPorts[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pMode                = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pRamping             = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pSamples             = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pMeters              = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pCentimeters         = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pTemperature         = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pTime                = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pDry                 = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pWet                 = ports[port_id++];
                 }
             }
 
             // Bind output gain
-            TRACE_PORT(vPorts[port_id]);
-            pGainOut            = vPorts[port_id++];
+            TRACE_PORT(ports[port_id]);
+            pGainOut            = ports[port_id++];
 
             // Bind output meters
             for (size_t i=0; i<channels; ++i)
@@ -209,12 +209,12 @@ namespace lsp
                 }
                 else
                 {
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pOutTime             = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pOutSamples          = vPorts[port_id++];
-                    TRACE_PORT(vPorts[port_id]);
-                    c->pOutDistance         = vPorts[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pOutTime             = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pOutSamples          = ports[port_id++];
+                    TRACE_PORT(ports[port_id]);
+                    c->pOutDistance         = ports[port_id++];
                 }
             }
         }

@@ -90,7 +90,7 @@ namespace lsp
                 explicit comp_delay(const meta::plugin_t *meta);
                 virtual ~comp_delay();
 
-                virtual void        init(plug::IWrapper *wrapper);
+                virtual void        init(plug::IWrapper *wrapper, plug::IPort **ports);
                 void                destroy();
 
             public:
