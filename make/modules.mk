@@ -2,45 +2,55 @@
 # Copyright (C) 2020 Linux Studio Plugins Project <https://lsp-plug.in/>
 #           (C) 2020 Vladimir Sadovnikov <sadko4u@gmail.com>
 #
-# This file is part of lsp-plugin-fw
+# This file is part of lsp-plugins-comp-delay
 #
-# lsp-plugin-fw is free software: you can redistribute it and/or modify
+# lsp-plugins-comp-delay is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# lsp-plugin-fw is distributed in the hope that it will be useful,
+# lsp-plugins-comp-delay is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Lesser General Public License for more details.
 #
 # You should have received a copy of the GNU Lesser General Public License
-# along with lsp-plugin-fw.  If not, see <https://www.gnu.org/licenses/>.
+# along with lsp-plugins-comp-delay.  If not, see <https://www.gnu.org/licenses/>.
 #
 ifneq ($(VERBOSE),1)
 .SILENT:
 endif
 
 BASEDIR                := $(CURDIR)
-DEPLIST                := $(BASEDIR)/dependencies.mk
-PROJECT                := $(BASEDIR)/project.mk
 CONFIG                 := $(BASEDIR)/.config.mk
 
+include $(BASEDIR)/project.mk
 include $(BASEDIR)/make/functions.mk
 ifeq ($(TREE),1)
-  include $(DEPLIST)
+  include $(BASEDIR)/make/system.mk
+  include $(BASEDIR)/make/tools.mk
+  include $(BASEDIR)/modules.mk
 else
   -include $(CONFIG)
 endif
-include $(PROJECT)
+include $(BASEDIR)/dependencies.mk
+include $(BASEDIR)/plugins.mk
 
-UNIQ_DEPENDENCIES       = $(call uniq,$(DEPENDENCIES) $(TEST_DEPENDENCIES))
-UNIQ_ALL_DEPENDENCIES  := $(call uniq,$(ALL_DEPENDENCIES))
+MERGED_DEPENDENCIES        := \
+  $(DEPENDENCIES) \
+  $(TEST_DEPENDENCIES) \
+  $(PLUGIN_DEPENDENCIES)
+UNIQ_MERGED_DEPENDENCIES   := $(call uniq, $(MERGED_DEPENDENCIES))
+UNIQ_ALL_DEPENDENCIES      := $(call uniq, $(ALL_DEPENDENCIES) $(PLUGIN_DEPENDENCIES))
 
 # Find the proper branch of the GIT repository
 ifeq ($(TREE),1)
   MODULES                := $(BASEDIR)/modules
   GIT                    := git
+  
+  $(foreach dep,$(UNIQ_ALL_DEPENDENCIES), \
+    $(eval $(dep)_URL=$($(dep)_URL_RO)) \
+  )
   
   ifeq ($(findstring -devel,$(ARTIFACT_VERSION)),-devel)
     $(foreach dep, $(UNIQ_ALL_DEPENDENCIES), \
@@ -56,14 +66,18 @@ ifeq ($(TREE),1)
 endif
 
 # Form list of modules, exclude all modules that have 'system' version
-SRC_MODULES         = $(foreach dep, $(UNIQ_DEPENDENCIES), $(if $(findstring src,$($(dep)_TYPE)),$(dep)))
-HDR_MODULES         = $(foreach dep, $(UNIQ_DEPENDENCIES), $(if $(findstring hdr,$($(dep)_TYPE)),$(dep)))
+SRC_MODULES         = $(foreach dep, $(UNIQ_MERGED_DEPENDENCIES), $(if $(findstring src,$($(dep)_TYPE)),$(dep)))
+HDR_MODULES         = $(foreach dep, $(UNIQ_MERGED_DEPENDENCIES), $(if $(findstring hdr,$($(dep)_TYPE)),$(dep)))
+BIN_MODULES         = $(foreach dep, $(UNIQ_MERGED_DEPENDENCIES), $(if $(findstring bin,$($(dep)_TYPE)),$(dep)))
+PLUG_MODULES        = $(foreach dep, $(UNIQ_MERGED_DEPENDENCIES), $(if $(findstring plug,$($(dep)_TYPE)),$(dep)))
 ALL_SRC_MODULES     = $(foreach dep, $(UNIQ_ALL_DEPENDENCIES), $(if $(findstring src,$($(dep)_TYPE)),$(dep)))
 ALL_HDR_MODULES     = $(foreach dep, $(UNIQ_ALL_DEPENDENCIES), $(if $(findstring hdr,$($(dep)_TYPE)),$(dep)))
-ALL_PATHS           = $(foreach dep, $(ALL_SRC_MODULES) $(ALL_HDR_MODULES), $($(dep)_PATH))
+ALL_BIN_MODULES     = $(foreach dep, $(UNIQ_ALL_DEPENDENCIES), $(if $(findstring bin,$($(dep)_TYPE)),$(dep)))
+ALL_PLUG_MODULES    = $(foreach dep, $(UNIQ_ALL_DEPENDENCIES), $(if $(findstring plug,$($(dep)_TYPE)),$(dep)))
+ALL_PATHS           = $(foreach dep, $(ALL_SRC_MODULES) $(ALL_HDR_MODULES) $(ALL_BIN_MODULES) $(ALL_PLUG_MODULES), $($(dep)_PATH))
 
 # Branches
-.PHONY: $(ALL_SRC_MODULES) $(ALL_HDR_MODULES) $(ALL_PATHS)
+.PHONY: $(ALL_SRC_MODULES) $(ALL_HDR_MODULES) $(ALL_BIN_MODULES) $(ALL_PATHS)
 .PHONY: fetch prune clean
 
 $(ALL_SRC_MODULES) $(ALL_HDR_MODULES) $(ALL_BIN_MODULES) $(ALL_PLUG_MODULES):
@@ -81,9 +95,9 @@ $(ALL_PATHS):
 	echo "Removing $(notdir $(@))"
 	-rm -rf $(@)
 
-fetch: $(SRC_MODULES) $(HDR_MODULES)
+fetch: $(SRC_MODULES) $(HDR_MODULES) $(BIN_MODULES) $(PLUG_MODULES)
 
-tree: $(ALL_SRC_MODULES) $(ALL_HDR_MODULES)
+tree: $(ALL_SRC_MODULES) $(ALL_HDR_MODULES) $(ALL_BIN_MODULES) $(ALL_PLUG_MODULES)
 
 clean:
 	echo rm -rf "$($(ARTIFACT_VARS)_BIN)/$(ARTIFACT_NAME)"

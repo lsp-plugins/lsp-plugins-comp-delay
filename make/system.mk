@@ -2,20 +2,20 @@
 # Copyright (C) 2020 Linux Studio Plugins Project <https://lsp-plug.in/>
 #           (C) 2020 Vladimir Sadovnikov <sadko4u@gmail.com>
 #
-# This file is part of lsp-plugin-fw
+# This file is part of lsp-plugins-comp-delay
 #
-# lsp-plugin-fw is free software: you can redistribute it and/or modify
+# lsp-plugins-comp-delay is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# lsp-plugin-fw is distributed in the hope that it will be useful,
+# lsp-plugins-comp-delay is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Lesser General Public License for more details.
 #
 # You should have received a copy of the GNU Lesser General Public License
-# along with lsp-plugin-fw.  If not, see <https://www.gnu.org/licenses/>.
+# along with lsp-plugins-comp-delay.  If not, see <https://www.gnu.org/licenses/>.
 #
 
 # Detect operating system
@@ -208,6 +208,7 @@ TEST                       := 0
 # Set-up list of common variables
 COMMON_VARS = \
     ROOTDIR \
+    ROOT_ARTIFACT_ID \
 	PLATFORM \
 	ARCHITECTURE \
 	ARCHITECTURE_CFLAGS \
@@ -234,6 +235,7 @@ sysvars:
 	echo "  ARCHITECTURE_CFLAGS       compiler flags to specify architecture"
 	echo "  BINDIR                    location of the binaries"
 	echo "  DEBUG                     build with debug options"
+	echo "  DEVEL                     build with modules checked out for read/write URL"
 	echo "  EXECUTABLE_EXT            file extension for executable files"
 	echo "  INCDIR                    location of the header files"
 	echo "  LIBDIR                    location of the library"
