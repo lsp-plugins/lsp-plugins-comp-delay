@@ -19,4 +19,4 @@
 #
 
 # Variables that describe dependencies
-PLUGIN_DEPENDENCIES = $(ARTIFACT_ID)
+PLUGIN_DEPENDENCIES     = LSP_PLUGINS_COMP_DELAY

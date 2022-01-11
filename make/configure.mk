@@ -225,8 +225,15 @@ define vardef =
 endef
 
 # Define predefined variables
+ifndef ARTIFACT_TYPE
+  ARTIFACT_TYPE              := src
+endif
+
 ifndef $(ARTIFACT_ID)_NAME
   $(ARTIFACT_ID)_NAME        := $(ARTIFACT_NAME)
+endif
+ifndef $(ARTIFACT_ID)_TYPE
+  $(ARTIFACT_ID)_TYPE        := $(ARTIFACT_TYPE)
 endif
 ifndef $(ARTIFACT_ID)_DESC
   $(ARTIFACT_ID)_DESC        := $(ARTIFACT_DESC)
@@ -243,7 +250,6 @@ endif
 
 ROOT_ARTIFACT_ID           := $(ARTIFACT_ID)
 $(ARTIFACT_ID)_TESTING      = $(TEST)
-$(ARTIFACT_ID)_TYPE        := src
 
 OVERALL_DEPS := $(call uniq,$(DEPENDENCIES) $(ARTIFACT_ID))
 __tmp := $(foreach dep,$(OVERALL_DEPS),$(call vardef, $(dep)))
