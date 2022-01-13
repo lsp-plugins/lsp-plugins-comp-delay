@@ -20,3 +20,4 @@
 
 # Variables that describe dependencies
 PLUGIN_DEPENDENCIES     = LSP_PLUGINS_COMP_DELAY
+PLUGIN_PACKAGE_NAME     = lsp-plugins
