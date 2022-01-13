@@ -2,6 +2,7 @@
 /.settings/*
 /.build/*
 /.test/*
+/.install/*
 /Debug/*
 /Release/*
 /Debug/
