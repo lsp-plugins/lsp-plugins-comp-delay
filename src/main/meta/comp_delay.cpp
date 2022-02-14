@@ -161,6 +161,15 @@ namespace lsp
 
         static const int comp_delay_classes[] = { C_DELAY, -1 };
 
+        const meta::bundle_t comp_delay_bundle =
+        {
+            "comp_delay",
+            "Compensation Delay",
+            B_DELAYS,
+            "j-rNb409GYg",
+            "This plugin allows to add short delay to compensate the phase offset\nrelatively to other channels.The main idea is to add some delay\nof the signal recorded by set of microphones placed at different\npositions and distances from the sound source."
+        };
+
         const plugin_t comp_delay_mono =
         {
             "Verzögerungsausgleicher Mono",
@@ -179,7 +188,8 @@ namespace lsp
             comp_delay_mono_ports,
             "delay/comp/mono.xml",
             NULL,
-            mono_plugin_port_groups
+            mono_plugin_port_groups,
+            &comp_delay_bundle
         };
 
         const plugin_t comp_delay_stereo =
@@ -200,7 +210,8 @@ namespace lsp
             comp_delay_stereo_ports,
             "delay/comp/stereo.xml",
             NULL,
-            stereo_plugin_port_groups
+            stereo_plugin_port_groups,
+            &comp_delay_bundle
         };
 
         const plugin_t comp_delay_x2_stereo =
@@ -221,7 +232,8 @@ namespace lsp
             comp_delay_x2_stereo_ports,
             "delay/comp/x2_stereo.xml",
             NULL,
-            stereo_plugin_port_groups
+            stereo_plugin_port_groups,
+            &comp_delay_bundle
         };
     }
 }
