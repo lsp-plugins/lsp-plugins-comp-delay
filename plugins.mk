@@ -19,5 +19,11 @@
 #
 
 # Variables that describe dependencies
-PLUGIN_DEPENDENCIES     = LSP_PLUGINS_COMP_DELAY
 PLUGIN_PACKAGE_NAME     = lsp-plugins
+
+PLUGIN_SHARED = \
+  LSP_PLUGINS_SHARED
+
+PLUGIN_DEPENDENCIES = lsp-plugins-comp-delay
+  LSP_PLUGINS_PLUGIN_TEMPLATE
+
