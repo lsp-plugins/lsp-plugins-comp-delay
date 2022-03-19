@@ -24,6 +24,6 @@ PLUGIN_PACKAGE_NAME     = lsp-plugins
 PLUGIN_SHARED = \
   LSP_PLUGINS_SHARED
 
-PLUGIN_DEPENDENCIES = LSP Compensation Delay Plugin Series
+PLUGIN_DEPENDENCIES = lsp-plugins-comp-delay
   LSP_PLUGINS_PLUGIN_TEMPLATE
 
