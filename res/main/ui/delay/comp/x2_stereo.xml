@@ -1,0 +1,185 @@
+<plugin resizable="true">
+
+		<grid rows="4" cols="5" transpose="true" spacing="4" >
+			<cell rows="1" cols="5" >
+				<label ui:inject="LabelChannel_1" text="groups.lchan.lchan" expand="false"/>
+			</cell>
+			<group ui:inject="Channel_1_Group" text="groups.lchan.signal" width.min="148" expand="true">
+				<grid rows="4" cols="2" spacing="4">
+					<label text="labels.signal.dry" width="60"/>
+					<label text="labels.signal.wet" width="60"/>
+					<knob id="dry_l" scolor="dry"/>
+					<knob id="wet_l" scolor="wet"/>
+					<value id="dry_l" sline="true" width.min="50"/>
+					<value id="wet_l" sline="true" width.min="50"/>
+					<button id="mode_l" text="labels.mode" led="true"/>
+					<button id="ramp_l" text="labels.ramp" ui:inject="Button_red" led="true"/>
+				</grid>
+			</group>
+			<cell rows="1" cols="5">
+				<label ui:inject="LabelChannel_2"  text="groups.rchan.rchan" expand="false"/>
+			</cell>
+			<group ui:inject="Channel_2_Group" text="groups.rchan.signal" width.min="148" expand="true">
+				<grid rows="4" cols="2" spacing="4">
+					<label text="labels.signal.dry" width="60"/>
+					<label text="labels.signal.wet" width="60"/>
+					<knob id="dry_r" scolor="dry"/>
+					<knob id="wet_r" scolor="wet"/>
+					<value id="dry_r" sline="true" width.min="50"/>
+					<value id="wet_r" sline="true" width.min="50"/>
+					<button id="mode_r" text="labels.mode" led="true"/>
+					<button id="ramp_r" text="labels.ramp" ui:inject="Button_blue" led="true"/>
+				</grid>
+			</group>
+			<ui:with bright="(:mode_l ieq 0) ? 1.0 : 0.75">
+				<group ui:inject="Channel_1_Group" text="groups.lchan.samples"
+					width.min="85" expand="true"
+					ibg.bright="(:mode_l ieq 0) ? 1.0 : :const_bg_darken"
+				>
+					<vbox spacing="4" >
+						<label text="labels.units.samples"/>
+						<knob id="samp_l" scolor="(:mode_l ieq 0) ? 'left' : 'left_inactive'" />
+						<value id="samp_l" sline="true"  width.min="62"/>
+						<hbox fill="false" spacing="4" height.min="22">
+							<led id="mode_l" key="0" size="10" pad.b="1" ui:inject="Led_red"/>
+							<label text="labels.active"/>
+						</hbox>
+					</vbox>
+				</group>
+			</ui:with>
+			<ui:with bright="(:mode_r ieq 0) ? 1.0 : 0.75">
+				<group ui:inject="Channel_2_Group"
+					text="groups.rchan.samples" width.min="85" expand="true"
+					ibg.bright="(:mode_r ieq 0) ? 1.0 : :const_bg_darken"
+				>
+					<vbox spacing="4">
+						<label text="labels.units.samples"/>
+						<knob id="samp_r" scolor="(:mode_r ieq 0) ? 'right' : 'right_inactive'"/>
+						<value id="samp_r" sline="true"  width.min="62"/>
+						<hbox fill="false" spacing="4" height.min="22">
+							<led id="mode_r" key="0"  size="10" pad.b="1" ui:inject="Led_blue"/>
+							<label text="labels.active"/>
+						</hbox>
+					</vbox>
+				</group>
+			</ui:with>
+			<ui:with bright="(:mode_l ieq 1) ? 1.0 : 0.75">
+				<group ui:inject="Channel_1_Group"
+					text="groups.lchan.distance" expand="true"
+					ibg.bright="(:mode_l ieq 1) ? 1.0 : :const_bg_darken"
+				>
+					<grid rows="4" cols="3" spacing="4">
+						<label text="labels.units.meters" width="74"/>
+						<label text="labels.units.centimeters" width="74"/>
+						<label text="labels.temperature" width="74"/>
+						<knob id="m_l" scolor="(:mode_l ieq 1) ? 'left' : 'left_inactive'"/>
+						<knob id="cm_l" scolor="(:mode_l ieq 1) ? 'left' : 'left_inactive'"/>
+						<knob id="t_l" balance="0.5" scolor="(:mode_l ieq 1) ? 'left' : 'left_inactive'"/>
+						<value id="m_l" sline="true" width.min="40"/>
+						<value id="cm_l" sline="true" width.min="40"/>
+						<value id="t_l" sline="true" width.min="40"/>
+						<cell cols="4">
+							<hbox fill="false" spacing="4" height.min="22">
+								<led id="mode_l" key="1" size="10" pad.b="1" ui:inject="Led_red"/>
+								<label text="labels.active"/>
+							</hbox>
+						</cell>
+					</grid>
+				</group>
+			</ui:with>
+			<ui:with bright="(:mode_r ieq 1) ? 1.0 : 0.75">
+				<group ui:inject="Channel_2_Group"
+					text="groups.rchan.distance" expand="true"
+					ibg.bright="(:mode_r ieq 1) ? 1.0 : :const_bg_darken"
+				>
+					<grid rows="4" cols="3" spacing="4">
+						<label text="labels.units.meters" width="74"/>
+						<label text="labels.units.centimeters" width="74"/>
+						<label text="labels.temperature" width="74"/>
+						<knob id="m_r" scolor="(:mode_r ieq 1) ? 'right' : 'right_inactive'"/>
+						<knob id="cm_r" scolor="(:mode_r ieq 1) ? 'right' : 'right_inactive'"/>
+						<knob id="t_r" balance="0.5" scolor="(:mode_r ieq 1) ? 'right' : 'right_inactive'"/>
+						<value id="m_r" sline="true" width.min="40"/>
+						<value id="cm_r" sline="true" width.min="40"/>
+						<value id="t_r" sline="true" width.min="40"/>
+						<cell cols="4">
+							<hbox fill="false" spacing="4" height.min="22">
+								<led id="mode_r" key="1" size="10" pad.b="1" ui:inject="Led_blue"/>
+								<label text="labels.active"/>
+							</hbox>
+						</cell>
+					</grid>
+				</group>
+			</ui:with>
+			<ui:with bright="(:mode_l ieq 2) ? 1.0 : 0.75">
+				<group ui:inject="Channel_1_Group"
+					text="groups.lchan.time" expand="true"
+					ibg.bright="(:mode_l ieq 2) ? 1.0 : :const_bg_darken"
+				>
+					<vbox spacing="4">
+						<label text="labels.delay"/>
+						<knob id="time_l" scolor="(:mode_l ieq 2) ? 'left' : 'left_inactive'"/>
+						<value id="time_l" sline="true" width.min="50"/>
+						<hbox fill="false" spacing="4" height.min="22">
+							<led id="mode_l" key="2" size="10" pad.b="1" ui:inject="Led_red"/>
+							<label text="labels.active"/>
+						</hbox>
+					</vbox>
+				</group>
+			</ui:with>
+			<ui:with bright="(:mode_r ieq 2) ? 1.0 : 0.75">
+				<group ui:inject="Channel_2_Group"
+					text="groups.rchan.time" expand="true"
+					ibg.bright="(:mode_r ieq 2) ? 1.0 : :const_bg_darken"
+				>
+					<vbox spacing="4">
+						<label text="labels.delay"/>
+						<knob id="time_r" scolor="(:mode_r ieq 2) ? 'right' : 'right_inactive'"/>
+						<value id="time_r" sline="true" width.min="50"/>
+						<hbox fill="false" spacing="4" height.min="22">
+							<led id="mode_r" key="2" size="10" pad.b="1" ui:inject="Led_blue"/>
+							<label text="labels.active"/>
+						</hbox>
+					</vbox>
+				</group>
+			</ui:with>
+			<group ui:inject="Channel_1_Group" text="groups.lchan.monitoring" expand="false" >
+				<grid rows="4" cols="2" spacing="4">
+					<label text="labels.time_:ms" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_t_l" format="f6.2!" tcolor="left"/>
+					</align>
+					<label text="labels.samples:samp" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_s_l" format="i6." tcolor="left"/>
+					</align>
+					<label text="labels.distance:cm" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_d_l" format="f6.1!" tcolor="left"/>
+					</align>
+					<cell cols="2">
+					<label height.min="22"/>
+				</cell>
+				</grid>
+			</group>
+			<group ui:inject="Channel_2_Group" text="groups.rchan.monitoring" expand="false" >
+				<grid rows="4" cols="2" spacing="4">
+					<label text="labels.time_:ms" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_t_r" format="f6.2!" tcolor="right"/>
+					</align>
+					<label text="labels.samples:samp" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_s_r" format="i6." tcolor="right"/>
+					</align>
+					<label text="labels.distance:cm" hfill="true" htext="-1"/>
+					<align halign="1">
+						<indicator id="d_d_r" format="f6.1!" tcolor="right"/>
+					</align>
+					<cell cols="2">
+					<label height.min="22"/>
+				</cell>
+				</grid>
+			</group>
+		</grid>
+</plugin>
