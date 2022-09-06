@@ -33,34 +33,34 @@ namespace lsp
     {
         typedef struct comp_delay
         {
-            static const float  METERS_MIN          = 0.0f;
-            static const float  METERS_MAX          = 200.0f;
-            static const float  METERS_DFL          = 0.0f;
-            static const float  METERS_STEP         = 1.0f;
+            static constexpr float  METERS_MIN          = 0.0f;
+            static constexpr float  METERS_MAX          = 200.0f;
+            static constexpr float  METERS_DFL          = 0.0f;
+            static constexpr float  METERS_STEP         = 1.0f;
 
-            static const float  CENTIMETERS_MIN     = 0.0f;
-            static const float  CENTIMETERS_MAX     = 100.0f;
-            static const float  CENTIMETERS_DFL     = 0.0f;
-            static const float  CENTIMETERS_STEP    = 0.1f;
+            static constexpr float  CENTIMETERS_MIN     = 0.0f;
+            static constexpr float  CENTIMETERS_MAX     = 100.0f;
+            static constexpr float  CENTIMETERS_DFL     = 0.0f;
+            static constexpr float  CENTIMETERS_STEP    = 0.1f;
 
-            static const float  SAMPLES_MIN         = 0.0f;
-            static const float  SAMPLES_MAX         = 10000.0f;
-            static const float  SAMPLES_DFL         = 0.0f;
-            static const float  SAMPLES_STEP        = 1.0f;
+            static constexpr float  SAMPLES_MIN         = 0.0f;
+            static constexpr float  SAMPLES_MAX         = 10000.0f;
+            static constexpr float  SAMPLES_DFL         = 0.0f;
+            static constexpr float  SAMPLES_STEP        = 1.0f;
 
-            static const float  TIME_MIN            = 0.0f;
-            static const float  TIME_MAX            = 1000.0f;
-            static const float  TIME_DFL            = 0.0f;
-            static const float  TIME_STEP           = 0.01f;
+            static constexpr float  TIME_MIN            = 0.0f;
+            static constexpr float  TIME_MAX            = 1000.0f;
+            static constexpr float  TIME_DFL            = 0.0f;
+            static constexpr float  TIME_STEP           = 0.01f;
 
-            static const float  TEMPERATURE_MIN     = -60.0f;
-            static const float  TEMPERATURE_MAX     = +60.0f;
-            static const float  TEMPERATURE_DFL     = 20.0f;
-            static const float  TEMPERATURE_STEP    = 0.1f;
+            static constexpr float  TEMPERATURE_MIN     = -60.0f;
+            static constexpr float  TEMPERATURE_MAX     = +60.0f;
+            static constexpr float  TEMPERATURE_DFL     = 20.0f;
+            static constexpr float  TEMPERATURE_STEP    = 0.1f;
 
-            static const float  DELAY_OUT_MAX_TIME      = 1000 /* TIME_MAX [ms] */;
-            static const float  DELAY_OUT_MAX_SAMPLES   = 1000 /* TIME_MAX [ms] */ * 0.001 /* [ s/ms ] */ * MAX_SAMPLE_RATE /* [samples / s] */;
-            static const float  DELAY_OUT_MAX_DISTANCE  = 1000 /* TIME_MAX [ms] */ * 0.001 /* [ s/ms ] */ * MAX_SOUND_SPEED /* [m/s] */ * 100 /* [cm / m ] */;
+            static constexpr float  DELAY_OUT_MAX_TIME      = 1000 /* TIME_MAX [ms] */;
+            static constexpr float  DELAY_OUT_MAX_SAMPLES   = 1000 /* TIME_MAX [ms] */ * 0.001 /* [ s/ms ] */ * MAX_SAMPLE_RATE /* [samples / s] */;
+            static constexpr float  DELAY_OUT_MAX_DISTANCE  = 1000 /* TIME_MAX [ms] */ * 0.001 /* [ s/ms ] */ * MAX_SOUND_SPEED /* [m/s] */ * 100 /* [cm / m ] */;
 
             enum modes
             {
