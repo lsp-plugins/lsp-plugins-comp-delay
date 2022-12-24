@@ -167,7 +167,7 @@ namespace lsp
             "Compensation Delay",
             B_DELAYS,
             "j-rNb409GYg",
-            "This plugin allows one to add short delay to compensate the phase offset\nrelatively to other channels.The main idea is to add some delay\nof the signal recorded by set of microphones placed at different\npositions and distances from the sound source."
+            "This plugin allows one to add short delay to compensate the phase offset\nrelatively to other channels. The main idea is to add some delay\nof the signal recorded by set of microphones placed at different\npositions and distances from the sound source."
         };
 
         const plugin_t comp_delay_mono =
