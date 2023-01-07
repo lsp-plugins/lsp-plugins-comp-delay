@@ -159,10 +159,9 @@ namespace lsp
             PORTS_END
         };
 
-        static const int comp_delay_classes[] = { C_DELAY, -1 };
-        static const int comp_delay_mono_clap_features[]    = { CF_AUDIO_EFFECT, CF_DELAY, CF_MONO, -1 };
-        static const int comp_delay_stereo_clap_features[]  = { CF_AUDIO_EFFECT, CF_DELAY, CF_STEREO, -1 };
-        static const int comp_delay_x2_clap_features[]      = { CF_AUDIO_EFFECT, CF_DELAY, CF_STEREO, -1 };
+        static const int plugin_classes[]       = { C_DELAY, -1 };
+        static const int clap_features_mono[]   = { CF_AUDIO_EFFECT, CF_DELAY, CF_MONO, -1 };
+        static const int clap_features_stereo[] = { CF_AUDIO_EFFECT, CF_DELAY, CF_STEREO, -1 };
 
         const meta::bundle_t comp_delay_bundle =
         {
@@ -187,8 +186,8 @@ namespace lsp
             LSP_LADSPA_URI("comp_delay_mono"),
             LSP_CLAP_URI("comp_delay_mono"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
-            comp_delay_classes,
-            comp_delay_mono_clap_features,
+            plugin_classes,
+            clap_features_mono,
             E_DUMP_STATE,
             comp_delay_mono_ports,
             "delay/comp/mono.xml",
@@ -211,8 +210,8 @@ namespace lsp
             LSP_LADSPA_URI("comp_delay_stereo"),
             LSP_CLAP_URI("comp_delay_stereo"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
-            comp_delay_classes,
-            comp_delay_stereo_clap_features,
+            plugin_classes,
+            clap_features_stereo,
             E_DUMP_STATE,
             comp_delay_stereo_ports,
             "delay/comp/stereo.xml",
@@ -235,8 +234,8 @@ namespace lsp
             LSP_LADSPA_URI("comp_delay_x2_stereo"),
             LSP_CLAP_URI("comp_delay_x2_stereo"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
-            comp_delay_classes,
-            comp_delay_x2_clap_features,
+            plugin_classes,
+            clap_features_stereo,
             E_DUMP_STATE,
             comp_delay_x2_stereo_ports,
             "delay/comp/x2_stereo.xml",
@@ -244,7 +243,7 @@ namespace lsp
             stereo_plugin_port_groups,
             &comp_delay_bundle
         };
-    }
-}
+    } /* namespace meta */
+} /* namespace lsp */
 
 
