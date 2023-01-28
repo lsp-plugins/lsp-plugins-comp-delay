@@ -25,7 +25,7 @@
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR         1
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MINOR         0
-#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         8
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         9
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION  \
     LSP_MODULE_VERSION( \
@@ -159,7 +159,9 @@ namespace lsp
             PORTS_END
         };
 
-        static const int comp_delay_classes[] = { C_DELAY, -1 };
+        static const int plugin_classes[]       = { C_DELAY, -1 };
+        static const int clap_features_mono[]   = { CF_AUDIO_EFFECT, CF_DELAY, CF_MONO, -1 };
+        static const int clap_features_stereo[] = { CF_AUDIO_EFFECT, CF_DELAY, CF_STEREO, -1 };
 
         const meta::bundle_t comp_delay_bundle =
         {
@@ -167,7 +169,7 @@ namespace lsp
             "Compensation Delay",
             B_DELAYS,
             "j-rNb409GYg",
-            "This plugin allows one to add short delay to compensate the phase offset\nrelatively to other channels.The main idea is to add some delay\nof the signal recorded by set of microphones placed at different\npositions and distances from the sound source."
+            "This plugin allows one to add short delay to compensate the phase offset\nrelatively to other channels. The main idea is to add some delay\nof the signal recorded by set of microphones placed at different\npositions and distances from the sound source."
         };
 
         const plugin_t comp_delay_mono =
@@ -182,8 +184,10 @@ namespace lsp
             "jav8",
             LSP_LADSPA_COMP_DELAY_BASE + 0,
             LSP_LADSPA_URI("comp_delay_mono"),
+            LSP_CLAP_URI("comp_delay_mono"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
-            comp_delay_classes,
+            plugin_classes,
+            clap_features_mono,
             E_DUMP_STATE,
             comp_delay_mono_ports,
             "delay/comp/mono.xml",
@@ -204,8 +208,10 @@ namespace lsp
             "qpwr",
             LSP_LADSPA_COMP_DELAY_BASE + 1,
             LSP_LADSPA_URI("comp_delay_stereo"),
+            LSP_CLAP_URI("comp_delay_stereo"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
-            comp_delay_classes,
+            plugin_classes,
+            clap_features_stereo,
             E_DUMP_STATE,
             comp_delay_stereo_ports,
             "delay/comp/stereo.xml",
@@ -226,8 +232,10 @@ namespace lsp
             "fwd3",
             LSP_LADSPA_COMP_DELAY_BASE + 2,
             LSP_LADSPA_URI("comp_delay_x2_stereo"),
+            LSP_CLAP_URI("comp_delay_x2_stereo"),
             LSP_PLUGINS_COMP_DELAY_VERSION,
-            comp_delay_classes,
+            plugin_classes,
+            clap_features_stereo,
             E_DUMP_STATE,
             comp_delay_x2_stereo_ports,
             "delay/comp/x2_stereo.xml",
@@ -235,7 +243,7 @@ namespace lsp
             stereo_plugin_port_groups,
             &comp_delay_bundle
         };
-    }
-}
+    } /* namespace meta */
+} /* namespace lsp */
 
 
