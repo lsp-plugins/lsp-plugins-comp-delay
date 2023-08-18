@@ -84,7 +84,12 @@
 			<vbox spacing="4">
 				<label text="labels.output"/>
 				<knob id="g_out" size="24"/>
-				<value id="g_out" width.min="35"/>
+				<value id="g_out" width.min="35" sline="true" />
+				<label text="labels.chan.phase" />
+				<hbox>
+					<button id="phase_l" text="labels.chan.left" ui:inject="Button" led="true"/>
+					<button id="phase_r" text="labels.chan.right" ui:inject="Button" led="true"/>
+				</hbox>
 			</vbox>
 		</group>
 	</hbox>

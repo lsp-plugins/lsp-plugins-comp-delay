@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2020 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2023 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2023 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-comp-delay
  * Created on: 25 нояб. 2020 г.
@@ -70,6 +70,7 @@ namespace lsp
                     plug::IPort        *pTime;              // Time port
                     plug::IPort        *pDry;               // Dry control
                     plug::IPort        *pWet;               // Wet control
+                    plug::IPort        *pPhase;             // Phase invert
 
                     plug::IPort        *pOutTime;           // Output time
                     plug::IPort        *pOutSamples;        // Output samples
@@ -100,8 +101,8 @@ namespace lsp
                 virtual void        process(size_t samples);
                 virtual void        dump(dspu::IStateDumper *v) const;
         };
-    }
-}
+    } /* namespace plugins */
+} /* namespace lsp */
 
 
 #endif /* PRIVATE_PLUGINS_COMP_DELAY_H_ */
