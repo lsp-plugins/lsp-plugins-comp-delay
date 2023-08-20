@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2020 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2023 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2023 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-comp-delay
  * Created on: 25 нояб. 2020 г.
@@ -27,12 +27,16 @@
 
 #define BUFFER_SIZE         0x1000U
 
-#define TRACE_PORT(p)       lsp_trace("  port id=%s", (p)->metadata()->id);
-
 namespace lsp
 {
     namespace plugins
     {
+        static plug::IPort *TRACE_PORT(plug::IPort *p)
+        {
+            lsp_trace("  port id=%s", (p)->metadata()->id);
+            return p;
+        }
+
         //---------------------------------------------------------------------
         // Plugin factory
         static const meta::plugin_t *plugins[] =
@@ -132,21 +136,14 @@ namespace lsp
 
             // Bind input audio ports
             for (size_t i=0; i<channels; ++i)
-            {
-                TRACE_PORT(ports[port_id]);
-                vChannels[i].pIn    = ports[port_id++];
-            }
+                vChannels[i].pIn    = TRACE_PORT(ports[port_id++]);
 
             // Bind output audio ports
             for (size_t i=0; i<channels; ++i)
-            {
-                TRACE_PORT(ports[port_id]);
-                vChannels[i].pOut   = ports[port_id++];
-            }
+                vChannels[i].pOut   = TRACE_PORT(ports[port_id++]);
 
             // Bind bypass
-            TRACE_PORT(ports[port_id]);
-            pBypass              = ports[port_id++];
+            pBypass              = TRACE_PORT(ports[port_id++]);
 
             // Bind channels
             for (size_t i=0; i<channels; ++i)
@@ -169,30 +166,22 @@ namespace lsp
                 }
                 else
                 {
-                    TRACE_PORT(ports[port_id]);
-                    c->pMode                = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pRamping             = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pSamples             = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pMeters              = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pCentimeters         = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pTemperature         = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pTime                = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pDry                 = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pWet                 = ports[port_id++];
+                    c->pMode                = TRACE_PORT(ports[port_id++]);
+                    c->pRamping             = TRACE_PORT(ports[port_id++]);
+                    c->pSamples             = TRACE_PORT(ports[port_id++]);
+                    c->pMeters              = TRACE_PORT(ports[port_id++]);
+                    c->pCentimeters         = TRACE_PORT(ports[port_id++]);
+                    c->pTemperature         = TRACE_PORT(ports[port_id++]);
+                    c->pTime                = TRACE_PORT(ports[port_id++]);
+                    c->pDry                 = TRACE_PORT(ports[port_id++]);
+                    c->pWet                 = TRACE_PORT(ports[port_id++]);
                 }
+
+                c->pPhase               = TRACE_PORT(ports[port_id++]);
             }
 
             // Bind output gain
-            TRACE_PORT(ports[port_id]);
-            pGainOut            = ports[port_id++];
+            pGainOut            = TRACE_PORT(ports[port_id++]);
 
             // Bind output meters
             for (size_t i=0; i<channels; ++i)
@@ -209,12 +198,9 @@ namespace lsp
                 }
                 else
                 {
-                    TRACE_PORT(ports[port_id]);
-                    c->pOutTime             = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pOutSamples          = ports[port_id++];
-                    TRACE_PORT(ports[port_id]);
-                    c->pOutDistance         = ports[port_id++];
+                    c->pOutTime             = TRACE_PORT(ports[port_id++]);
+                    c->pOutSamples          = TRACE_PORT(ports[port_id++]);
+                    c->pOutDistance         = TRACE_PORT(ports[port_id++]);
                 }
             }
         }
@@ -275,10 +261,12 @@ namespace lsp
             {
                 channel_t *c            = &vChannels[i];
 
+                float phase             = (c->pPhase->value() >= 0.5f) ? -1.0f : 1.0f;
+
                 c->nMode                = c->pMode->value();
                 c->bRamping             = c->pRamping->value() >= 0.5f;
-                c->fDry                 = c->pDry->value() * out_gain;
-                c->fWet                 = c->pWet->value() * out_gain;
+                c->fDry                 = c->pDry->value() * out_gain * phase;
+                c->fWet                 = c->pWet->value() * out_gain * phase;
 
                 float temperature       = c->pTemperature->value();
                 float snd_speed         = dspu::sound_speed(temperature);
@@ -381,6 +369,7 @@ namespace lsp
                     v->write("pTime", c->pTime);
                     v->write("pDry", c->pDry);
                     v->write("pWet", c->pWet);
+                    v->write("pPhase", c->pPhase);
 
                     v->write("pOutTime", c->pOutTime);
                     v->write("pOutSamples", c->pOutSamples);
@@ -398,7 +387,7 @@ namespace lsp
             v->write("pData", pData);
         }
 
-    }
-}
+    } /* namespace plugins */
+} /* namespace lsp */
 
 
