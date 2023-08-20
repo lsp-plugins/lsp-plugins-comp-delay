@@ -86,7 +86,7 @@
 					<label text="labels.output" />
 					<knob id="g_out" size="24" />
 					<value id="g_out" width.min="35"/>
-					<button id="phase" text="labels.chan.phase" ui:inject="Button" led="true"/>
+					<button id="phase" text="labels.chan.phase" ui:inject="Button_yellow" led="true"/>
 				</vbox>
 			</group>
 		</hbox>
