@@ -76,7 +76,7 @@ namespace lsp
 
         comp_delay::~comp_delay()
         {
-            destroy();
+            do_destroy();
         }
 
         void comp_delay::init(plug::IWrapper *wrapper, plug::IPort **ports)
@@ -208,7 +208,11 @@ namespace lsp
         void comp_delay::destroy()
         {
             Module::destroy();
+            do_destroy();
+        }
 
+        void comp_delay::do_destroy()
+        {
             // Destroy channels
             if (vChannels != NULL)
             {
