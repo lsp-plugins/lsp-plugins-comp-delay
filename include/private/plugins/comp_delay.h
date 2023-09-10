@@ -87,6 +87,9 @@ namespace lsp
 
                 uint8_t            *pData;              // Allocated data
 
+            protected:
+                void                do_destroy();
+
             public:
                 explicit comp_delay(const meta::plugin_t *meta);
                 virtual ~comp_delay();
