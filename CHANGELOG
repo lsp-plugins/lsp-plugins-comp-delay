@@ -3,7 +3,7 @@
 *******************************************************************************
 
 === 1.0.19 ===
-
+* Fixed buffer overflow on large input buffers.
 
 === 1.0.18 ===
 * Updated build scripts and dependencies.
