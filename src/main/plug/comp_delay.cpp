@@ -323,7 +323,7 @@ namespace lsp
                     size_t count            = lsp_min(samples - n, BUFFER_SIZE);
 
                     // Pre-process signal (fill buffer)
-                    c->sLine.process_ramping(vBuffer, in, c->fWet, c->nNewDelay, samples);
+                    c->sLine.process_ramping(vBuffer, in, c->fWet, c->nNewDelay, count);
                     c->nDelay               = c->nNewDelay;
 
                     // Apply 'dry' control
