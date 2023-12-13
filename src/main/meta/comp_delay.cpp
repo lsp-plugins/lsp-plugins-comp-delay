@@ -181,6 +181,7 @@ namespace lsp
         {
             "Verzögerungsausgleicher Mono",
             "Delay Compensator Mono",
+            "Delay Compensator Mono",
             "VA1M",
             &developers::v_sadovnikov,
             "comp_delay_mono",
@@ -205,6 +206,7 @@ namespace lsp
         {
             "Verzögerungsausgleicher Stereo",
             "Delay Compensator Stereo",
+            "Delay Compensator Stereo",
             "VA1S",
             &developers::v_sadovnikov,
             "comp_delay_stereo",
@@ -228,6 +230,7 @@ namespace lsp
         const plugin_t comp_delay_x2_stereo =
         {
             "Verzögerungsausgleicher x2 Stereo",
+            "Delay Compensator x2 Stereo",
             "Delay Compensator x2 Stereo",
             "VA2S",
             &developers::v_sadovnikov,
