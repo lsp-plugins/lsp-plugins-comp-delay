@@ -73,7 +73,7 @@ namespace lsp
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t", "Delay time", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_t", "Delay time", U_MSEC, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
             METER_MINMAX("d_s", "Delay samples", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
             METER_MINMAX("d_d", "Delay distance", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
@@ -108,7 +108,7 @@ namespace lsp
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t", "Delay time", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_t", "Delay time", U_MSEC, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
             METER_MINMAX("d_s", "Delay samples", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
             METER_MINMAX("d_d", "Delay distance", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
@@ -153,11 +153,11 @@ namespace lsp
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t_l", "Delay time Left", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_t_l", "Delay time Left", U_MSEC, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
             METER_MINMAX("d_s_l", "Delay samples Left", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
             METER_MINMAX("d_d_l", "Delay distance Left", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
-            METER_MINMAX("d_t_r", "Delay time Right", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_t_r", "Delay time Right", U_MSEC, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
             METER_MINMAX("d_s_r", "Delay samples Right", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
             METER_MINMAX("d_d_r", "Delay distance Right", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
