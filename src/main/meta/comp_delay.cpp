@@ -25,7 +25,7 @@
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR         1
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MINOR         0
-#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         20
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         21
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION  \
     LSP_MODULE_VERSION( \
@@ -73,7 +73,7 @@ namespace lsp
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t", "Delay time", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_t", "Delay time", U_MSEC, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
             METER_MINMAX("d_s", "Delay samples", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
             METER_MINMAX("d_d", "Delay distance", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
@@ -108,7 +108,7 @@ namespace lsp
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t", "Delay time", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_t", "Delay time", U_MSEC, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
             METER_MINMAX("d_s", "Delay samples", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
             METER_MINMAX("d_d", "Delay distance", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
@@ -153,11 +153,11 @@ namespace lsp
             OUT_GAIN,
 
             // Output controls
-            METER_MINMAX("d_t_l", "Delay time Left", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_t_l", "Delay time Left", U_MSEC, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
             METER_MINMAX("d_s_l", "Delay samples Left", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
             METER_MINMAX("d_d_l", "Delay distance Left", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
-            METER_MINMAX("d_t_r", "Delay time Right", U_HZ, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
+            METER_MINMAX("d_t_r", "Delay time Right", U_MSEC, 0.0f, comp_delay::DELAY_OUT_MAX_TIME),
             METER_MINMAX("d_s_r", "Delay samples Right", U_SAMPLES, 0.0f, comp_delay::DELAY_OUT_MAX_SAMPLES),
             METER_MINMAX("d_d_r", "Delay distance Right", U_CM, 0.0f, comp_delay::DELAY_OUT_MAX_DISTANCE),
 
@@ -188,6 +188,8 @@ namespace lsp
             LSP_LV2_URI("comp_delay_mono"),
             LSP_LV2UI_URI("comp_delay_mono"),
             "jav8",
+            LSP_VST3_UID("va1m    jav8"),
+            LSP_VST3UI_UID("va1m    jav8"),
             LSP_LADSPA_COMP_DELAY_BASE + 0,
             LSP_LADSPA_URI("comp_delay_mono"),
             LSP_CLAP_URI("comp_delay_mono"),
@@ -213,6 +215,8 @@ namespace lsp
             LSP_LV2_URI("comp_delay_stereo"),
             LSP_LV2UI_URI("comp_delay_stereo"),
             "qpwr",
+            LSP_VST3_UID("va1s    qpwr"),
+            LSP_VST3UI_UID("va1s    qpwr"),
             LSP_LADSPA_COMP_DELAY_BASE + 1,
             LSP_LADSPA_URI("comp_delay_stereo"),
             LSP_CLAP_URI("comp_delay_stereo"),
@@ -238,6 +242,8 @@ namespace lsp
             LSP_LV2_URI("comp_delay_x2_stereo"),
             LSP_LV2UI_URI("comp_delay_x2_stereo"),
             "fwd3",
+            LSP_VST3_UID("va2s    fwd3"),
+            LSP_VST3UI_UID("va2s    fwd3"),
             LSP_LADSPA_COMP_DELAY_BASE + 2,
             LSP_LADSPA_URI("comp_delay_x2_stereo"),
             LSP_CLAP_URI("comp_delay_x2_stereo"),
