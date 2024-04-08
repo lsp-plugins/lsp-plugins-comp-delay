@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2023 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2023 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2024 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2024 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-comp-delay
  * Created on: 25 нояб. 2020 г.
@@ -36,9 +36,6 @@ namespace lsp
          */
         class comp_delay: public plug::Module
         {
-            private:
-                comp_delay & operator = (const comp_delay &);
-
             protected:
                 enum mode_t
                 {
@@ -92,17 +89,22 @@ namespace lsp
 
             public:
                 explicit comp_delay(const meta::plugin_t *meta);
-                virtual ~comp_delay();
+                comp_delay(const comp_delay &) = delete;
+                comp_delay(comp_delay &&) = delete;
+                virtual ~comp_delay() override;
 
-                virtual void        init(plug::IWrapper *wrapper, plug::IPort **ports);
-                void                destroy();
+                comp_delay & operator = (const comp_delay &) = delete;
+                comp_delay & operator = (comp_delay &&) = delete;
+
+                virtual void        init(plug::IWrapper *wrapper, plug::IPort **ports) override;
+                void                destroy() override;
 
             public:
 
-                virtual void        update_sample_rate(long sr);
-                virtual void        update_settings();
-                virtual void        process(size_t samples);
-                virtual void        dump(dspu::IStateDumper *v) const;
+                virtual void        update_sample_rate(long sr) override;
+                virtual void        update_settings() override;
+                virtual void        process(size_t samples) override;
+                virtual void        dump(dspu::IStateDumper *v) const override;
         };
     } /* namespace plugins */
 } /* namespace lsp */
