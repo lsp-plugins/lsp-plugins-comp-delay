@@ -117,6 +117,7 @@ namespace lsp
                 c->pTime                = NULL;
                 c->pDry                 = NULL;
                 c->pWet                 = NULL;
+                c->pDryWet              = NULL;
 
                 c->pOutTime             = NULL;
                 c->pOutSamples          = NULL;
@@ -156,6 +157,7 @@ namespace lsp
                     c->pTime                = pc->pTime;
                     c->pDry                 = pc->pDry;
                     c->pWet                 = pc->pWet;
+                    c->pDryWet              = pc->pDryWet;
                 }
                 else
                 {
@@ -168,6 +170,7 @@ namespace lsp
                     BIND_PORT(c->pTime);
                     BIND_PORT(c->pDry);
                     BIND_PORT(c->pWet);
+                    BIND_PORT(c->pDryWet);
                 }
 
                 BIND_PORT(c->pPhase);
@@ -259,11 +262,14 @@ namespace lsp
                 channel_t *c            = &vChannels[i];
 
                 float phase             = (c->pPhase->value() >= 0.5f) ? -1.0f : 1.0f;
+                const float drywet      = c->pDryWet->value();
+                const float dry         = c->pDry->value() * out_gain * phase;
+                const float wet         = c->pWet->value() * out_gain * phase;
 
                 c->nMode                = c->pMode->value();
                 c->bRamping             = c->pRamping->value() >= 0.5f;
-                c->fDry                 = c->pDry->value() * out_gain * phase;
-                c->fWet                 = c->pWet->value() * out_gain * phase;
+                c->fDry                 = dry * drywet + 1.0f - drywet;
+                c->fWet                 = wet * drywet;
 
                 float temperature       = c->pTemperature->value();
                 float snd_speed         = dspu::sound_speed(temperature);
@@ -366,6 +372,7 @@ namespace lsp
                     v->write("pTime", c->pTime);
                     v->write("pDry", c->pDry);
                     v->write("pWet", c->pWet);
+                    v->write("pDryWet", c->pDryWet);
                     v->write("pPhase", c->pPhase);
 
                     v->write("pOutTime", c->pOutTime);

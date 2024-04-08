@@ -67,6 +67,7 @@ namespace lsp
                     plug::IPort        *pTime;              // Time port
                     plug::IPort        *pDry;               // Dry control
                     plug::IPort        *pWet;               // Wet control
+                    plug::IPort        *pDryWet;            // Dry/Wet mix
                     plug::IPort        *pPhase;             // Phase invert
 
                     plug::IPort        *pOutTime;           // Output time

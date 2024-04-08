@@ -36,6 +36,7 @@
 	<li><b>Output</b> - the loudness of the processed output signal<?= $cc ?>.</li>
 	<li><b>Dry amount</b> - the amount of the unprocessed (dry) signal in the output signal<?= $cc ?>.</li>
 	<li><b>Wet amount</b> - the amount of the processed (wet) signal in the output signal<?= $cc ?>.</li>
+	<li><b>Dry/Wet</b> - the balance between mixed signal (see Dry Amount and Wet Amount knobs) and unprocessed (Dry) signal<?= $cc ?>.</li>
 	<li>
 		<b>Mode</b> - the switch button that selects active mode of the delay<?= $cc ?>: <b>Samples</b>, <b>Distance</b> or <b>Time</b>. When the mode is active,
 		then the <b>Active</b> led of the appropriate control group is shining.

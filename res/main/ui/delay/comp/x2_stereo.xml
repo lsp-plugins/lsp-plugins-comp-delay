@@ -5,30 +5,44 @@
 				<label ui:inject="LabelChannel_1" text="groups.lchan.lchan" expand="false"/>
 			</cell>
 			<group ui:inject="Channel_1_Group" text="groups.lchan.signal" width.min="148" expand="true">
-				<grid rows="4" cols="2" spacing="4">
+				<grid rows="4" cols="3" spacing="4">
 					<label text="labels.signal.dry" width="60"/>
 					<label text="labels.signal.wet" width="60"/>
+					<label text="labels.signal.drywet" width="60"/>
+					
 					<knob id="dry_l" scolor="dry"/>
 					<knob id="wet_l" scolor="wet"/>
+					<knob id="dwmix_l" scolor="drywet"/>
+					
 					<value id="dry_l" sline="true" width.min="50"/>
 					<value id="wet_l" sline="true" width.min="50"/>
+					<value id="dwmix_l" sline="true" width.min="50"/>
+					
 					<button id="mode_l" text="labels.mode" led="true"/>
 					<button id="ramp_l" text="labels.ramp" ui:inject="Button_red" led="true"/>
+					<void />
 				</grid>
 			</group>
 			<cell rows="1" cols="5">
 				<label ui:inject="LabelChannel_2"  text="groups.rchan.rchan" expand="false"/>
 			</cell>
 			<group ui:inject="Channel_2_Group" text="groups.rchan.signal" width.min="148" expand="true">
-				<grid rows="4" cols="2" spacing="4">
+				<grid rows="4" cols="3" spacing="4">
 					<label text="labels.signal.dry" width="60"/>
 					<label text="labels.signal.wet" width="60"/>
+					<label text="labels.signal.drywet" width="60"/>
+					
 					<knob id="dry_r" scolor="dry"/>
 					<knob id="wet_r" scolor="wet"/>
+					<knob id="dwmix_r" scolor="drywet"/>
+					
 					<value id="dry_r" sline="true" width.min="50"/>
 					<value id="wet_r" sline="true" width.min="50"/>
+					<value id="dwmix_r" sline="true" width.min="50"/>
+					
 					<button id="mode_r" text="labels.mode" led="true"/>
 					<button id="ramp_r" text="labels.ramp" ui:inject="Button_blue" led="true"/>
+					<void />
 				</grid>
 			</group>
 			<ui:with bright="(:mode_l ieq 0) ? 1.0 : 0.75">
