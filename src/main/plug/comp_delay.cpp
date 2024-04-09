@@ -262,7 +262,7 @@ namespace lsp
                 channel_t *c            = &vChannels[i];
 
                 float phase             = (c->pPhase->value() >= 0.5f) ? -1.0f : 1.0f;
-                const float drywet      = c->pDryWet->value();
+                const float drywet      = c->pDryWet->value() * 0.01f;
                 const float dry         = c->pDry->value() * out_gain * phase;
                 const float wet         = c->pWet->value() * out_gain * phase;
 
