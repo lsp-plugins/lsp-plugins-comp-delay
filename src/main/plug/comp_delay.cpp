@@ -263,13 +263,13 @@ namespace lsp
 
                 float phase             = (c->pPhase->value() >= 0.5f) ? -1.0f : 1.0f;
                 const float drywet      = c->pDryWet->value() * 0.01f;
-                const float dry         = c->pDry->value() * out_gain * phase;
-                const float wet         = c->pWet->value() * out_gain * phase;
+                const float dry         = c->pDry->value() * phase;
+                const float wet         = c->pWet->value() * phase;
 
                 c->nMode                = c->pMode->value();
                 c->bRamping             = c->pRamping->value() >= 0.5f;
-                c->fDry                 = dry * drywet + 1.0f - drywet;
-                c->fWet                 = wet * drywet;
+                c->fDry                 = (dry * drywet + 1.0f - drywet) * out_gain;
+                c->fWet                 = wet * drywet * out_gain;
 
                 float temperature       = c->pTemperature->value();
                 float snd_speed         = dspu::sound_speed(temperature);
