@@ -25,7 +25,7 @@
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR         1
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MINOR         0
-#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         21
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         22
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION  \
     LSP_MODULE_VERSION( \
@@ -68,6 +68,7 @@ namespace lsp
             CONTROL("time", "Time", U_MSEC, comp_delay::TIME),
             DRY_GAIN(0.0f),
             WET_GAIN(1.0f),
+            DRYWET(100.0f),
             SWITCH("phase", "Phase Invert", 0.0f),
 
             OUT_GAIN,
@@ -102,6 +103,7 @@ namespace lsp
             CONTROL("time", "Time", U_MSEC, comp_delay::TIME),
             DRY_GAIN(0.0f),
             WET_GAIN(1.0f),
+            DRYWET(100.0f),
             SWITCH("phase_l", "Phase Invert Left", 0.0f),
             SWITCH("phase_r", "Phase Invert Right", 0.0f),
 
@@ -137,6 +139,8 @@ namespace lsp
             CONTROL("time_l", "Time Left", U_MSEC, comp_delay::TIME),
             DRY_GAIN_L(0.0f),
             WET_GAIN_L(1.0f),
+            DRYWET_L(100.0f),
+            DRYWET(100.0f),
             SWITCH("phase_l", "Phase Invert Left", 0.0f),
 
             COMBO("mode_r", "Mode Right", 0, comp_delay_modes),
@@ -148,6 +152,7 @@ namespace lsp
             CONTROL("time_r", "Time Right", U_MSEC, comp_delay::TIME),
             DRY_GAIN_R(0.0f),
             WET_GAIN_R(1.0f),
+            DRYWET_R(100.0f),
             SWITCH("phase_r", "Phase Invert Right", 0.0f),
 
             OUT_GAIN,

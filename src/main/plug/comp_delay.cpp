@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2023 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2023 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2024 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2024 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-comp-delay
  * Created on: 25 нояб. 2020 г.
@@ -24,18 +24,13 @@
 #include <lsp-plug.in/common/alloc.h>
 #include <lsp-plug.in/common/debug.h>
 #include <lsp-plug.in/dsp/dsp.h>
-
-#define BUFFER_SIZE         0x1000U
+#include <lsp-plug.in/shared/debug.h>
 
 namespace lsp
 {
     namespace plugins
     {
-        static plug::IPort *TRACE_PORT(plug::IPort *p)
-        {
-            lsp_trace("  port id=%s", (p)->metadata()->id);
-            return p;
-        }
+        static constexpr size_t BUFFER_SIZE  = 0x1000;
 
         //---------------------------------------------------------------------
         // Plugin factory
@@ -94,10 +89,8 @@ namespace lsp
                 return;
 
             // Initialize channels
-            vChannels               = reinterpret_cast<channel_t *>(ptr);
-            ptr                    += szof_channels;
-            vBuffer                 = reinterpret_cast<float *>(ptr);
-            ptr                    += buf_sz;
+            vChannels               = advance_ptr_bytes<channel_t>(ptr, szof_channels);
+            vBuffer                 = advance_ptr_bytes<float>(ptr, buf_sz);
 
             for (size_t i=0; i < channels; ++i)
             {
@@ -124,6 +117,7 @@ namespace lsp
                 c->pTime                = NULL;
                 c->pDry                 = NULL;
                 c->pWet                 = NULL;
+                c->pDryWet              = NULL;
 
                 c->pOutTime             = NULL;
                 c->pOutSamples          = NULL;
@@ -136,14 +130,14 @@ namespace lsp
 
             // Bind input audio ports
             for (size_t i=0; i<channels; ++i)
-                vChannels[i].pIn    = TRACE_PORT(ports[port_id++]);
+                BIND_PORT(vChannels[i].pIn);
 
             // Bind output audio ports
             for (size_t i=0; i<channels; ++i)
-                vChannels[i].pOut   = TRACE_PORT(ports[port_id++]);
+                BIND_PORT(vChannels[i].pOut);
 
             // Bind bypass
-            pBypass              = TRACE_PORT(ports[port_id++]);
+            BIND_PORT(pBypass);
 
             // Bind channels
             for (size_t i=0; i<channels; ++i)
@@ -163,25 +157,27 @@ namespace lsp
                     c->pTime                = pc->pTime;
                     c->pDry                 = pc->pDry;
                     c->pWet                 = pc->pWet;
+                    c->pDryWet              = pc->pDryWet;
                 }
                 else
                 {
-                    c->pMode                = TRACE_PORT(ports[port_id++]);
-                    c->pRamping             = TRACE_PORT(ports[port_id++]);
-                    c->pSamples             = TRACE_PORT(ports[port_id++]);
-                    c->pMeters              = TRACE_PORT(ports[port_id++]);
-                    c->pCentimeters         = TRACE_PORT(ports[port_id++]);
-                    c->pTemperature         = TRACE_PORT(ports[port_id++]);
-                    c->pTime                = TRACE_PORT(ports[port_id++]);
-                    c->pDry                 = TRACE_PORT(ports[port_id++]);
-                    c->pWet                 = TRACE_PORT(ports[port_id++]);
+                    BIND_PORT(c->pMode);
+                    BIND_PORT(c->pRamping);
+                    BIND_PORT(c->pSamples);
+                    BIND_PORT(c->pMeters);
+                    BIND_PORT(c->pCentimeters);
+                    BIND_PORT(c->pTemperature);
+                    BIND_PORT(c->pTime);
+                    BIND_PORT(c->pDry);
+                    BIND_PORT(c->pWet);
+                    BIND_PORT(c->pDryWet);
                 }
 
-                c->pPhase               = TRACE_PORT(ports[port_id++]);
+                BIND_PORT(c->pPhase);
             }
 
             // Bind output gain
-            pGainOut            = TRACE_PORT(ports[port_id++]);
+            BIND_PORT(pGainOut);
 
             // Bind output meters
             for (size_t i=0; i<channels; ++i)
@@ -198,9 +194,9 @@ namespace lsp
                 }
                 else
                 {
-                    c->pOutTime             = TRACE_PORT(ports[port_id++]);
-                    c->pOutSamples          = TRACE_PORT(ports[port_id++]);
-                    c->pOutDistance         = TRACE_PORT(ports[port_id++]);
+                    BIND_PORT(c->pOutTime);
+                    BIND_PORT(c->pOutSamples);
+                    BIND_PORT(c->pOutDistance);
                 }
             }
         }
@@ -266,11 +262,14 @@ namespace lsp
                 channel_t *c            = &vChannels[i];
 
                 float phase             = (c->pPhase->value() >= 0.5f) ? -1.0f : 1.0f;
+                const float drywet      = c->pDryWet->value() * 0.01f;
+                const float dry         = c->pDry->value() * phase;
+                const float wet         = c->pWet->value() * phase;
 
                 c->nMode                = c->pMode->value();
                 c->bRamping             = c->pRamping->value() >= 0.5f;
-                c->fDry                 = c->pDry->value() * out_gain * phase;
-                c->fWet                 = c->pWet->value() * out_gain * phase;
+                c->fDry                 = (dry * drywet + 1.0f - drywet) * out_gain;
+                c->fWet                 = wet * drywet * out_gain;
 
                 float temperature       = c->pTemperature->value();
                 float snd_speed         = dspu::sound_speed(temperature);
@@ -373,6 +372,7 @@ namespace lsp
                     v->write("pTime", c->pTime);
                     v->write("pDry", c->pDry);
                     v->write("pWet", c->pWet);
+                    v->write("pDryWet", c->pDryWet);
                     v->write("pPhase", c->pPhase);
 
                     v->write("pOutTime", c->pOutTime);

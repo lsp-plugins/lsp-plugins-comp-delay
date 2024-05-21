@@ -2,15 +2,22 @@
 		<hbox spacing="4">
 			<grid rows="1" cols="5" transpose="true" spacing="4">
 				<group text="groups.signal" width.min="148" expand="true">
-					<grid rows="4" cols="2" spacing="4">
+					<grid rows="4" cols="3" spacing="4">
 						<label text="labels.signal.dry" width="60"/>
 						<label text="labels.signal.wet" width="60"/>
+						<label text="labels.signal.drywet" width="60"/>
+						
 						<knob id="dry" scolor="dry"/>
 						<knob id="wet" scolor="wet"/>
+						<knob id="drywet" scolor="drywet"/>
+						
 						<value id="dry" sline="true" width.min="50"/>
 						<value id="wet" sline="true" width.min="50"/>
+						<value id="drywet" sline="true" width.min="50"/>
+						
 						<button id="mode" text="labels.mode" ui:inject="Button" led="true"/>
 						<button id="ramp" text="labels.ramp" ui:inject="Button" led="true"/>
+						<void />
 					</grid>
 				</group>
 				<ui:with bright="(:mode ieq 0) ? 1.0 : 0.75" ibg.bright="(:mode ieq 0) ? 1.0 : :const_bg_darken">
