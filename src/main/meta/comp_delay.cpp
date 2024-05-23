@@ -140,7 +140,6 @@ namespace lsp
             DRY_GAIN_L(0.0f),
             WET_GAIN_L(1.0f),
             DRYWET_L(100.0f),
-            DRYWET(100.0f),
             SWITCH("phase_l", "Phase Invert Left", 0.0f),
 
             COMBO("mode_r", "Mode Right", 0, comp_delay_modes),
