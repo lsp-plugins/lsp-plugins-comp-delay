@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2020 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2024 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2024 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-comp-delay
  * Created on: 25 нояб. 2020 г.
@@ -25,7 +25,7 @@
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR         1
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MINOR         0
-#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         23
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         24
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION  \
     LSP_MODULE_VERSION( \
@@ -140,7 +140,6 @@ namespace lsp
             DRY_GAIN_L(0.0f),
             WET_GAIN_L(1.0f),
             DRYWET_L(100.0f),
-            DRYWET(100.0f),
             SWITCH("phase_l", "Phase Invert Left", 0.0f),
 
             COMBO("mode_r", "Mode Right", 0, comp_delay_modes),
@@ -190,14 +189,17 @@ namespace lsp
             "VA1M",
             &developers::v_sadovnikov,
             "comp_delay_mono",
-            LSP_LV2_URI("comp_delay_mono"),
-            LSP_LV2UI_URI("comp_delay_mono"),
-            "jav8",
-            LSP_VST3_UID("va1m    jav8"),
-            LSP_VST3UI_UID("va1m    jav8"),
-            LSP_LADSPA_COMP_DELAY_BASE + 0,
-            LSP_LADSPA_URI("comp_delay_mono"),
-            LSP_CLAP_URI("comp_delay_mono"),
+            {
+                LSP_LV2_URI("comp_delay_mono"),
+                LSP_LV2UI_URI("comp_delay_mono"),
+                "jav8",
+                LSP_VST3_UID("va1m    jav8"),
+                LSP_VST3UI_UID("va1m    jav8"),
+                LSP_LADSPA_COMP_DELAY_BASE + 0,
+                LSP_LADSPA_URI("comp_delay_mono"),
+                LSP_CLAP_URI("comp_delay_mono"),
+                LSP_GST_UID("comp_delay_mono"),
+            },
             LSP_PLUGINS_COMP_DELAY_VERSION,
             plugin_classes,
             clap_features_mono,
@@ -217,14 +219,17 @@ namespace lsp
             "VA1S",
             &developers::v_sadovnikov,
             "comp_delay_stereo",
-            LSP_LV2_URI("comp_delay_stereo"),
-            LSP_LV2UI_URI("comp_delay_stereo"),
-            "qpwr",
-            LSP_VST3_UID("va1s    qpwr"),
-            LSP_VST3UI_UID("va1s    qpwr"),
-            LSP_LADSPA_COMP_DELAY_BASE + 1,
-            LSP_LADSPA_URI("comp_delay_stereo"),
-            LSP_CLAP_URI("comp_delay_stereo"),
+            {
+                LSP_LV2_URI("comp_delay_stereo"),
+                LSP_LV2UI_URI("comp_delay_stereo"),
+                "qpwr",
+                LSP_VST3_UID("va1s    qpwr"),
+                LSP_VST3UI_UID("va1s    qpwr"),
+                LSP_LADSPA_COMP_DELAY_BASE + 1,
+                LSP_LADSPA_URI("comp_delay_stereo"),
+                LSP_CLAP_URI("comp_delay_stereo"),
+                LSP_GST_UID("comp_delay_stereo"),
+            },
             LSP_PLUGINS_COMP_DELAY_VERSION,
             plugin_classes,
             clap_features_stereo,
@@ -244,14 +249,17 @@ namespace lsp
             "VA2S",
             &developers::v_sadovnikov,
             "comp_delay_x2_stereo",
-            LSP_LV2_URI("comp_delay_x2_stereo"),
-            LSP_LV2UI_URI("comp_delay_x2_stereo"),
-            "fwd3",
-            LSP_VST3_UID("va2s    fwd3"),
-            LSP_VST3UI_UID("va2s    fwd3"),
-            LSP_LADSPA_COMP_DELAY_BASE + 2,
-            LSP_LADSPA_URI("comp_delay_x2_stereo"),
-            LSP_CLAP_URI("comp_delay_x2_stereo"),
+            {
+                LSP_LV2_URI("comp_delay_x2_stereo"),
+                LSP_LV2UI_URI("comp_delay_x2_stereo"),
+                "fwd3",
+                LSP_VST3_UID("va2s    fwd3"),
+                LSP_VST3UI_UID("va2s    fwd3"),
+                LSP_LADSPA_COMP_DELAY_BASE + 2,
+                LSP_LADSPA_URI("comp_delay_x2_stereo"),
+                LSP_CLAP_URI("comp_delay_x2_stereo"),
+                LSP_GST_UID("comp_delay_x2_stereo"),
+            },
             LSP_PLUGINS_COMP_DELAY_VERSION,
             plugin_classes,
             clap_features_stereo,
