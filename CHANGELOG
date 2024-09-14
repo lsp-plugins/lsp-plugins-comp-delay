@@ -3,7 +3,7 @@
 *******************************************************************************
 
 === 1.0.25 ===
-
+* Updated build scripts and dependencies.
 
 === 1.0.24 ===
 * Fixed improper port bindings for delay x2 stereo.
