@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2024 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2024 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2025 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2025 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-comp-delay
  * Created on: 25 нояб. 2020 г.
@@ -59,8 +59,8 @@ namespace lsp
             // Input controls
             BYPASS,
 
-            COMBO("mode", "Mode", 0, comp_delay_modes),
-            SWITCH("ramp", "Ramping", 0.0f),
+            COMBO("mode", "Mode", "Mode", 0, comp_delay_modes),
+            SWITCH("ramp", "Ramping", "Ramping", 0.0f),
             INT_CONTROL("samp", "Samples", U_SAMPLES, comp_delay::SAMPLES),
             INT_CONTROL("m", "Meters", U_M, comp_delay::METERS),
             CONTROL("cm", "Centimeters", U_CM, comp_delay::CENTIMETERS),
@@ -69,7 +69,7 @@ namespace lsp
             DRY_GAIN(0.0f),
             WET_GAIN(1.0f),
             DRYWET(100.0f),
-            SWITCH("phase", "Phase Invert", 0.0f),
+            SWITCH("phase", "Phase Invert", "Phase", 0.0f),
 
             OUT_GAIN,
 
@@ -94,8 +94,8 @@ namespace lsp
             // Input controls
             BYPASS,
 
-            COMBO("mode", "Mode", 0, comp_delay_modes),
-            SWITCH("ramp", "Ramping", 0.0f),
+            COMBO("mode", "Mode", "Mode", 0, comp_delay_modes),
+            SWITCH("ramp", "Ramping", "Ramping", 0.0f),
             INT_CONTROL("samp", "Samples", U_SAMPLES, comp_delay::SAMPLES),
             INT_CONTROL("m", "Meters", U_M, comp_delay::METERS),
             CONTROL("cm", "Centimeters", U_CM, comp_delay::CENTIMETERS),
@@ -104,8 +104,8 @@ namespace lsp
             DRY_GAIN(0.0f),
             WET_GAIN(1.0f),
             DRYWET(100.0f),
-            SWITCH("phase_l", "Phase Invert Left", 0.0f),
-            SWITCH("phase_r", "Phase Invert Right", 0.0f),
+            SWITCH("phase_l", "Phase Invert Left", "Phase L", 0.0f),
+            SWITCH("phase_r", "Phase Invert Right", "Phase R", 0.0f),
 
             OUT_GAIN,
 
@@ -130,8 +130,8 @@ namespace lsp
             // Input controls
             BYPASS,
 
-            COMBO("mode_l", "Mode Left", 0, comp_delay_modes),
-            SWITCH("ramp_l", "Ramping Left", 0.0f),
+            COMBO("mode_l", "Mode Left", "Mode L", 0, comp_delay_modes),
+            SWITCH("ramp_l", "Ramping Left", "Ramping L", 0.0f),
             INT_CONTROL("samp_l", "Samples Left", U_SAMPLES, comp_delay::SAMPLES),
             INT_CONTROL("m_l", "Meters Left", U_M, comp_delay::METERS),
             CONTROL("cm_l", "Centimeters Left", U_CM, comp_delay::CENTIMETERS),
@@ -140,10 +140,10 @@ namespace lsp
             DRY_GAIN_L(0.0f),
             WET_GAIN_L(1.0f),
             DRYWET_L(100.0f),
-            SWITCH("phase_l", "Phase Invert Left", 0.0f),
+            SWITCH("phase_l", "Phase Invert Left", "Phase L", 0.0f),
 
-            COMBO("mode_r", "Mode Right", 0, comp_delay_modes),
-            SWITCH("ramp_r", "Ramping Right", 0.0f),
+            COMBO("mode_r", "Mode Right", "Mode R", 0, comp_delay_modes),
+            SWITCH("ramp_r", "Ramping Right", "Ramping R", 0.0f),
             INT_CONTROL("samp_r", "Samples Right", U_SAMPLES, comp_delay::SAMPLES),
             INT_CONTROL("m_r", "Meters Right", U_M, comp_delay::METERS),
             CONTROL("cm_r", "Centimeters Right", U_CM, comp_delay::CENTIMETERS),
@@ -152,7 +152,7 @@ namespace lsp
             DRY_GAIN_R(0.0f),
             WET_GAIN_R(1.0f),
             DRYWET_R(100.0f),
-            SWITCH("phase_r", "Phase Invert Right", 0.0f),
+            SWITCH("phase_r", "Phase Invert Right", "Phase R", 0.0f),
 
             OUT_GAIN,
 
