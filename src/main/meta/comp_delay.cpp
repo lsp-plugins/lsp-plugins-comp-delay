@@ -61,8 +61,8 @@ namespace lsp
 
             COMBO("mode", "Mode", "Mode", 0, comp_delay_modes),
             SWITCH("ramp", "Ramping", "Ramping", 0.0f),
-            INT_CONTROL("samp", "Samples", U_SAMPLES, comp_delay::SAMPLES),
-            INT_CONTROL("m", "Meters", U_M, comp_delay::METERS),
+            INT_CONTROL("samp", "Samples", "Samples", U_SAMPLES, comp_delay::SAMPLES),
+            INT_CONTROL("m", "Meters", "Meters", U_M, comp_delay::METERS),
             CONTROL("cm", "Centimeters", U_CM, comp_delay::CENTIMETERS),
             CONTROL("t", "Temperature", U_DEG_CEL, comp_delay::TEMPERATURE),
             CONTROL("time", "Time", U_MSEC, comp_delay::TIME),
@@ -96,8 +96,8 @@ namespace lsp
 
             COMBO("mode", "Mode", "Mode", 0, comp_delay_modes),
             SWITCH("ramp", "Ramping", "Ramping", 0.0f),
-            INT_CONTROL("samp", "Samples", U_SAMPLES, comp_delay::SAMPLES),
-            INT_CONTROL("m", "Meters", U_M, comp_delay::METERS),
+            INT_CONTROL("samp", "Samples", "Samples", U_SAMPLES, comp_delay::SAMPLES),
+            INT_CONTROL("m", "Meters", "Meters", U_M, comp_delay::METERS),
             CONTROL("cm", "Centimeters", U_CM, comp_delay::CENTIMETERS),
             CONTROL("t", "Temperature", U_DEG_CEL, comp_delay::TEMPERATURE),
             CONTROL("time", "Time", U_MSEC, comp_delay::TIME),
@@ -132,8 +132,8 @@ namespace lsp
 
             COMBO("mode_l", "Mode Left", "Mode L", 0, comp_delay_modes),
             SWITCH("ramp_l", "Ramping Left", "Ramping L", 0.0f),
-            INT_CONTROL("samp_l", "Samples Left", U_SAMPLES, comp_delay::SAMPLES),
-            INT_CONTROL("m_l", "Meters Left", U_M, comp_delay::METERS),
+            INT_CONTROL("samp_l", "Samples Left", "Samples L", U_SAMPLES, comp_delay::SAMPLES),
+            INT_CONTROL("m_l", "Meters Left", "Meters L", U_M, comp_delay::METERS),
             CONTROL("cm_l", "Centimeters Left", U_CM, comp_delay::CENTIMETERS),
             CONTROL("t_l", "Temperature Left", U_DEG_CEL, comp_delay::TEMPERATURE),
             CONTROL("time_l", "Time Left", U_MSEC, comp_delay::TIME),
@@ -144,8 +144,8 @@ namespace lsp
 
             COMBO("mode_r", "Mode Right", "Mode R", 0, comp_delay_modes),
             SWITCH("ramp_r", "Ramping Right", "Ramping R", 0.0f),
-            INT_CONTROL("samp_r", "Samples Right", U_SAMPLES, comp_delay::SAMPLES),
-            INT_CONTROL("m_r", "Meters Right", U_M, comp_delay::METERS),
+            INT_CONTROL("samp_r", "Samples Right", "Samples R", U_SAMPLES, comp_delay::SAMPLES),
+            INT_CONTROL("m_r", "Meters Right", "Meters R", U_M, comp_delay::METERS),
             CONTROL("cm_r", "Centimeters Right", U_CM, comp_delay::CENTIMETERS),
             CONTROL("t_r", "Temperature Right", U_DEG_CEL, comp_delay::TEMPERATURE),
             CONTROL("time_r", "Time Right", U_MSEC, comp_delay::TIME),
