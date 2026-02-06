@@ -1,7 +1,12 @@
 {
 	"comp_delay": {
-		"name": "Kompensationsdelay",
-		"description": "Dieses Plugin erlaubt es ein kurzes Delay einzufügen, um Phasenverschiebungen auszugleichen\nrelativ zu den anderen Kanälen. Die Idee ist es dem Signal von Mikrofonen, \ndie unterschiedlich positioniert und unterschiedlich entfernt von der Klangquelle \nsind, ein Delay hinzuzufügen."
+		"description": "Dieses Plugin erlaubt es ein kurzes Delay einzufügen, um Phasenverschiebungen auszugleichen\nrelativ zu den anderen Kanälen. Die Idee ist es dem Signal von Mikrofonen, \ndie unterschiedlich positioniert und unterschiedlich entfernt von der Klangquelle \nsind, ein Delay hinzuzufügen.",
+		"name": "Kompensationsdelay"
+	},
+	"launcher": {
+		"comp_delay_mono": "Mono",
+		"comp_delay_stereo": "Stereo",
+		"comp_delay_x2_stereo": "Stereo X2"
 	}
 }
 
