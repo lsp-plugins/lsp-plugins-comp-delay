@@ -206,7 +206,7 @@ namespace lsp
             clap_features_mono,
             E_DUMP_STATE,
             comp_delay_mono_ports,
-            "delay/comp/mono.xml",
+            "plugins/delay/comp/mono.xml",
             NULL,
             mono_plugin_port_groups,
             &comp_delay_bundle
@@ -237,7 +237,7 @@ namespace lsp
             clap_features_stereo,
             E_DUMP_STATE,
             comp_delay_stereo_ports,
-            "delay/comp/stereo.xml",
+            "plugins/delay/comp/stereo.xml",
             NULL,
             stereo_plugin_port_groups,
             &comp_delay_bundle
@@ -268,7 +268,7 @@ namespace lsp
             clap_features_stereo,
             E_DUMP_STATE,
             comp_delay_x2_stereo_ports,
-            "delay/comp/x2_stereo.xml",
+            "plugins/delay/comp/x2_stereo.xml",
             NULL,
             stereo_plugin_port_groups,
             &comp_delay_bundle
