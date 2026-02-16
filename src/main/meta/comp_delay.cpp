@@ -209,7 +209,8 @@ namespace lsp
             "plugins/delay/comp/mono.xml",
             NULL,
             mono_plugin_port_groups,
-            &comp_delay_bundle
+            &comp_delay_bundle,
+            3
         };
         LSP_REGISTER_METADATA(comp_delay_mono);
 
@@ -240,7 +241,8 @@ namespace lsp
             "plugins/delay/comp/stereo.xml",
             NULL,
             stereo_plugin_port_groups,
-            &comp_delay_bundle
+            &comp_delay_bundle,
+            1
         };
         LSP_REGISTER_METADATA(comp_delay_stereo);
 
@@ -271,11 +273,10 @@ namespace lsp
             "plugins/delay/comp/x2_stereo.xml",
             NULL,
             stereo_plugin_port_groups,
-            &comp_delay_bundle
+            &comp_delay_bundle,
+            2
         };
         LSP_REGISTER_METADATA(comp_delay_x2_stereo);
 
     } /* namespace meta */
 } /* namespace lsp */
-
-
