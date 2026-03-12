@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2025 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2025 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2026 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2026 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-comp-delay
  * Created on: 25 нояб. 2020 г.
@@ -20,12 +20,13 @@
  */
 
 #include <lsp-plug.in/plug-fw/meta/ports.h>
+#include <lsp-plug.in/plug-fw/meta/registry.h>
 #include <lsp-plug.in/shared/meta/developers.h>
 #include <private/meta/comp_delay.h>
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MAJOR         1
 #define LSP_PLUGINS_COMP_DELAY_VERSION_MINOR         0
-#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         33
+#define LSP_PLUGINS_COMP_DELAY_VERSION_MICRO         34
 
 #define LSP_PLUGINS_COMP_DELAY_VERSION  \
     LSP_MODULE_VERSION( \
@@ -205,11 +206,13 @@ namespace lsp
             clap_features_mono,
             E_DUMP_STATE,
             comp_delay_mono_ports,
-            "delay/comp/mono.xml",
+            "plugins/delay/comp/mono.xml",
             NULL,
             mono_plugin_port_groups,
-            &comp_delay_bundle
+            &comp_delay_bundle,
+            3
         };
+        LSP_REGISTER_METADATA(comp_delay_mono);
 
         const plugin_t comp_delay_stereo =
         {
@@ -235,11 +238,13 @@ namespace lsp
             clap_features_stereo,
             E_DUMP_STATE,
             comp_delay_stereo_ports,
-            "delay/comp/stereo.xml",
+            "plugins/delay/comp/stereo.xml",
             NULL,
             stereo_plugin_port_groups,
-            &comp_delay_bundle
+            &comp_delay_bundle,
+            1
         };
+        LSP_REGISTER_METADATA(comp_delay_stereo);
 
         const plugin_t comp_delay_x2_stereo =
         {
@@ -265,12 +270,13 @@ namespace lsp
             clap_features_stereo,
             E_DUMP_STATE,
             comp_delay_x2_stereo_ports,
-            "delay/comp/x2_stereo.xml",
+            "plugins/delay/comp/x2_stereo.xml",
             NULL,
             stereo_plugin_port_groups,
-            &comp_delay_bundle
+            &comp_delay_bundle,
+            2
         };
+        LSP_REGISTER_METADATA(comp_delay_x2_stereo);
+
     } /* namespace meta */
 } /* namespace lsp */
-
-
